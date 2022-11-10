@@ -11,9 +11,12 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: [
-    'airbnb', 
-    'airbnb-typescript',
+  'extends': [
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'plugin:react-hooks/recommended',
+    'plugin:prettier/recommended'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -27,18 +30,20 @@ module.exports = {
   plugins: ['prettier', 'react', '@typescript-eslint'],
   rules: {
     'prettier/prettier': ['warn', prettierOptions],
-    "object-curly-newline": ['warn', {
-      "ObjectPattern": { 'multiline': true },}
+    'object-curly-newline': ['warn', {
+      'ObjectPattern': { 'multiline': true },}
     ],
-    "arrow-parens": ["warn", "as-needed"],
-    "linebreak-style": 'off',
-    "react/jsx-props-no-spreading": 'off',
-    "class-methods-use-this": 'off',
+    'arrow-parens': ['warn', 'as-needed'],
+    'linebreak-style': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'class-methods-use-this': 'off',
     'no-underscore-dangle': 'off',
-    'operator-linebreak': ["warn", "before", {"overrides": { 
-      "=": "after",  
-      "&&": "after", 
-      "||": "after",
+    'no-unused-vars': 'off',
+    'vuejs-accessibility/click-events-have-key-events': 'off',
+    'operator-linebreak': ['warn', 'before', {'overrides': {
+      '=': 'after',  
+      '&&': 'after', 
+      '||': 'after',
     }}],
     'no-param-reassign': ['warn', {
       props: true,

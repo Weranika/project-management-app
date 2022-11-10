@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, HashRouter } from 'react-router-dom';
 import Main from './components/pages/Main/Main';
-import Board from './components/Board/Board';
+import Board from './components/pages/Board/Board';
 import Page404 from './components/pages/Page404/Page404';
 import MainLayout from './components/MainLayout/MainLayout';
 import './App.css';

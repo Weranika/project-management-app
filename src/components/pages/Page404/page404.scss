@@ -1,4 +1,4 @@
-@import '../../global/library';
+@import '../../../global/library';
 
 .not-found__container {
   background-color: rgb(254, 254, 254);
@@ -6,7 +6,7 @@
   flex-grow: 1;
 }
 .error__container {
-  background: url(../../assets/images/404-page.jpg) no-repeat center;
+  background: url(../../../assets/images/404-page.jpg) no-repeat center;
   background-size: auto 65vh;
   height: 71vh;
 }
