@@ -1,0 +1,85 @@
+@import '../../global/library';
+
+$LOGO-HEIGHT: 60px;
+
+.header {
+  @include flex(space-between);
+  background: linear-gradient(rgba(35, 35, 35, 0) 50%,rgba(17, 17, 17, 0.5) 100%), $MAIN-COLOR--PRIMARY-DARK;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  color: $MAIN-COLOR--SECONDARY;
+}
+.header-container {
+  width: 87%;
+  margin: 10px auto;
+  @include flex(space-between);
+  .MuiSvgIcon-root {
+    color: $MAIN-COLOR--SECONDARY-LIGHT;
+  }
+}
+.logo__container {
+  @include font(14px, OpenSans);
+  @include flex(space-between);
+  min-width: 20%;
+}
+.logo {
+  height: $LOGO-HEIGHT;
+  margin: 0 15px 0 7px;
+  h1 {
+    color: $MAIN-COLOR--SECONDARY-LIGHT;
+    &:hover {
+      color:$MAIN-COLOR--PRIMARY-LIGHT;
+    }
+    &:active {
+      color: $MAIN-COLOR--SECONDARY;
+    }
+  }
+}
+.logo-img {
+  height: 50px;
+  border-radius: 13px;
+  &:hover {
+    box-shadow: 0px 0px 8px 3px rgba(255, 255, 255, 0.8);
+  }
+  &:active {
+    box-shadow: 0px 0px 8px 3px rgb(242 161 55 / 80%);
+  }
+}
+.logo__title {
+  @include flex(space-between);
+  color: $LIGHT-COLOR;
+  margin-left: 20px;
+  &:hover {
+    color: $MAIN-COLOR--SECONDARY-LIGHT;
+    text-shadow: 0px 0px 13px rgb(255 255 255 / 80%);
+  }
+}
+.navbar {
+  @include flex(space-between);
+  min-width: 15%;
+  @include font(16px, OpenSans);
+  li > a{
+    padding-left: 10px;
+    &:hover {
+      color:$MAIN-COLOR--SECONDARY-LIGHT;
+    }
+  }
+  .active {
+    color: $MAIN-COLOR--PRIMARY-LIGHT;
+  }
+}
+/***************media********************/
+@media only screen and (min-width: 580px) and (max-width: 840px) {
+  .logo {
+    display: none;
+  }
+}
+@media only screen and (max-width: 579px) {
+  .logo {
+    display: none;
+  }
+  .navbar {
+    font-size: 3vw;
+  }
+}
