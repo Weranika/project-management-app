@@ -5,7 +5,7 @@ function Board() {
   return (
     <main className="board">
       <section className="board__page">
-        <h1 className="board__titlr">Board page</h1>
+        <h1 className="board__title">Board page</h1>
       </section>
     </main>
   );

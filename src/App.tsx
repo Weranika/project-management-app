@@ -1,9 +1,9 @@
 import React from 'react';
 import { Routes, Route, HashRouter } from 'react-router-dom';
-import Main from './components/Main/Main';
+import Main from './components/pages/Main/Main';
 import Board from './components/Board/Board';
-import Page404 from './components/Page404/Page404';
-import TemplatePage from './components/TemplatePage/Template';
+import Page404 from './components/pages/Page404/Page404';
+import MainLayout from './components/MainLayout/MainLayout';
 import './App.css';
 import './global/global.scss';
 
@@ -11,7 +11,7 @@ function App() {
   return (
     <HashRouter>
       <Routes>
-        <Route path="/" element={<TemplatePage />}>
+        <Route path="/" element={<MainLayout />}>
           <Route path="/" element={<Main />} />
           <Route path="board" element={<Board />} />
           <Route path="*" element={<Page404 />} />
