@@ -1,0 +1,42 @@
+@import './library';
+
+.body__container {
+  max-width: $BODY-CONTAINER-WIDTH;
+  width: 90vw;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body {
+  background: linear-gradient(rgba(36, 0, 0, 0.9) 50%,rgba(0, 0, 0, 1));
+}
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+a {
+  text-decoration: none;
+  cursor: inherit;
+  &:active {
+    color: $MAIN-COLOR--PRIMARY;
+  }
+}
+li {
+  list-style-type: none;
+  a {
+    color: inherit;
+  }
+}
+
+@font-face {
+  font-family: "OpenSans"; 
+  src: url('../assets/fonts/open-sans.woff') format('woff');
+  font-style: normal;
+}
+@font-face {
+  font-family: "Teko"; 
+  src: url('../assets/fonts/Teko-Regular.woff') format('woff');
+  font-style: normal;
+}
