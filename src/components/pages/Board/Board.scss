@@ -1,0 +1,8 @@
+@import '../../../global/library';
+
+.board {
+  background-color: $LIGHT-COLOR;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}

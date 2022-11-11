@@ -1,0 +1,12 @@
+@import '../../../global/library';
+
+.not-found__container {
+  background-color: rgb(254, 254, 254);
+  color: $MAIN-COLOR--PRIMARY-DARK;
+  flex-grow: 1;
+}
+.error__container {
+  background: url(../../../assets/images/404-page.jpg) no-repeat center;
+  background-size: auto 65vh;
+  height: 71vh;
+}
