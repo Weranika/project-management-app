@@ -1,42 +1,36 @@
-import axiosConfig from '../../../util/axiosConfig';
 import React, { useEffect, useState } from 'react';
 import './Board.scss';
+import axiosConfig from '../../../util/axiosConfig';
+import ModalCreateColumn from '../../ModalCreateColumn/ModalCreateColumn';
+import { Column, columnState } from '../../../types';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../../hook';
 //import Button from '@mui/material/Button';
-
-interface column {
-  _id: string;
-  title: string;
-  order: number;
-  boardId: string;
-}
+// import {
+//   searchCards,
+//   setError,
+//   setSorting,
+//   setCurrentPage,
+//   setCardsPerPage,
+//   setAllPages,
+// } from '../../cardsSlice';
+import { getColumns } from '../../../columnsSlice';
 
 function Board() {
-  const [columns, setColumns] = useState([]);
-  const showColumns = async () => {
-    const url = `/boards/636fcdd30cb48a0c4248c4b4/columns`;
-    const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2NjgyNzE0NDcsImV4cCI6MTY2ODMxNDY0N30.qBTcsCN4XIxqntImcPYJ1eVtMZ9zZXygg4gtU3dUKRM';
-    try {
-      const apiData = await axiosConfig.get(url, {
-        headers: {
-          authorization: `Bearer ${jwt}`,
-        },
-      });
-      console.log(apiData);
-      setColumns(apiData.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const [columns, setColumns] = useState([]);
+  const dispatch = useAppDispatch();
+  const { columnsArr } = useSelector((state: { columns: columnState }) => state.columns);
+
   useEffect(() => {
-    showColumns();
+    const url = `/boards/636fcdd30cb48a0c4248c4b4/columns`;
+    dispatch(getColumns(url));
   }, []);
 
   const createColumn = async () => {
     console.log('create column');
     const url = `/boards/636fcdd30cb48a0c4248c4b4/columns`;
     const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2NjgyNzE0NDcsImV4cCI6MTY2ODMxNDY0N30.qBTcsCN4XIxqntImcPYJ1eVtMZ9zZXygg4gtU3dUKRM';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2NjgzNjExMjYsImV4cCI6MTY2ODQwNDMyNn0.1k6wJZUwH2KE_RGH3o8QXbmdzfREuwPSdjYIasH6X7o';
     try {
       const apiData = await axiosConfig.post(
         url,
@@ -51,7 +45,7 @@ function Board() {
         }
       );
       console.log(apiData);
-      showColumns();
+      dispatch(getColumns(url));
     } catch (error) {
       console.log(error);
     }
@@ -61,12 +55,13 @@ function Board() {
       <section className="board__page">
         <h1 className="board__title">Board page</h1>
         <section className="board__columns">
-          {columns.map((column: column, index: number) => {
+          {columnsArr.map((column: Column, index: number) => {
             return (
               <div className="column" key={index}>
                 <div className="column__header">
                   <h3 className="column__title">{column.title}</h3>
                 </div>
+                <button>Add task</button>
               </div>
             );
           })}
@@ -75,6 +70,7 @@ function Board() {
             + Add column
           </button>
         </section>
+        <ModalCreateColumn />
       </section>
     </main>
   );
