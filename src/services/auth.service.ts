@@ -1,13 +1,15 @@
 import axios from 'axios';
-
-const API_URL = 'https://rss-app-project-manager.onrender.com/';
+import { API_URL } from '../constants/API';
 
 export const register = (username: string, email: string, password: string) => {
-  return axios.post(API_URL + 'signup', { username, email, password });
+  return axios.post(API_URL + 'auth/signup', { username, email, password });
 };
 
 export const login = async (username: string, password: string) => {
-  const response = await axios.post(API_URL + 'signin', { username, password });
+  const response = await axios.post(API_URL + 'auth/signin', {
+    username,
+    password,
+  });
   if (response.data.accesToken) {
     localStorage.setItem('user', JSON.stringify(response.data));
   }
