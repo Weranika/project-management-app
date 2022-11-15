@@ -47,7 +47,9 @@ function Board() {
             + Add column
           </button>
         </section>
-        {showModal && <ModalCreateColumn />}
+        {showModal && (
+          <ModalCreateColumn url="/boards/636fcdd30cb48a0c4248c4b4/columns" />
+        )}
       </section>
     </main>
   );

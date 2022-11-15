@@ -5,28 +5,24 @@ import { useAppDispatch } from '../../hook';
 import { setShowModal } from '../../reducers/modalPopupSlice';
 import { createColumn, getColumns } from '../../reducers/columnsSlice';
 
-export default function ModalCreateColumn() {
+export default function ModalCreateColumn({ url }: { url: string }) {
   const [title, setTitle] = useState('');
   const dispatch = useAppDispatch();
-  const { showModal } = useSelector(
-    (state: { modalPopup: modalPopupState }) => state.modalPopup,
-  );
   const { columnsArr } = useSelector(
     (state: { columns: columnState }) => state.columns,
   );
 
   const createColumnRequest = (event: FormEvent) => {
     event.preventDefault();
-    console.log(event.target);
     dispatch(
       createColumn({
-        url: `/boards/636fcdd30cb48a0c4248c4b4/columns`,
+        url: url,
         title: title,
         order: columnsArr.length,
       }),
     );
+    dispatch(getColumns(url));
     dispatch(setShowModal(false));
-    dispatch(getColumns(`/boards/636fcdd30cb48a0c4248c4b4/columns`));
   };
   return (
     <div>
@@ -41,7 +37,7 @@ export default function ModalCreateColumn() {
         />
         <button type="submit">Create</button>
         <button onClick={() => dispatch(setShowModal(false))}>Cancel</button>
-        <button onClick={() => dispatch(setShowModal(false))}>&time;</button>
+        <button onClick={() => dispatch(setShowModal(false))}>&Time;</button>
       </form>
     </div>
   );
