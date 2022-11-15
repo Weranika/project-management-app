@@ -8,22 +8,32 @@ import {
   Controller,
   useFormState,
 } from 'react-hook-form';
-import { loginValidation, passwordValidation } from './validation';
+import {
+  loginValidation,
+  nameValidation,
+  passwordValidation,
+} from './validation';
 import './auth-form.scss';
+import { register } from '../../services/auth.service';
 
-interface ISignInForm {
+interface ISignUpForm {
   login: string;
   password: string;
   name: string;
 }
 
 export const SignUpForm: React.FC = () => {
-  const { handleSubmit, control } = useForm<ISignInForm>();
+  const { handleSubmit, control } = useForm<ISignUpForm>();
   const { errors } = useFormState({
     control,
   });
 
-  const onSubmit: SubmitHandler<ISignInForm> = data => console.log(data);
+  const onSubmit: SubmitHandler<ISignUpForm> = data => {
+    register(data);
+    console.log(data);
+  };
+
+  console.log(errors, 'error');
 
   return (
     <div className="auth-form">
@@ -79,7 +89,7 @@ export const SignUpForm: React.FC = () => {
         <Controller
           control={control}
           name="name"
-          rules={passwordValidation}
+          rules={nameValidation}
           render={({ field }) => (
             <TextField
               label="Name"
@@ -90,8 +100,8 @@ export const SignUpForm: React.FC = () => {
               margin="normal"
               type="name"
               className="auth-form__input"
-              // error={!!errors?.password?.message}
-              // helperText={errors?.password?.message}
+              error={!!errors?.name?.message}
+              helperText={errors?.name?.message}
             />
           )}
         />
@@ -104,7 +114,7 @@ export const SignUpForm: React.FC = () => {
             marginTop: 2,
           }}
         >
-          Sign In
+          Sign Up
         </Button>
       </form>
     </div>

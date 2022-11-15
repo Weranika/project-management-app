@@ -8,7 +8,7 @@ import './App.css';
 import './global/global.scss';
 import { AuthPage } from './components/pages/SignIn/signIn';
 
-import { SignUpPage } from './components/pages/Sign up/SignUp';
+import { SignUpPage } from './components/pages/SignUp/SignUp';
 
 function App() {
   return (

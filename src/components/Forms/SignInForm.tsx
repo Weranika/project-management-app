@@ -10,10 +10,17 @@ import {
 } from 'react-hook-form';
 import { loginValidation, passwordValidation } from './validation';
 import './auth-form.scss';
+import { login } from '../../services/auth.service';
+import { useNavigate } from 'react-router-dom';
 
 interface ISignInForm {
   login: string;
   password: string;
+}
+
+export interface Result {
+  data: unknown; // прописать нормальный тип!!!!
+  error: string;
 }
 
 export const AuthForm: React.FC = () => {
@@ -22,7 +29,16 @@ export const AuthForm: React.FC = () => {
     control,
   });
 
-  const onSubmit: SubmitHandler<ISignInForm> = data => console.log(data);
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<ISignInForm> = async data => {
+    const result = await login(data);
+    if (result.error) {
+      console.log(result.error); //модальное окно или тост c ntrcnjv jib,rf
+    } else {
+      navigate('/board');
+    }
+  };
 
   return (
     <div className="auth-form">

@@ -1,7 +1,9 @@
 import React from 'react';
 import './Main.scss';
 
-function Main() {
+const Main: React.FC = () => {
+  // страниуа доступная без регистрации
+
   return (
     <main className="main">
       <section className="start-page">
@@ -15,6 +17,6 @@ function Main() {
       </section>
     </main>
   );
-}
+};
 
 export default Main;
