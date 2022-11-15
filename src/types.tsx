@@ -10,3 +10,7 @@ export interface columnState {
   isLoading: boolean;
   hasError: boolean;
 }
+
+export interface modalPopupState {
+  showModal: boolean;
+}

@@ -2,54 +2,28 @@ import React, { useEffect, useState } from 'react';
 import './Board.scss';
 import axiosConfig from '../../../util/axiosConfig';
 import ModalCreateColumn from '../../ModalCreateColumn/ModalCreateColumn';
-import { Column, columnState } from '../../../types';
+import { Column, columnState, modalPopupState } from '../../../types';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../hook';
 //import Button from '@mui/material/Button';
-// import {
-//   searchCards,
-//   setError,
-//   setSorting,
-//   setCurrentPage,
-//   setCardsPerPage,
-//   setAllPages,
-// } from '../../cardsSlice';
-import { getColumns } from '../../../columnsSlice';
+import { setShowModal } from '../../../reducers/modalPopupSlice';
+import { getColumns } from '../../../reducers/columnsSlice';
 
 function Board() {
   // const [columns, setColumns] = useState([]);
   const dispatch = useAppDispatch();
-  const { columnsArr } = useSelector((state: { columns: columnState }) => state.columns);
+  const { showModal } = useSelector(
+    (state: { modalPopup: modalPopupState }) => state.modalPopup,
+  );
+  const { columnsArr } = useSelector(
+    (state: { columns: columnState }) => state.columns,
+  );
 
   useEffect(() => {
     const url = `/boards/636fcdd30cb48a0c4248c4b4/columns`;
     dispatch(getColumns(url));
   }, []);
 
-  const createColumn = async () => {
-    console.log('create column');
-    const url = `/boards/636fcdd30cb48a0c4248c4b4/columns`;
-    const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2NjgzNjExMjYsImV4cCI6MTY2ODQwNDMyNn0.1k6wJZUwH2KE_RGH3o8QXbmdzfREuwPSdjYIasH6X7o';
-    try {
-      const apiData = await axiosConfig.post(
-        url,
-        {
-          title: 'my-column2',
-          order: 2,
-        },
-        {
-          headers: {
-            authorization: `Bearer ${jwt}`,
-          },
-        }
-      );
-      console.log(apiData);
-      dispatch(getColumns(url));
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <main className="board">
       <section className="board__page">
@@ -66,11 +40,14 @@ function Board() {
             );
           })}
           {/*  <Button variant="contained">Contained</Button> */}
-          <button onClick={createColumn} className="button button--create-column">
+          <button
+            onClick={() => dispatch(setShowModal(true))}
+            className="button button--create-column"
+          >
             + Add column
           </button>
         </section>
-        <ModalCreateColumn />
+        {showModal && <ModalCreateColumn />}
       </section>
     </main>
   );
