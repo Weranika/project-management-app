@@ -2,7 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import { modalPopupState, columnState } from '../../types';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../hook';
-import { setShowModal } from '../../reducers/modalPopupSlice';
+import { setShowModalCreateColumn } from '../../reducers/modalPopupSlice';
 import { createColumn, getColumns } from '../../reducers/columnsSlice';
 
 export default function ModalCreateColumn({ url }: { url: string }) {
@@ -22,7 +22,7 @@ export default function ModalCreateColumn({ url }: { url: string }) {
       }),
     );
     dispatch(getColumns(url));
-    dispatch(setShowModal(false));
+    dispatch(setShowModalCreateColumn(false));
   };
   return (
     <div>
@@ -36,8 +36,9 @@ export default function ModalCreateColumn({ url }: { url: string }) {
           onChange={event => setTitle(event.target.value)}
         />
         <button type="submit">Create</button>
-        <button onClick={() => dispatch(setShowModal(false))}>Cancel</button>
-        <button onClick={() => dispatch(setShowModal(false))}>&Time;</button>
+        <button onClick={() => dispatch(setShowModalCreateColumn(false))}>
+          Cancel
+        </button>
       </form>
     </div>
   );

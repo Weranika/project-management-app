@@ -12,5 +12,6 @@ export interface columnState {
 }
 
 export interface modalPopupState {
-  showModal: boolean;
+  showModalCreateColumn: boolean;
+  showModalDeleteColumn: boolean;
 }

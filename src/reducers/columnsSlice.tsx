@@ -74,18 +74,17 @@ export const createColumn = createAsyncThunk<
           },
         },
       );
-      console.log(response);
 
       if (response.status !== 200) {
         // Return the error message:
         return thunkApi.rejectWithValue({
-          message: 'Failed to get columns.',
+          message: 'Failed to create the column.',
         });
       }
       return response;
     } catch (error) {
       return thunkApi.rejectWithValue({
-        message: 'Failed to get columns.',
+        message: 'Failed to create the column.',
       });
     }
   },
@@ -104,7 +103,6 @@ export const getColumns = createAsyncThunk<
         authorization: `Bearer ${jwt}`,
       },
     });
-    console.log(response);
 
     if (response.status !== 200) {
       // Return the error message:
@@ -116,6 +114,34 @@ export const getColumns = createAsyncThunk<
   } catch (error) {
     return thunkApi.rejectWithValue({
       message: 'Failed to get columns.',
+    });
+  }
+});
+
+export const deleteColumn = createAsyncThunk<
+  { data: Column },
+  string,
+  { rejectValue: FetchError }
+>('columns/delete', async (url: string, thunkApi) => {
+  const jwt =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg1MTU0ODAsImV4cCI6MTY2ODU1ODY4MH0.mLwKwTgBB0rBQd8mzHkdyqFRzhJmh6srUKhExGsIlxo';
+  try {
+    const response = await axiosConfig.delete(url, {
+      headers: {
+        authorization: `Bearer ${jwt}`,
+      },
+    });
+
+    if (response.status !== 200) {
+      // Return the error message:
+      return thunkApi.rejectWithValue({
+        message: 'Failed to delete the column.',
+      });
+    }
+    return response;
+  } catch (error) {
+    return thunkApi.rejectWithValue({
+      message: 'Failed to delete the column.',
     });
   }
 });
@@ -182,6 +208,22 @@ const columnsSlice = createSlice({
         },
       )
       .addCase(createColumn.rejected, state => {
+        state.isLoading = false;
+        state.hasError = true;
+        // state.columnsArr = [];
+      })
+      .addCase(deleteColumn.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(
+        deleteColumn.fulfilled,
+        (state: columnState, { payload }: PayloadAction<{ data: Column }>) => {
+          state.isLoading = false;
+          state.hasError = false;
+          //state.columnsArr = [...payload.data];
+        },
+      )
+      .addCase(deleteColumn.rejected, state => {
         state.isLoading = false;
         state.hasError = true;
         // state.columnsArr = [];
