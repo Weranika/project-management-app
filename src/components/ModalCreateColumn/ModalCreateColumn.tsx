@@ -4,12 +4,23 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../hook';
 import { setShowModalCreateColumn } from '../../reducers/modalPopupSlice';
 import { createColumn, getColumns } from '../../reducers/columnsSlice';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
 
 export default function ModalCreateColumn({ url }: { url: string }) {
   const [title, setTitle] = useState('');
   const dispatch = useAppDispatch();
   const { columnsArr } = useSelector(
     (state: { columns: columnState }) => state.columns,
+  );
+  const { showModalCreateColumn } = useSelector(
+    (state: { modalPopup: modalPopupState }) => state.modalPopup,
   );
 
   const createColumnRequest = (event: FormEvent) => {
@@ -24,9 +35,44 @@ export default function ModalCreateColumn({ url }: { url: string }) {
     dispatch(getColumns(url));
     dispatch(setShowModalCreateColumn(false));
   };
+
   return (
     <div>
-      <form onSubmit={(event: FormEvent) => createColumnRequest(event)}>
+      <Dialog
+        open={showModalCreateColumn}
+        onClose={() => dispatch(setShowModalCreateColumn(false))}
+      >
+        <DialogTitle>Create column</DialogTitle>
+        {/* <FormControl> */}
+        <DialogContent>
+          <Box
+            component="form"
+            sx={{
+              '& .MuiTextField-root': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Column title"
+              variant="outlined"
+              value={title}
+              onChange={event => setTitle(event.target.value)}
+            />
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={(event: FormEvent) => createColumnRequest(event)}>
+            Submit
+          </Button>
+          <Button onClick={() => dispatch(setShowModalCreateColumn(false))}>
+            Cancel
+          </Button>
+        </DialogActions>
+        {/* </FormControl> */}
+      </Dialog>
+      {/* <form onSubmit={(event: FormEvent) => createColumnRequest(event)}>
         <label>Title</label>
         <input
           type="text"
@@ -39,7 +85,7 @@ export default function ModalCreateColumn({ url }: { url: string }) {
         <button onClick={() => dispatch(setShowModalCreateColumn(false))}>
           Cancel
         </button>
-      </form>
+      </form> */}
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Button from '@mui/material/Button';
 import './Board.scss';
 import axiosConfig from '../../../util/axiosConfig';
 import ModalCreateColumn from '../../ModalCreateColumn/ModalCreateColumn';
@@ -13,8 +14,27 @@ import {
 } from '../../../reducers/modalPopupSlice';
 import { getColumns } from '../../../reducers/columnsSlice';
 
+// const style = {
+//   position: 'absolute',
+//   top: '50%',
+//   left: '50%',
+//   transform: 'translate(-50%, -50%)',
+//   width: 400,
+//   bgcolor: 'background.paper',
+//   border: '2px solid #000',
+//   boxShadow: 24,
+//   p: 4,
+// };
+
 function Board() {
+  // const [open, setOpen] = React.useState(false);
+
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
+
   const [currentColumn, setCurrentColumn] = useState('');
+  const [editMode, setEditMode] = useState(false);
   const dispatch = useAppDispatch();
   const { showModalCreateColumn, showModalDeleteColumn } = useSelector(
     (state: { modalPopup: modalPopupState }) => state.modalPopup,
@@ -42,7 +62,11 @@ function Board() {
             return (
               <div className="column" key={index}>
                 <div className="column__header">
-                  <h3 className="column__title">{column.title}</h3>
+                  {editMode ? (
+                    <input type="text" />
+                  ) : (
+                    <h3 className="column__title">{column.title}</h3>
+                  )}
                   <button onClick={() => deleteColumn(column._id)}>
                     Delete
                   </button>
@@ -52,12 +76,20 @@ function Board() {
             );
           })}
           {/*  <Button variant="contained">Contained</Button> */}
-          <button
+          {/*  <button
             onClick={() => dispatch(setShowModalCreateColumn(true))}
             className="button button--create-column"
           >
-            + Add column
-          </button>
+            
+          </button> */}
+          <div>
+            <Button
+              variant="contained"
+              onClick={() => dispatch(setShowModalCreateColumn(true))}
+            >
+              + Add column
+            </Button>
+          </div>
         </section>
         {showModalCreateColumn && (
           <ModalCreateColumn url="/boards/636fcdd30cb48a0c4248c4b4/columns" />

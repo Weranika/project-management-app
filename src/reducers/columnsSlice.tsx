@@ -48,6 +48,48 @@ type FetchError = {
 //   }
 // };
 
+export const updateColumn = createAsyncThunk<
+  { data: Column },
+  { url: string; title: string; order: number },
+  { rejectValue: FetchError }
+>(
+  'columns/put',
+  async (
+    columnData: { url: string; title: string; order: number },
+    thunkApi,
+  ) => {
+    const { url, title, order } = columnData;
+    const jwt =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg2MjQyNzcsImV4cCI6MTY2ODY2NzQ3N30.kIIZpt_apmIGbXvk1rOPitY6SWIbrWU2ZWik1rN8NWo';
+    try {
+      const response = await axiosConfig.put(
+        url,
+        {
+          title: title,
+          order: order,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${jwt}`,
+          },
+        },
+      );
+
+      if (response.status !== 200) {
+        // Return the error message:
+        return thunkApi.rejectWithValue({
+          message: 'Failed to update the column.',
+        });
+      }
+      return response;
+    } catch (error) {
+      return thunkApi.rejectWithValue({
+        message: 'Failed to update the column.',
+      });
+    }
+  },
+);
+
 export const createColumn = createAsyncThunk<
   { data: Column },
   { url: string; title: string; order: number },
@@ -60,7 +102,7 @@ export const createColumn = createAsyncThunk<
   ) => {
     const { url, title, order } = columnData;
     const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg1MTU0ODAsImV4cCI6MTY2ODU1ODY4MH0.mLwKwTgBB0rBQd8mzHkdyqFRzhJmh6srUKhExGsIlxo';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg2MjQyNzcsImV4cCI6MTY2ODY2NzQ3N30.kIIZpt_apmIGbXvk1rOPitY6SWIbrWU2ZWik1rN8NWo';
     try {
       const response = await axiosConfig.post(
         url,
@@ -96,7 +138,7 @@ export const getColumns = createAsyncThunk<
   { rejectValue: FetchError }
 >('columns/get', async (url: string, thunkApi) => {
   const jwt =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg1MTU0ODAsImV4cCI6MTY2ODU1ODY4MH0.mLwKwTgBB0rBQd8mzHkdyqFRzhJmh6srUKhExGsIlxo';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg2MjQyNzcsImV4cCI6MTY2ODY2NzQ3N30.kIIZpt_apmIGbXvk1rOPitY6SWIbrWU2ZWik1rN8NWo';
   try {
     const response = await axiosConfig.get(url, {
       headers: {
@@ -124,7 +166,7 @@ export const deleteColumn = createAsyncThunk<
   { rejectValue: FetchError }
 >('columns/delete', async (url: string, thunkApi) => {
   const jwt =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg1MTU0ODAsImV4cCI6MTY2ODU1ODY4MH0.mLwKwTgBB0rBQd8mzHkdyqFRzhJmh6srUKhExGsIlxo';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg2MjQyNzcsImV4cCI6MTY2ODY2NzQ3N30.kIIZpt_apmIGbXvk1rOPitY6SWIbrWU2ZWik1rN8NWo';
   try {
     const response = await axiosConfig.delete(url, {
       headers: {
@@ -208,6 +250,22 @@ const columnsSlice = createSlice({
         },
       )
       .addCase(createColumn.rejected, state => {
+        state.isLoading = false;
+        state.hasError = true;
+        // state.columnsArr = [];
+      })
+      .addCase(updateColumn.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(
+        updateColumn.fulfilled,
+        (state: columnState, { payload }: PayloadAction<{ data: Column }>) => {
+          state.isLoading = false;
+          state.hasError = false;
+          //state.columnsArr = [...payload.data];
+        },
+      )
+      .addCase(updateColumn.rejected, state => {
         state.isLoading = false;
         state.hasError = true;
         // state.columnsArr = [];
