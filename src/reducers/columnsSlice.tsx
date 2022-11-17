@@ -260,8 +260,20 @@ const columnsSlice = createSlice({
       .addCase(
         updateColumn.fulfilled,
         (state: columnState, { payload }: PayloadAction<{ data: Column }>) => {
+          console.log('I am here');
           state.isLoading = false;
           state.hasError = false;
+          console.log('pay id', payload.data);
+          const newArr = state.columnsArr.map(column => {
+            if (column._id == payload.data._id) {
+              console.log(' i am here');
+              column = payload.data;
+            }
+            return column;
+          });
+          console.log(newArr);
+          state.columnsArr = newArr;
+
           //state.columnsArr = [...payload.data];
         },
       )

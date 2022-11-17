@@ -3,7 +3,7 @@ import { modalPopupState, columnState } from '../../types';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../hook';
 import { setShowModalCreateColumn } from '../../reducers/modalPopupSlice';
-import { createColumn, getColumns } from '../../reducers/columnsSlice';
+import { createColumn } from '../../reducers/columnsSlice';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -31,7 +31,6 @@ export default function ModalCreateColumn({ url }: { url: string }) {
         order: columnsArr.length,
       }),
     );
-    dispatch(getColumns(url));
     dispatch(setShowModalCreateColumn(false));
   };
 
