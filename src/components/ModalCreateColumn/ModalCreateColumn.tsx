@@ -11,7 +11,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import FormControl from '@mui/material/FormControl';
 
 export default function ModalCreateColumn({ url }: { url: string }) {
   const [title, setTitle] = useState('');

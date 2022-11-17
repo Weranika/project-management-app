@@ -46,7 +46,7 @@ function Board() {
   useEffect(() => {
     const url = `/boards/636fcdd30cb48a0c4248c4b4/columns`;
     dispatch(getColumns(url));
-  }, []);
+  }, [columnsArr]);
 
   const deleteColumn = (colId: string) => {
     dispatch(setShowModalDeleteColumn(true));

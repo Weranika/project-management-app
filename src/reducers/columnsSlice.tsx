@@ -60,7 +60,7 @@ export const updateColumn = createAsyncThunk<
   ) => {
     const { url, title, order } = columnData;
     const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg2MjQyNzcsImV4cCI6MTY2ODY2NzQ3N30.kIIZpt_apmIGbXvk1rOPitY6SWIbrWU2ZWik1rN8NWo';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg2ODUyMzcsImV4cCI6MTY2ODcyODQzN30.Ca2AKPmVVFrQm7ZZokIkTj0Rvue50fe2Ih64eTKw0H0';
     try {
       const response = await axiosConfig.put(
         url,
@@ -102,7 +102,7 @@ export const createColumn = createAsyncThunk<
   ) => {
     const { url, title, order } = columnData;
     const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg2MjQyNzcsImV4cCI6MTY2ODY2NzQ3N30.kIIZpt_apmIGbXvk1rOPitY6SWIbrWU2ZWik1rN8NWo';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg2ODUyMzcsImV4cCI6MTY2ODcyODQzN30.Ca2AKPmVVFrQm7ZZokIkTj0Rvue50fe2Ih64eTKw0H0';
     try {
       const response = await axiosConfig.post(
         url,
@@ -138,7 +138,7 @@ export const getColumns = createAsyncThunk<
   { rejectValue: FetchError }
 >('columns/get', async (url: string, thunkApi) => {
   const jwt =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg2MjQyNzcsImV4cCI6MTY2ODY2NzQ3N30.kIIZpt_apmIGbXvk1rOPitY6SWIbrWU2ZWik1rN8NWo';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg2ODUyMzcsImV4cCI6MTY2ODcyODQzN30.Ca2AKPmVVFrQm7ZZokIkTj0Rvue50fe2Ih64eTKw0H0';
   try {
     const response = await axiosConfig.get(url, {
       headers: {
@@ -166,7 +166,7 @@ export const deleteColumn = createAsyncThunk<
   { rejectValue: FetchError }
 >('columns/delete', async (url: string, thunkApi) => {
   const jwt =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg2MjQyNzcsImV4cCI6MTY2ODY2NzQ3N30.kIIZpt_apmIGbXvk1rOPitY6SWIbrWU2ZWik1rN8NWo';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg2ODUyMzcsImV4cCI6MTY2ODcyODQzN30.Ca2AKPmVVFrQm7ZZokIkTj0Rvue50fe2Ih64eTKw0H0';
   try {
     const response = await axiosConfig.delete(url, {
       headers: {
@@ -246,7 +246,7 @@ const columnsSlice = createSlice({
         (state: columnState, { payload }: PayloadAction<{ data: Column }>) => {
           state.isLoading = false;
           state.hasError = false;
-          //state.columnsArr = [...payload.data];
+          state.columnsArr = [...state.columnsArr, payload.data];
         },
       )
       .addCase(createColumn.rejected, state => {
@@ -276,9 +276,12 @@ const columnsSlice = createSlice({
       .addCase(
         deleteColumn.fulfilled,
         (state: columnState, { payload }: PayloadAction<{ data: Column }>) => {
+          console.log('to delete', payload.data);
           state.isLoading = false;
           state.hasError = false;
-          //state.columnsArr = [...payload.data];
+          state.columnsArr = [...state.columnsArr].filter(
+            column => column !== payload.data,
+          );
         },
       )
       .addCase(deleteColumn.rejected, state => {
