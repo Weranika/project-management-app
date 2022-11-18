@@ -11,30 +11,12 @@ import { useAppDispatch } from '../../../hook';
 import { setShowModalCreateColumn } from '../../../reducers/modalPopupSlice';
 import { getColumns } from '../../../reducers/columnsSlice';
 
-// const style = {
-//   position: 'absolute',
-//   top: '50%',
-//   left: '50%',
-//   transform: 'translate(-50%, -50%)',
-//   width: 400,
-//   bgcolor: 'background.paper',
-//   border: '2px solid #000',
-//   boxShadow: 24,
-//   p: 4,
-// };
-
 function Board() {
-  // const [open, setOpen] = React.useState(false);
-
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
   const dispatch = useAppDispatch();
   const { showModalCreateColumn, showModalDeleteColumn } = useSelector(
     (state: { modalPopup: modalPopupState }) => state.modalPopup,
   );
-  const { columnsArr } = useSelector(
+  const { columnsArr, currentColumnId } = useSelector(
     (state: { columns: columnState }) => state.columns,
   );
 
@@ -48,16 +30,9 @@ function Board() {
       <section className="board__page">
         <h1 className="board__title">Board page</h1>
         <section className="board__columns">
-          {columnsArr.map((column: ColumnType, index: number) => {
-            return <Column key={index} column={column} />;
+          {columnsArr.map((column: ColumnType) => {
+            return <Column key={column._id} column={column} />;
           })}
-          {/*  <Button variant="contained">Contained</Button> */}
-          {/*  <button
-            onClick={() => dispatch(setShowModalCreateColumn(true))}
-            className="button button--create-column"
-          >
-            
-          </button> */}
           <div>
             <Button
               variant="contained"
@@ -71,7 +46,9 @@ function Board() {
           <ModalCreateColumn url="/boards/636fcdd30cb48a0c4248c4b4/columns" />
         )}
         {showModalDeleteColumn && (
-          <ModalDeleteColumn url={`/boards/636fcdd30cb48a0c4248c4b4/columns`} />
+          <ModalDeleteColumn
+            url={`/boards/636fcdd30cb48a0c4248c4b4/columns/${currentColumnId}`}
+          />
         )}
       </section>
     </main>

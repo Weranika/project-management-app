@@ -9,6 +9,7 @@ export interface columnState {
   columnsArr: ColumnType[];
   isLoading: boolean;
   hasError: boolean;
+  currentColumnId: string;
 }
 
 export interface modalPopupState {

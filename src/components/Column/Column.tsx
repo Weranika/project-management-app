@@ -4,12 +4,14 @@ import { useAppDispatch } from '../../hook';
 import axiosConfig from '../../util/axiosConfig';
 import { ColumnType, columnState, modalPopupState } from '../../types';
 import { setShowModalDeleteColumn } from '../../reducers/modalPopupSlice';
-import { updateColumn } from '../../reducers/columnsSlice';
+import { updateColumn, setCurrentColumn } from '../../reducers/columnsSlice';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import IconButton from '@mui/material/IconButton';
+import './Column.scss';
 
 export default function Column({ column }: { column: ColumnType }) {
   const [editMode, setEditMode] = useState(false);
   const [newTitle, setNewTitle] = useState('');
-  const [currentColumn, setCurrentColumn] = useState('');
 
   const dispatch = useAppDispatch();
   const { showModalDeleteColumn } = useSelector(
@@ -18,7 +20,7 @@ export default function Column({ column }: { column: ColumnType }) {
 
   const deleteColumn = (colId: string) => {
     dispatch(setShowModalDeleteColumn(true));
-    setCurrentColumn(colId);
+    dispatch(setCurrentColumn(colId));
   };
 
   const updateColumnRequest = (event: FormEvent, id: string, order: number) => {
@@ -63,7 +65,12 @@ export default function Column({ column }: { column: ColumnType }) {
             {column.title}
           </h3>
         )}
-        <button onClick={() => deleteColumn(column._id)}>Delete</button>
+        <IconButton onClick={() => deleteColumn(column._id)}>
+          <DeleteForeverIcon />
+        </IconButton>
+        {/* <button onClick={() => deleteColumn(column._id)}>
+          
+        </button> */}
       </div>
       <button>Add task</button>
     </div>

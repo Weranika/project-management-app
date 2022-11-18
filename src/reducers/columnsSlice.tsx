@@ -7,47 +7,6 @@ type FetchError = {
   message: string;
 };
 
-// const showColumns = async (url: string) => {
-//   const jwt =
-//     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2NjgyNzE0NDcsImV4cCI6MTY2ODMxNDY0N30.qBTcsCN4XIxqntImcPYJ1eVtMZ9zZXygg4gtU3dUKRM';
-//   try {
-//     const apiData = await axiosConfig.get(url, {
-//       headers: {
-//         authorization: `Bearer ${jwt}`,
-//       },
-//     });
-//     console.log(apiData);
-//     setColumns(apiData.data);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// export const createColumn = async (title: string, order: number) => {
-//   console.log('create column');
-//   const url = `/boards/636fcdd30cb48a0c4248c4b4/columns`;
-//   const jwt =
-//     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg1MTU0ODAsImV4cCI6MTY2ODU1ODY4MH0.mLwKwTgBB0rBQd8mzHkdyqFRzhJmh6srUKhExGsIlxo';
-//   try {
-//     const apiData = await axiosConfig.post(
-//       url,
-//       {
-//         title: title,
-//         order: order,
-//       },
-//       {
-//         headers: {
-//           authorization: `Bearer ${jwt}`,
-//         },
-//       },
-//     );
-//     console.log(apiData);
-//     dispatch(getColumns(url));
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
 export const updateColumn = createAsyncThunk<
   { data: ColumnType },
   { url: string; title: string; order: number },
@@ -192,6 +151,7 @@ const initialState = {
   columnsArr: [],
   isLoading: false,
   hasError: false,
+  currentColumnId: '',
 };
 
 const columnsSlice = createSlice({
@@ -201,21 +161,9 @@ const columnsSlice = createSlice({
     setColumns(state: columnState, { payload }: PayloadAction<ColumnType[]>) {
       state.columnsArr = [...payload];
     },
-    /*     setCurrentPage(state: MyState, { payload }: PayloadAction<number>) {
-      state.currentPage = payload;
+    setCurrentColumn(state: columnState, { payload }: PayloadAction<string>) {
+      state.currentColumnId = payload;
     },
-    setAllPages(state: MyState, { payload }: PayloadAction<number>) {
-      state.allPages = payload;
-    },
-    setCardsPerPage(state: MyState, { payload }: PayloadAction<number>) {
-      state.cardsPerPage = payload;
-    },
-    setSorting(state: MyState, { payload }: PayloadAction<string>) {
-      state.sorting = payload;
-    },
-    setError(state: MyState, { payload }: PayloadAction<boolean>) {
-      state.hasError = payload;
-    }, */
   },
   extraReducers(builder) {
     builder
@@ -266,20 +214,15 @@ const columnsSlice = createSlice({
           state: columnState,
           { payload }: PayloadAction<{ data: ColumnType }>,
         ) => {
-          console.log('I am here');
           state.isLoading = false;
           state.hasError = false;
-          console.log('pay id', payload.data);
           const newArr = state.columnsArr.map(column => {
             if (column._id == payload.data._id) {
               column = payload.data;
             }
             return column;
           });
-          console.log(newArr);
           state.columnsArr = newArr;
-
-          //state.columnsArr = [...payload.data];
         },
       )
       .addCase(updateColumn.rejected, state => {
@@ -296,12 +239,11 @@ const columnsSlice = createSlice({
           state: columnState,
           { payload }: PayloadAction<{ data: ColumnType }>,
         ) => {
-          console.log('to delete', payload.data);
           state.isLoading = false;
           state.hasError = false;
-          state.columnsArr = [...state.columnsArr].filter(
-            column => column !== payload.data,
-          );
+          state.columnsArr = [...state.columnsArr].filter(column => {
+            return column._id !== payload.data._id;
+          });
         },
       )
       .addCase(deleteColumn.rejected, state => {
@@ -312,4 +254,4 @@ const columnsSlice = createSlice({
   },
 });
 export default columnsSlice.reducer;
-export const { setColumns } = columnsSlice.actions;
+export const { setColumns, setCurrentColumn } = columnsSlice.actions;

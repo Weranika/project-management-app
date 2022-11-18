@@ -19,6 +19,7 @@ export default function ModalDeleteColumn({ url }: { url: string }) {
 
   const deleteColumnRequest = (event: FormEvent) => {
     event.preventDefault();
+    console.log('url', url);
     dispatch(deleteColumn(url));
     dispatch(setShowModalDeleteColumn(false));
   };
