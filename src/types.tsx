@@ -1,4 +1,4 @@
-export interface Column {
+export interface ColumnType {
   _id: string;
   title: string;
   order: number;
@@ -6,7 +6,7 @@ export interface Column {
 }
 
 export interface columnState {
-  columnsArr: Column[];
+  columnsArr: ColumnType[];
   isLoading: boolean;
   hasError: boolean;
 }
