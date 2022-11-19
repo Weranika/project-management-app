@@ -41,7 +41,6 @@ export default function ModalCreateColumn({ url }: { url: string }) {
         onClose={() => dispatch(setShowModalCreateColumn(false))}
       >
         <DialogTitle>Create column</DialogTitle>
-        {/* <FormControl> */}
         <DialogContent>
           <Box
             component="form"
@@ -68,22 +67,7 @@ export default function ModalCreateColumn({ url }: { url: string }) {
             Cancel
           </Button>
         </DialogActions>
-        {/* </FormControl> */}
       </Dialog>
-      {/* <form onSubmit={(event: FormEvent) => createColumnRequest(event)}>
-        <label>Title</label>
-        <input
-          type="text"
-          name="column__title"
-          id="column__title"
-          value={title}
-          onChange={event => setTitle(event.target.value)}
-        />
-        <button type="submit">Create</button>
-        <button onClick={() => dispatch(setShowModalCreateColumn(false))}>
-          Cancel
-        </button>
-      </form> */}
     </div>
   );
 }

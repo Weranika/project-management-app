@@ -16,7 +16,7 @@ function Header() {
             <img className="logo-img" alt="logo" src={logo} />
           </NavLink>
           <NavLink to="/">
-            <h1 className="logo__title">Project meneger</h1>
+            <h1 className="logo__title">Project manager</h1>
           </NavLink>
         </div>
         <nav>

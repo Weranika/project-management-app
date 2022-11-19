@@ -36,10 +36,29 @@
   padding-top: 0;
   background-color: $MAIN-COLOR--PRIMARY-LIGHT;
   border-radius: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .column__title {
   width: 100%;
   cursor: pointer;
   padding: 0 1rem;
+}
+
+.column__header--edit-mode {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 70% 15% 15%;
+  box-sizing: border-box;
+}
+
+.column__header--read-mode {
+  width: 100%;
+  display: flex;
+}
+
+.column__header__input {
+  background-color: white;
+  height: 2.8rem;
+  margin-left: 0.3rem;
 }

@@ -1,12 +1,14 @@
-import React, { useEffect, useState, FormEvent } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, FormEvent } from 'react';
 import { useAppDispatch } from '../../hook';
-import axiosConfig from '../../util/axiosConfig';
-import { ColumnType, columnState, modalPopupState } from '../../types';
+import { ColumnType } from '../../types';
 import { setShowModalDeleteColumn } from '../../reducers/modalPopupSlice';
 import { updateColumn, setCurrentColumn } from '../../reducers/columnsSlice';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import './Column.scss';
 
 export default function Column({ column }: { column: ColumnType }) {
@@ -14,9 +16,6 @@ export default function Column({ column }: { column: ColumnType }) {
   const [newTitle, setNewTitle] = useState('');
 
   const dispatch = useAppDispatch();
-  const { showModalDeleteColumn } = useSelector(
-    (state: { modalPopup: modalPopupState }) => state.modalPopup,
-  );
 
   const deleteColumn = (colId: string) => {
     dispatch(setShowModalDeleteColumn(true));
@@ -40,39 +39,48 @@ export default function Column({ column }: { column: ColumnType }) {
     <div className="column">
       <div className="column__header">
         {editMode ? (
-          <div>
-            <input
-              type="text"
+          <div className="column__header--edit-mode">
+            <OutlinedInput
+              className="column__header__input"
               value={newTitle}
               onChange={event => setNewTitle(event.target.value)}
             />
-            <button
+            <Button
+              style={{ minWidth: '1rem' }}
               onClick={(event: FormEvent) =>
                 updateColumnRequest(event, column._id, column.order)
               }
+              autoFocus
             >
-              Ok
-            </button>
+              <CheckOutlinedIcon />
+            </Button>
+            <Button
+              style={{ minWidth: '1rem' }}
+              onClick={() => {
+                setEditMode(false);
+              }}
+            >
+              <ClearOutlinedIcon />
+            </Button>
           </div>
         ) : (
-          <h3
-            className="column__title"
-            onClick={() => {
-              setEditMode(true);
-              setNewTitle(column.title);
-            }}
-          >
-            {column.title}
-          </h3>
+          <div className="column__header--read-mode">
+            <h3
+              className="column__title"
+              onClick={() => {
+                setEditMode(true);
+                setNewTitle(column.title);
+              }}
+            >
+              {column.title}
+            </h3>
+            <IconButton onClick={() => deleteColumn(column._id)}>
+              <DeleteForeverIcon />
+            </IconButton>
+          </div>
         )}
-        <IconButton onClick={() => deleteColumn(column._id)}>
-          <DeleteForeverIcon />
-        </IconButton>
-        {/* <button onClick={() => deleteColumn(column._id)}>
-          
-        </button> */}
       </div>
-      <button>Add task</button>
+      <Button variant="contained">+ Add task</Button>
     </div>
   );
 }

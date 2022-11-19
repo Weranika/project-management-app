@@ -3,7 +3,7 @@ import { modalPopupState } from '../../types';
 import { useAppDispatch } from '../../hook';
 import { useSelector } from 'react-redux';
 import { setShowModalDeleteColumn } from '../../reducers/modalPopupSlice';
-import { deleteColumn, getColumns } from '../../reducers/columnsSlice';
+import { deleteColumn } from '../../reducers/columnsSlice';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -19,25 +19,16 @@ export default function ModalDeleteColumn({ url }: { url: string }) {
 
   const deleteColumnRequest = (event: FormEvent) => {
     event.preventDefault();
-    console.log('url', url);
     dispatch(deleteColumn(url));
     dispatch(setShowModalDeleteColumn(false));
   };
   return (
     <div>
-      {/* <form onSubmit={(event: FormEvent) => deleteColumnRequest(event)}>
-        <label>Do you really want to delete the column?</label>
-        <button type="submit">Delete</button>
-        <button onClick={() => dispatch(setShowModalDeleteColumn(false))}>
-          Cancel
-        </button>
-      </form> */}
       <Dialog
         open={showModalDeleteColumn}
         onClose={() => dispatch(setShowModalDeleteColumn(false))}
       >
         <DialogTitle>Do you really want to delete the column?</DialogTitle>
-        {/* <FormControl> */}
         <DialogContent>
           <Box
             component="form"
@@ -56,7 +47,6 @@ export default function ModalDeleteColumn({ url }: { url: string }) {
             Cancel
           </Button>
         </DialogActions>
-        {/* </FormControl> */}
       </Dialog>
     </div>
   );

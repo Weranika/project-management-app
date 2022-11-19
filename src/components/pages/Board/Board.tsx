@@ -1,4 +1,4 @@
-import React, { useEffect, useState, FormEvent } from 'react';
+import React, { useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Column from '../../Column/Column';
 import './Board.scss';

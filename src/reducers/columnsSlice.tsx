@@ -19,7 +19,7 @@ export const updateColumn = createAsyncThunk<
   ) => {
     const { url, title, order } = columnData;
     const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg3Njg5MDksImV4cCI6MTY2ODgxMjEwOX0.D37-HLT4L2ixa-AAWK8QJpB7R-6CmsyWKf_K8guSLqY';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg4NDg3ODQsImV4cCI6MTY2ODg5MTk4NH0.7T9hZIG9NTCbMEUacNJqsz8hfP2218VWdkxGeOjY2mI';
     try {
       const response = await axiosConfig.put(
         url,
@@ -61,7 +61,7 @@ export const createColumn = createAsyncThunk<
   ) => {
     const { url, title, order } = columnData;
     const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg3Njg5MDksImV4cCI6MTY2ODgxMjEwOX0.D37-HLT4L2ixa-AAWK8QJpB7R-6CmsyWKf_K8guSLqY';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg4NDg3ODQsImV4cCI6MTY2ODg5MTk4NH0.7T9hZIG9NTCbMEUacNJqsz8hfP2218VWdkxGeOjY2mI';
     try {
       const response = await axiosConfig.post(
         url,
@@ -97,7 +97,7 @@ export const getColumns = createAsyncThunk<
   { rejectValue: FetchError }
 >('columns/get', async (url: string, thunkApi) => {
   const jwt =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg3Njg5MDksImV4cCI6MTY2ODgxMjEwOX0.D37-HLT4L2ixa-AAWK8QJpB7R-6CmsyWKf_K8guSLqY';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg4NDg3ODQsImV4cCI6MTY2ODg5MTk4NH0.7T9hZIG9NTCbMEUacNJqsz8hfP2218VWdkxGeOjY2mI';
   try {
     const response = await axiosConfig.get(url, {
       headers: {
@@ -125,7 +125,7 @@ export const deleteColumn = createAsyncThunk<
   { rejectValue: FetchError }
 >('columns/delete', async (url: string, thunkApi) => {
   const jwt =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg3Njg5MDksImV4cCI6MTY2ODgxMjEwOX0.D37-HLT4L2ixa-AAWK8QJpB7R-6CmsyWKf_K8guSLqY';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg4NDg3ODQsImV4cCI6MTY2ODg5MTk4NH0.7T9hZIG9NTCbMEUacNJqsz8hfP2218VWdkxGeOjY2mI';
   try {
     const response = await axiosConfig.delete(url, {
       headers: {
