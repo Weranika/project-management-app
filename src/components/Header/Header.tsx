@@ -16,10 +16,10 @@ function Header() {
             <img className="logo-img" alt="logo" src={logo} />
           </NavLink>
           <NavLink to="/">
-            <h1 className="logo__title">Project meneger</h1>
+            <h1 className="logo__title">Pro Manager</h1>
           </NavLink>
         </div>
-        <nav>
+        <nav >
           <ul className="navbar">
             <li>
               <button className="button__change-lang">EN</button>

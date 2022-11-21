@@ -1,19 +1,34 @@
 import React from 'react';
 import './Main.scss';
+import { HashLink } from 'react-router-hash-link';
+import AboutUs from '../../AboutUs/AboutUs';
 
 function Main() {
+  
   return (
-    <main className="main">
+    <>
       <section className="start-page">
-        <h1 className="main__title">Task Manager</h1>
-        <p className="main__content">
-          It is a project management software that allows you to centrally
-          manage tasks and their timely completion. Trackers are widely used in
-          project management, because they allow you to easily monitor all work
-          processes and control the work of the team
-        </p>
+        <p id="head1" className="start-page__title">Welcome to our APP</p>
+        <p id="head2" className="start-page__title">It is a project management software</p>
+        <p id="head3" className="start-page__title">that allows you to centrally
+          manage tasks</p>
+        <p id="head4" className="start-page__title">and their timely completion</p>
+        <p id="head5" className="start-page__title">Welcome to Task Manager</p>
+        <HashLink smooth to="/#about-us">
+          <button className="start-page__button">About us</button>
+        </HashLink>
       </section>
-    </main>
+      <AboutUs />
+      <div className="light x1"></div>
+      <div className="light x2"></div>
+      <div className="light x3"></div>
+      <div className="light x4"></div>
+      <div className="light x5"></div>
+      <div className="light x6"></div>
+      <div className="light x7"></div>
+      <div className="light x8"></div>
+      <div className="light x9"></div>
+    </>
   );
 }
 

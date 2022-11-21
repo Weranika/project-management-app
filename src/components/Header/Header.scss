@@ -4,11 +4,27 @@ $LOGO-HEIGHT: 60px;
 
 .header {
   @include flex(space-between);
-  background: linear-gradient(rgba(35, 35, 35, 0) 50%,rgba(17, 17, 17, 0.5) 100%), $MAIN-COLOR--PRIMARY-DARK;
-  position: sticky;
+  background: radial-gradient(#461c3a,#1f1013);
+  @include font(22px, Roboto);
+  position: fixed;
   z-index: 1;
+  width: 100%;
   top: 0;
-  color: $MAIN-COLOR--SECONDARY;
+  color: $LIGHT-COLOR;
+  border-bottom: 2px solid;
+  --angle: 0deg;
+  border-image: linear-gradient(var(--angle), $LIGHT-COLOR, $MAIN-COLOR--PRIMARY) 1;
+  animation: 7s rotate linear infinite;
+}
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes rotate {
+	to {
+		--angle: 360deg;
+	}
 }
 .header-container {
   width: 87%;
@@ -19,9 +35,10 @@ $LOGO-HEIGHT: 60px;
   }
 }
 .logo__container {
-  @include font(14px, OpenSans);
+  @include font(11px, Roboto);
   @include flex(space-between);
-  min-width: 20%;
+  min-width: 17%;
+  opacity: .8;
 }
 .logo {
   height: $LOGO-HEIGHT;
@@ -37,8 +54,8 @@ $LOGO-HEIGHT: 60px;
   }
 }
 .logo-img {
-  height: 50px;
-  border-radius: 13px;
+  height: 35px;
+  border-radius: 5px;
   &:hover {
     box-shadow: 0px 0px 8px 3px rgba(255, 255, 255, 0.8);
   }
@@ -50,14 +67,17 @@ $LOGO-HEIGHT: 60px;
   @include flex(space-between);
   color: $LIGHT-COLOR;
   margin-left: 20px;
+  letter-spacing: 1.2px;
   &:hover {
     color: $MAIN-COLOR--SECONDARY-LIGHT;
     text-shadow: 0px 0px 13px rgb(255 255 255 / 80%);
   }
 }
+nav {
+  width: 40vw;
+}
 .navbar {
   @include flex(space-between);
-  min-width: 15%;
   @include font(16px, OpenSans);
   li > a{
     padding-left: 10px;
@@ -67,6 +87,27 @@ $LOGO-HEIGHT: 60px;
   }
   .active {
     color: $MAIN-COLOR--PRIMARY-LIGHT;
+  }
+}
+.button__change-lang {
+  border: 2px solid $LIGHT-COLOR;
+  background: transparent;
+  font-family: 'Roboto', sans-serif;
+  color: $LIGHT-COLOR;
+  width: 35px;
+  height: 35px;
+  font-size: 1em;
+  border-radius: 5px;
+  opacity: .5;
+  transition: .3s;
+  &:hover {
+    border: 2px solid $MAIN-COLOR--PRIMARY-DARK;
+    background-color: rgba(365,365,365,0.5);
+    cursor: pointer;
+    color: $MAIN-COLOR--PRIMARY-DARK;
+    opacity: .8;
+    transition: .3s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
 }
 /***************media********************/

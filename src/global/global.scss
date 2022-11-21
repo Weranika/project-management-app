@@ -1,15 +1,25 @@
 @import './library';
 
+html {
+  scroll-behavior: smooth;
+}
+
 .body__container {
-  max-width: $BODY-CONTAINER-WIDTH;
-  margin: 0 auto;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  margin: 0;
+  height: 100vh;
+  font-weight: 100;
+  background: radial-gradient(#a23982,#1f1013);
+  overflow-y: hidden;
+  -webkit-animation: fadeIn 1 1s ease-out;
+  -moz-animation: fadeIn 1 1s ease-out;
+  -o-animation: fadeIn 1 1s ease-out;
+  animation: fadeIn 1 1s ease-out;
 }
-body {
-  background: linear-gradient(#d8e2efe6 50%,rgb(139, 167, 184));
-}
+// body {
+//   background: linear-gradient(#d8e2efe6 50%,rgb(139, 167, 184));
+// }
 .main {
   flex-grow: 1;
   display: flex;
@@ -33,5 +43,10 @@ li {
 @font-face {
   font-family: "OpenSans"; 
   src: url('../assets/fonts/open-sans.woff') format('woff');
+  font-style: normal;
+}
+@font-face {
+  font-family: "Roboto"; 
+  src: url('../assets/fonts/Roboto-Regular.ttf') format('woff');
   font-style: normal;
 }
