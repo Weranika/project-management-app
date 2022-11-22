@@ -1,9 +1,5 @@
 import React, { FormEvent } from 'react';
-import { modalPopupState } from '../../types';
-import { useAppDispatch } from '../../hook';
 import { useSelector } from 'react-redux';
-import { setShowModalDeleteColumn } from '../../reducers/modalPopupSlice';
-import { deleteColumn } from '../../reducers/columnsSlice';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -11,10 +7,15 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
+import { setShowModalDeleteColumn } from '../../reducers/modalPopupSlice';
+import { deleteColumn } from '../../reducers/columnsSlice';
+import { useAppDispatch } from '../../hook';
+import { ModalPopupState } from '../../types';
+
 export default function ModalDeleteColumn({ url }: { url: string }) {
   const dispatch = useAppDispatch();
   const { showModalDeleteColumn } = useSelector(
-    (state: { modalPopup: modalPopupState }) => state.modalPopup,
+    (state: { modalPopup: ModalPopupState }) => state.modalPopup,
   );
 
   const deleteColumnRequest = (event: FormEvent) => {

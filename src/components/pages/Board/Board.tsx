@@ -1,23 +1,24 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
-import Column from '../../Column/Column';
-import './Board.scss';
 
+import Column from '../../Column/Column';
 import ModalCreateColumn from '../../ModalCreateColumn/ModalCreateColumn';
 import ModalDeleteColumn from '../../ModalDeleteColumn/ModalDeleteColumn';
-import { ColumnType, columnState, modalPopupState } from '../../../types';
-import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../../hook';
 import { setShowModalCreateColumn } from '../../../reducers/modalPopupSlice';
 import { getColumns } from '../../../reducers/columnsSlice';
+import { useAppDispatch } from '../../../hook';
+import { ColumnType, ColumnState, ModalPopupState } from '../../../types';
+
+import './Board.scss';
 
 function Board() {
   const dispatch = useAppDispatch();
   const { showModalCreateColumn, showModalDeleteColumn } = useSelector(
-    (state: { modalPopup: modalPopupState }) => state.modalPopup,
+    (state: { modalPopup: ModalPopupState }) => state.modalPopup,
   );
   const { columnsArr, currentColumnId } = useSelector(
-    (state: { columns: columnState }) => state.columns,
+    (state: { columns: ColumnState }) => state.columns,
   );
 
   useEffect(() => {

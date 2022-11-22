@@ -1,14 +1,16 @@
 import React, { useState, FormEvent } from 'react';
-import { useAppDispatch } from '../../hook';
-import { ColumnType } from '../../types';
-import { setShowModalDeleteColumn } from '../../reducers/modalPopupSlice';
-import { updateColumn, setCurrentColumn } from '../../reducers/columnsSlice';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+
+import { setShowModalDeleteColumn } from '../../reducers/modalPopupSlice';
+import { updateColumn, setCurrentColumn } from '../../reducers/columnsSlice';
+import { useAppDispatch } from '../../hook';
+import { ColumnType } from '../../types';
+
 import './Column.scss';
 
 export default function Column({ column }: { column: ColumnType }) {

@@ -1,9 +1,5 @@
 import React, { FormEvent, useState } from 'react';
-import { modalPopupState, columnState } from '../../types';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../hook';
-import { setShowModalCreateColumn } from '../../reducers/modalPopupSlice';
-import { createColumn } from '../../reducers/columnsSlice';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -12,14 +8,19 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
+import { setShowModalCreateColumn } from '../../reducers/modalPopupSlice';
+import { createColumn } from '../../reducers/columnsSlice';
+import { useAppDispatch } from '../../hook';
+import { ModalPopupState, ColumnState } from '../../types';
+
 export default function ModalCreateColumn({ url }: { url: string }) {
   const [title, setTitle] = useState('');
   const dispatch = useAppDispatch();
   const { columnsArr } = useSelector(
-    (state: { columns: columnState }) => state.columns,
+    (state: { columns: ColumnState }) => state.columns,
   );
   const { showModalCreateColumn } = useSelector(
-    (state: { modalPopup: modalPopupState }) => state.modalPopup,
+    (state: { modalPopup: ModalPopupState }) => state.modalPopup,
   );
 
   const createColumnRequest = (event: FormEvent) => {

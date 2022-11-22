@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ColumnType, columnState } from '../types';
+import { ColumnType, ColumnState } from '../types';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import axiosConfig from '../util/axiosConfig';
 
@@ -19,7 +19,7 @@ export const updateColumn = createAsyncThunk<
   ) => {
     const { url, title, order } = columnData;
     const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg4NDg3ODQsImV4cCI6MTY2ODg5MTk4NH0.7T9hZIG9NTCbMEUacNJqsz8hfP2218VWdkxGeOjY2mI';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2NjkxNTEzMDUsImV4cCI6MTY2OTE5NDUwNX0.Cg6rzXnYILrPXYUP29vTnUkAIwCVsybBdGREeuK8MeI';
     try {
       const response = await axiosConfig.put(
         url,
@@ -61,7 +61,7 @@ export const createColumn = createAsyncThunk<
   ) => {
     const { url, title, order } = columnData;
     const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg4NDg3ODQsImV4cCI6MTY2ODg5MTk4NH0.7T9hZIG9NTCbMEUacNJqsz8hfP2218VWdkxGeOjY2mI';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2NjkxNTEzMDUsImV4cCI6MTY2OTE5NDUwNX0.Cg6rzXnYILrPXYUP29vTnUkAIwCVsybBdGREeuK8MeI';
     try {
       const response = await axiosConfig.post(
         url,
@@ -97,7 +97,7 @@ export const getColumns = createAsyncThunk<
   { rejectValue: FetchError }
 >('columns/get', async (url: string, thunkApi) => {
   const jwt =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg4NDg3ODQsImV4cCI6MTY2ODg5MTk4NH0.7T9hZIG9NTCbMEUacNJqsz8hfP2218VWdkxGeOjY2mI';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2NjkxNTEzMDUsImV4cCI6MTY2OTE5NDUwNX0.Cg6rzXnYILrPXYUP29vTnUkAIwCVsybBdGREeuK8MeI';
   try {
     const response = await axiosConfig.get(url, {
       headers: {
@@ -125,7 +125,7 @@ export const deleteColumn = createAsyncThunk<
   { rejectValue: FetchError }
 >('columns/delete', async (url: string, thunkApi) => {
   const jwt =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2Njg4NDg3ODQsImV4cCI6MTY2ODg5MTk4NH0.7T9hZIG9NTCbMEUacNJqsz8hfP2218VWdkxGeOjY2mI';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2NjkxNTEzMDUsImV4cCI6MTY2OTE5NDUwNX0.Cg6rzXnYILrPXYUP29vTnUkAIwCVsybBdGREeuK8MeI';
   try {
     const response = await axiosConfig.delete(url, {
       headers: {
@@ -158,10 +158,10 @@ const columnsSlice = createSlice({
   name: 'columns',
   initialState,
   reducers: {
-    setColumns(state: columnState, { payload }: PayloadAction<ColumnType[]>) {
+    setColumns(state: ColumnState, { payload }: PayloadAction<ColumnType[]>) {
       state.columnsArr = [...payload];
     },
-    setCurrentColumn(state: columnState, { payload }: PayloadAction<string>) {
+    setCurrentColumn(state: ColumnState, { payload }: PayloadAction<string>) {
       state.currentColumnId = payload;
     },
   },
@@ -173,7 +173,7 @@ const columnsSlice = createSlice({
       .addCase(
         getColumns.fulfilled,
         (
-          state: columnState,
+          state: ColumnState,
           { payload }: PayloadAction<{ data: ColumnType[] }>,
         ) => {
           state.isLoading = false;
@@ -192,7 +192,7 @@ const columnsSlice = createSlice({
       .addCase(
         createColumn.fulfilled,
         (
-          state: columnState,
+          state: ColumnState,
           { payload }: PayloadAction<{ data: ColumnType }>,
         ) => {
           state.isLoading = false;
@@ -211,7 +211,7 @@ const columnsSlice = createSlice({
       .addCase(
         updateColumn.fulfilled,
         (
-          state: columnState,
+          state: ColumnState,
           { payload }: PayloadAction<{ data: ColumnType }>,
         ) => {
           state.isLoading = false;
@@ -228,7 +228,6 @@ const columnsSlice = createSlice({
       .addCase(updateColumn.rejected, state => {
         state.isLoading = false;
         state.hasError = true;
-        // state.columnsArr = [];
       })
       .addCase(deleteColumn.pending, state => {
         state.isLoading = true;
@@ -236,7 +235,7 @@ const columnsSlice = createSlice({
       .addCase(
         deleteColumn.fulfilled,
         (
-          state: columnState,
+          state: ColumnState,
           { payload }: PayloadAction<{ data: ColumnType }>,
         ) => {
           state.isLoading = false;
@@ -249,7 +248,6 @@ const columnsSlice = createSlice({
       .addCase(deleteColumn.rejected, state => {
         state.isLoading = false;
         state.hasError = true;
-        // state.columnsArr = [];
       });
   },
 });
