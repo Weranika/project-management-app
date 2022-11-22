@@ -1,4 +1,4 @@
-$MAIN-COLOR--PRIMARY: #a23982;
+$MAIN-COLOR--PRIMARY: rgb(70, 28, 58);
 $MAIN-COLOR--PRIMARY-DARK: #1f1013;
 $MAIN-COLOR--PRIMARY-LIGHT: #ba97b0;
 $MAIN-COLOR--SECONDARY-LIGHT: #ffdec6;
@@ -21,4 +21,19 @@ $HEADER--HEIGHT: 67px;
   font-size: $size;
   font-family: $font;
   font-weight: $weight;
+}
+@mixin angle () {
+  --angle: 0deg;
+  border-image: linear-gradient(var(--angle), $LIGHT-COLOR, #461c3a) 1;
+  animation: 7s rotate linear infinite;
+  @property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+  @keyframes rotate {
+    to {
+      --angle: 360deg;
+    }
+  }
 }

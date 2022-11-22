@@ -7,7 +7,7 @@ $FOOTER-RS-LOGO-HEIGHT: 9vw;
   height: $FOOTER-HEIGHT;
   padding: 15px;
   @include font(1.1em, OpenSans);
-  background: radial-gradient(#1f1013, #461c3a);
+  background: radial-gradient(#1f1013, $MAIN-COLOR--PRIMARY);
   flex-shrink: 0;
   color: $LIGHT-COLOR;
   top: 100%;

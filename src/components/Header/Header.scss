@@ -4,7 +4,7 @@ $LOGO-HEIGHT: 60px;
 
 .header {
   @include flex(space-between);
-  background: radial-gradient(#461c3a,#1f1013);
+  background: radial-gradient($MAIN-COLOR--PRIMARY,#1f1013);
   @include font(22px, Roboto);
   position: fixed;
   z-index: 1;
