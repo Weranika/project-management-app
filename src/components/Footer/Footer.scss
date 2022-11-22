@@ -3,17 +3,16 @@ $FOOTER-HEIGHT: 30px;
 $FOOTER-RS-LOGO-HEIGHT: 9vw;
 
 .footer {
-  @include flex(space-between);
+  @include flex(space-around);
   height: $FOOTER-HEIGHT;
-  padding: 15px;
+  padding: 15px 0;
   @include font(1.1em, OpenSans);
   background: radial-gradient(#1f1013, $MAIN-COLOR--PRIMARY);
   flex-shrink: 0;
   color: $LIGHT-COLOR;
-  top: 100%;
   position: fixed;
-  top: 91%;
-  width: 100%;
+  bottom: 0;
+  width: 100vw;
 }
 .footer__rs-logo-link {
   height: 100%;
@@ -21,8 +20,7 @@ $FOOTER-RS-LOGO-HEIGHT: 9vw;
 .footer__rs-logo {
   background-image: url(../../assets/icons/rs_school_img.svg);
   height: 100%;
-  width: auto;
-  width: $FOOTER-RS-LOGO-HEIGHT;
+  width: 7vw;
   background-repeat: no-repeat;
 }
 .footer__github-info {
@@ -37,15 +35,12 @@ $FOOTER-RS-LOGO-HEIGHT: 9vw;
     }
     .footer__year {
       font-size: 2.5em;
-      width: 10vw;
+      width: 7vw;
     }
   }
 }
 /***************media********************/
 @media only screen and (min-width: 750px) and (max-width: 1100px) {
-  .footer__rs-logo {
-    width: 15vw
-  }
   .footer {
     @include font(1.3em, Teko);
   }

@@ -1,14 +1,22 @@
 import React from 'react';
 import './Main.scss';
 import { HashLink } from 'react-router-hash-link';
+import { IconButton } from '@mui/material';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import AboutUs from '../../AboutUs/AboutUs';
 
 function Main() {
-  
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  const scrollToBottom = () => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  };
+
   return (
     <>
       <section className="start-page">
-        <p id="head1" className="start-page__title">Welcome to our APP</p>
+        <p id="head1" className="start-page__title">Welcome to Pro Manager</p>
         <p id="head2" className="start-page__title">It is a project management software</p>
         <p id="head3" className="start-page__title">that allows you to centrally
           manage tasks</p>
@@ -19,6 +27,9 @@ function Main() {
         </HashLink>
       </section>
       <AboutUs />
+      <IconButton className="scroll-button__container scroll-up" onClick={scrollToTop}>
+        <ExpandLessIcon />
+      </IconButton>
       <div className="light x1"></div>
       <div className="light x2"></div>
       <div className="light x3"></div>

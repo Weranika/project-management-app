@@ -1,14 +1,86 @@
 @import '../../../global/library';
 
+$SCROLL-BUTTON--HEIGHT: 50px;
+$START-PAGE--HEIGHT: 90vh;
+$START-PAGE--PADDING: 20px 5vw;
+$START-PAGE-TITLE--WIDTH: 70vh;
+$START-PAGE-BUTTON--HEIGHT: 50px;
+$START-PAGE-BUTTON--WIDTH: 250px;
+$START-PAGE-BUTTON--TOP: 40vh;
+$SCROLL-UP--TOP: 16vh;
+$SCROLL-UP--RIGHT: 15px;
+
 .start-page {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding: 20px 5vw;
+  padding: $START-PAGE--PADDING;
   @include font(22px, Roboto);
   text-align: center;
-  height: 90vh;
+  height: $START-PAGE--HEIGHT;
 }
+.start-page__title{
+  position: absolute;
+  width: $START-PAGE-TITLE--WIDTH;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
+  color: white;
+  font-size: 2em;
+}
+/***********************button*******************/
+.start-page__button {
+  position: absolute;
+  border: 2px solid $LIGHT-COLOR;
+  background: transparent;
+  font-family: 'Roboto', sans-serif;
+  color: $LIGHT-COLOR;
+  width: $START-PAGE-BUTTON--WIDTH;
+  height: $START-PAGE-BUTTON--HEIGHT;
+  font-size: 1.5em;
+  border-radius: 5px;
+  opacity: .5;
+  top: $START-PAGE-BUTTON--TOP;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  transition: .3s;
+  &:hover {
+    border: 2px solid $MAIN-COLOR--PRIMARY-DARK;
+    background-color: rgba(365,365,365,0.5);
+    cursor: pointer;
+    color: $MAIN-COLOR--PRIMARY-DARK;
+    opacity: .8;
+    transition: .3s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+}
+a {
+  transition: all linear 0.3s;
+}
+/***********************up-button*******************/
+button.scroll-button__container {
+  height: $SCROLL-BUTTON--HEIGHT;
+  width: $SCROLL-BUTTON--HEIGHT;
+  border-radius: 7px;
+  color: $MAIN-COLOR--SECONDARY-LIGHT;
+  background-color: $MAIN-COLOR--PRIMARY-DARK;
+  box-shadow: 0px 0px 5px 2px rgba(255, 228, 193, 0.8);
+  cursor: inherit;
+  position: fixed;
+  right: $SCROLL-UP--RIGHT;
+  top: $SCROLL-UP--TOP;
+  &:hover {
+    background-color: $MAIN-COLOR--SECONDARY;
+  }
+  &:active {
+    color: rgba(255, 197, 121, 0.8);
+  }
+}
+/*******************************animated background**********************/
 .light {
   position: absolute;
   width: 0px;
@@ -77,23 +149,11 @@
 }
 
 @keyframes floatUp{
-  0%{top: 100vh; opacity: 0;}
+  0%{top: 200vh; opacity: 0;}
   25%{opacity: 1;}
   50%{top: 0vh; opacity: .8;}
   75%{opacity: 1;}
-  100%{top: -100vh; opacity: 0;}
-}
-
-.start-page__title{
-  position: absolute;
-  width: 70vw;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Roboto', sans-serif;
-  font-weight: 200;
-  color: white;
-  font-size: 2em;
+  100%{top: -200vh; opacity: 0;}
 }
 #head1, #head2,#head3, #head4, #head5{
   opacity: 0;
@@ -113,7 +173,6 @@
   animation: fadeOut 1 5s ease-in;
   animation-delay: 17s;
 }
-
 #head5{
   animation: finalFade 1 5s ease-in;
   animation-fill-mode: forwards;
@@ -134,35 +193,4 @@
   30%{opacity: 1;}
   80%{opacity: .9;}
   100%{opacity: 1;}
-}
-/***********************button*******************/
-.start-page__button {
-  position: absolute;
-  border: 2px solid $LIGHT-COLOR;
-  background: transparent;
-  font-family: 'Roboto', sans-serif;
-  color: $LIGHT-COLOR;
-  width: 250px;
-  height: 50px;
-  font-size: 1.5em;
-  border-radius: 5px;
-  opacity: .5;
-  top: 40vh;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  margin: auto;
-  transition: .3s;
-  &:hover {
-    border: 2px solid $MAIN-COLOR--PRIMARY-DARK;
-    background-color: rgba(365,365,365,0.5);
-    cursor: pointer;
-    color: $MAIN-COLOR--PRIMARY-DARK;
-    opacity: .8;
-    transition: .3s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
-}
-a {
-  transition: all linear 0.3s;
 }
