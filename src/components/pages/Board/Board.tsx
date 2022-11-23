@@ -54,6 +54,6 @@ function Board() {
       </section>
     </main>
   );
-}
+};
 
 export default Board;

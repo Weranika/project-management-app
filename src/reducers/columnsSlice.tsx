@@ -18,8 +18,7 @@ export const updateColumn = createAsyncThunk<
     thunkApi,
   ) => {
     const { url, title, order } = columnData;
-    const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2NjkxNTEzMDUsImV4cCI6MTY2OTE5NDUwNX0.Cg6rzXnYILrPXYUP29vTnUkAIwCVsybBdGREeuK8MeI';
+    const jwt = localStorage.getItem('jwt');
     try {
       const response = await axiosConfig.put(
         url,
@@ -60,8 +59,7 @@ export const createColumn = createAsyncThunk<
     thunkApi,
   ) => {
     const { url, title, order } = columnData;
-    const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2NjkxNTEzMDUsImV4cCI6MTY2OTE5NDUwNX0.Cg6rzXnYILrPXYUP29vTnUkAIwCVsybBdGREeuK8MeI';
+    const jwt = localStorage.getItem('jwt');
     try {
       const response = await axiosConfig.post(
         url,
@@ -96,8 +94,8 @@ export const getColumns = createAsyncThunk<
   string,
   { rejectValue: FetchError }
 >('columns/get', async (url: string, thunkApi) => {
-  const jwt =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2NjkxNTEzMDUsImV4cCI6MTY2OTE5NDUwNX0.Cg6rzXnYILrPXYUP29vTnUkAIwCVsybBdGREeuK8MeI';
+  const jwt = localStorage.getItem('jwt');
+  console.log('jwt', jwt);
   try {
     const response = await axiosConfig.get(url, {
       headers: {
@@ -124,8 +122,7 @@ export const deleteColumn = createAsyncThunk<
   string,
   { rejectValue: FetchError }
 >('columns/delete', async (url: string, thunkApi) => {
-  const jwt =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjk1NDQyMWQ3N2E4YjZlNmM0ZDhlOCIsImxvZ2luIjoiSU1hc2siLCJpYXQiOjE2NjkxNTEzMDUsImV4cCI6MTY2OTE5NDUwNX0.Cg6rzXnYILrPXYUP29vTnUkAIwCVsybBdGREeuK8MeI';
+  const jwt = localStorage.getItem('jwt');
   try {
     const response = await axiosConfig.delete(url, {
       headers: {
