@@ -2,13 +2,15 @@ import React from 'react';
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 import weranika from '../../assets/images/team/weranika.jpg';
 import oxana from '../../assets/images/team/oxana.jpg';
+import katerina from '../../assets/images/team/katerina.jpg';
 import githubIcon from '../../assets/icons/Github_logo.png';
 import './aboutUs.scss';
+import { FormattedMessage } from 'react-intl';
 
 function AboutUs() {
   return (
     <section className="about-us" id={"about-us"}>
-      <h2 className="our-team__title">ДАВАЙ ЗНАКОМИТЬСЯ</h2>
+      <h2 className="our-team__title"><FormattedMessage id='our_team__title' /></h2>
       <AnimationOnScroll
         animateIn='bounceInRight'
         animateOut='bounceOutLeft'
@@ -22,7 +24,7 @@ function AboutUs() {
           <div className="person__content">
             <div className="person__title-container">
               <h3 className="person__title">
-                Weranika
+                <FormattedMessage id='weranika' />
               </h3>
               <a
                 className="person__github-link"
@@ -37,12 +39,8 @@ function AboutUs() {
                 />
               </a>
             </div>
-            <h5 className="person__subtitle">Team leader, Frontend developer</h5>
-            <p className="person__info">
-              Тимлид команды. Определение единого дизайна приложения.
-              Создание навигации и настройка роутинга.
-              Вёрстка, адаптив и UI главной страницы.
-            </p>
+            <h5 className="person__subtitle"><FormattedMessage id='weranika__subtitle' /></h5>
+            <p className="person__info"><FormattedMessage id='weranika__info' /></p>
           </div>
         </article>
       </AnimationOnScroll>
@@ -60,7 +58,7 @@ function AboutUs() {
           <div className="person__content">
             <div className="person__title-container">
               <h3 className="person__title">
-                Oxana
+                <FormattedMessage id='oxana' />
               </h3>
               <a
                 className="person__github-link"
@@ -75,10 +73,8 @@ function AboutUs() {
                 />
               </a>
             </div>
-            <h5 className="person__subtitle">Frontend developer</h5>
-            <p className="person__info">
-              Oтвечала за server-client API, созданиеб удаление, обновление и отображение столбцов
-            </p>
+            <h5 className="person__subtitle"><FormattedMessage id='oxana__subtitle' /></h5>
+            <p className="person__info"><FormattedMessage id='oxana__info' /></p>
           </div>
         </article>
       </AnimationOnScroll>
@@ -89,14 +85,14 @@ function AboutUs() {
       >
         <article className="our-team__person">
           <img
-            src={oxana}
-            alt="oxana"
+            src={katerina}
+            alt="katerina"
             className="person__img"
           />
           <div className="person__content">
             <div className="person__title-container">
               <h3 className="person__title">
-                Oxana
+                <FormattedMessage id='katerina' />
               </h3>
               <a
                 className="person__github-link"
@@ -111,10 +107,8 @@ function AboutUs() {
                 />
               </a>
             </div>
-            <h5 className="person__subtitle">Frontend developer</h5>
-            <p className="person__info">
-              Oтвечала за server-client API, созданиеб удаление, обновление и отображение столбцов
-            </p>
+            <h5 className="person__subtitle"><FormattedMessage id='katerina__subtitle' /></h5>
+            <p className="person__info"><FormattedMessage id='katerina__info' /></p>
           </div>
         </article>
       </AnimationOnScroll>
