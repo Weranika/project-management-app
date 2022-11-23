@@ -10,3 +10,9 @@
   background-size: auto 550px;
   height: 100%;
 }
+/***************media********************/
+@media only screen and (min-width: 310px) and (max-width: 735px) {
+  .error__container {
+    background-size: auto 380px;
+  }
+}

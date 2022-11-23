@@ -1,12 +1,13 @@
 @import '../../../global/library';
 
-$SCROLL-BUTTON--HEIGHT: 50px;
 $START-PAGE--HEIGHT: 90vh;
 $START-PAGE--PADDING: 20px 5vw;
 $START-PAGE-TITLE--WIDTH: 70vh;
 $START-PAGE-BUTTON--HEIGHT: 50px;
 $START-PAGE-BUTTON--WIDTH: 250px;
 $START-PAGE-BUTTON--TOP: 40vh;
+
+$SCROLL-BUTTON--HEIGHT: 50px;
 $SCROLL-UP--TOP: 18vh;
 $SCROLL-UP--RIGHT: 19px;
 
@@ -69,7 +70,6 @@ button.scroll-button__container {
   color: $MAIN-COLOR--SECONDARY-LIGHT;
   background-color: $MAIN-COLOR--PRIMARY-DARK;
   box-shadow: 0px 0px 5px 2px rgba(255, 228, 193, 0.8);
-  cursor: inherit;
   position: fixed;
   right: $SCROLL-UP--RIGHT;
   top: $SCROLL-UP--TOP;
@@ -80,6 +80,17 @@ button.scroll-button__container {
     color: rgba(255, 197, 121, 0.8);
   }
 }
+/***************media********************/
+@media only screen and (min-width: 310px) and (max-width: 600px) {
+  .start-page__title{
+    font-size: 7.2vw;
+  }
+  button.scroll-button__container {
+    height: 30px;
+    width: 30px;
+  }
+}
+
 /*******************************animated background**********************/
 .light {
   position: absolute;

@@ -17,13 +17,13 @@ $PERSON--BORDER: 20px solid;
   top: 100vh;
   width: 100%;
   height: auto;
-  background: url('../../assets/images/118283-abstract-purple-and-white-blur-lights-background-image.jpg') no-repeat;
+  background: url('../../assets/images/aboutUs-backgr.jpg') no-repeat;
   background-size: cover;
   padding-bottom: 40px;
 }
 .our-team__title {
   text-align: center;
-  @include font(3.5rem, OpenSans, 600);
+  @include font(3rem, OpenSans, 600);
   color: $MAIN-COLOR--PRIMARY-DARK;
   margin-top: $OUR-TEAM-TITLE--MARGINE-TOP;
 }
@@ -46,6 +46,7 @@ $PERSON--BORDER: 20px solid;
     transform: skew(-7deg);
     border: 2px solid;
     @include angle();
+    border-radius: none;
   }
   .person__title {
     @include font(1.5em, OpenSans, 600);
@@ -81,5 +82,53 @@ $PERSON--BORDER: 20px solid;
         filter: invert(100%); 
       }
     }
+  }
+}
+/***************media********************/
+@media only screen and (min-width: 640px) and (max-width: 960px) {
+  .our-team__person .person__img {
+    height: 30vw;
+    width: 30vw;
+  }
+  .our-team__person {
+    width: 85vw;
+  }
+  .person__content {
+    font-size: 1.8vw;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 639px) {
+  .our-team__person .person__img {
+    height: 30vw;
+    width: 30vw;
+    margin: 0 0 20px 15px;
+    border-radius: 100%;
+    border: none;
+  }
+  .our-team__person {
+    width: 70vw;
+    height: auto;
+    text-align: center;
+    padding: 15px 0;
+    display: block;
+  }
+  .person__content {
+    font-size: 2.5vw;
+  }
+  .person__info {
+    display: none;
+  }
+  .our-team__title {
+    @include font(7vw, OpenSans, 600);
+  }
+  .start-page__title {
+    @include font(7vw, OpenSans, 600);
+  }
+  .our-team__person .person__subtitle {
+    font-size: 1.5em;
+    margin: 10px 0 0;
+  }
+  button.scroll-button__container {
+    right: 27px;
   }
 }
