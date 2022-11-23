@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-function TemplatePage() {
+function MainLayout() {
   return (
     <div className="body__container">
       <Header />
@@ -15,4 +15,4 @@ function TemplatePage() {
   );
 }
 
-export default TemplatePage;
+export default MainLayout;

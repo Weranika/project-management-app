@@ -11,7 +11,7 @@ const scrollToTop = () => {
 const languages = [
   { name: 'English', code: LOCALES.ENGLISH },
   { name: 'Русский', code: LOCALES.RUSSIAN },
-]
+];
 // interface IProps {
 //   currentLocale: string;
 //   handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -32,8 +32,8 @@ function Header() {
         <nav className="navbar__container">
           <ul className="navbar">
             <li className="change-lang">
-            <select>
-              {/* <select onChange={props.handleChange} value={props.currentLocale}> */}
+              <select>
+                {/* <select onChange={props.handleChange} value={props.currentLocale}> */}
                 {languages.map(({ name, code }) => (
                   <option key={code} value={code}>
                     {name}
