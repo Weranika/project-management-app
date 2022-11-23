@@ -1,6 +1,11 @@
 @import '../../global/library';
 
-$LOGO-HEIGHT: 60px;
+$HEADER--WIDTH: 100%;
+$LOGO--HEIGHT: 60px;
+$LOGO-IMG--HEIGHT: 35px;
+$LOGO-TITLE--MARGINE-LEFT: 20px;
+$NAV--WIDTH: 40vw;
+$CHANGE-LANG--WIDTH: 35px;
 
 .header {
   @include flex(space-between);
@@ -8,7 +13,7 @@ $LOGO-HEIGHT: 60px;
   @include font(22px, Roboto);
   position: fixed;
   z-index: 1;
-  width: 100%;
+  width: $HEADER--WIDTH;
   top: 0;
   color: $LIGHT-COLOR;
   border-bottom: 2px solid;
@@ -27,7 +32,8 @@ $LOGO-HEIGHT: 60px;
 	}
 }
 .header-container {
-  width: 87%;
+  width: $BODY-CONTAINER--WIDTH;
+  max-width: $BODY-CONTAINER--MAX-WIDTH;
   margin: 10px auto;
   @include flex(space-between);
   .MuiSvgIcon-root {
@@ -41,7 +47,7 @@ $LOGO-HEIGHT: 60px;
   opacity: .8;
 }
 .logo {
-  height: $LOGO-HEIGHT;
+  height: $LOGO--HEIGHT;
   margin: 0 15px 0 7px;
   h1 {
     color: $MAIN-COLOR--SECONDARY-LIGHT;
@@ -54,7 +60,7 @@ $LOGO-HEIGHT: 60px;
   }
 }
 .logo-img {
-  height: 35px;
+  height: $LOGO-IMG--HEIGHT;
   border-radius: 5px;
   &:hover {
     box-shadow: 0px 0px 8px 3px rgba(255, 255, 255, 0.8);
@@ -66,7 +72,7 @@ $LOGO-HEIGHT: 60px;
 .logo__title {
   @include flex(space-between);
   color: $LIGHT-COLOR;
-  margin-left: 20px;
+  margin-left: $LOGO-TITLE--MARGINE-LEFT;
   letter-spacing: 1.2px;
   &:hover {
     color: $MAIN-COLOR--SECONDARY-LIGHT;
@@ -74,19 +80,20 @@ $LOGO-HEIGHT: 60px;
   }
 }
 nav {
-  width: 40vw;
+  width: $NAV--WIDTH;
 }
 .navbar {
   @include flex(space-between);
   @include font(16px, OpenSans);
-  li > a{
+  li > a {
     padding-left: 10px;
     &:hover {
       color:$MAIN-COLOR--SECONDARY-LIGHT;
+      text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
     }
   }
   .active {
-    color: $MAIN-COLOR--PRIMARY-LIGHT;
+    color: $MAIN-COLOR--SECONDARY;
   }
 }
 .button__change-lang {
@@ -94,8 +101,8 @@ nav {
   background: transparent;
   font-family: 'Roboto', sans-serif;
   color: $LIGHT-COLOR;
-  width: 35px;
-  height: 35px;
+  width: $CHANGE-LANG--WIDTH;
+  height: $CHANGE-LANG--WIDTH;
   font-size: 1em;
   border-radius: 5px;
   opacity: .5;

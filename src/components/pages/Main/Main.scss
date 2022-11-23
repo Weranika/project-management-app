@@ -7,8 +7,8 @@ $START-PAGE-TITLE--WIDTH: 70vh;
 $START-PAGE-BUTTON--HEIGHT: 50px;
 $START-PAGE-BUTTON--WIDTH: 250px;
 $START-PAGE-BUTTON--TOP: 40vh;
-$SCROLL-UP--TOP: 16vh;
-$SCROLL-UP--RIGHT: 15px;
+$SCROLL-UP--TOP: 18vh;
+$SCROLL-UP--RIGHT: 19px;
 
 .start-page {
   display: flex;
@@ -61,7 +61,7 @@ $SCROLL-UP--RIGHT: 15px;
 a {
   transition: all linear 0.3s;
 }
-/***********************up-button*******************/
+/***********************up-button************************/
 button.scroll-button__container {
   height: $SCROLL-BUTTON--HEIGHT;
   width: $SCROLL-BUTTON--HEIGHT;
