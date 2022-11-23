@@ -5,12 +5,9 @@ import { IconButton } from '@mui/material';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import AboutUs from '../../AboutUs/AboutUs';
 
-function Main() {
+const Main: React.FC = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-  const scrollToBottom = () => {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   };
 
   return (
@@ -41,6 +38,6 @@ function Main() {
       <div className="light x9"></div>
     </>
   );
-}
+};
 
 export default Main;
