@@ -4,6 +4,7 @@ import { HashLink } from 'react-router-hash-link';
 import { IconButton } from '@mui/material';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import AboutUs from '../../AboutUs/AboutUs';
+import { FormattedMessage } from 'react-intl';
 
 function Main() {
   const scrollToTop = () => {
@@ -16,14 +17,13 @@ function Main() {
   return (
     <>
       <section className="start-page">
-        <p id="head1" className="start-page__title">Welcome to Pro Manager</p>
-        <p id="head2" className="start-page__title">It is a project management software</p>
-        <p id="head3" className="start-page__title">that allows you to centrally
-          manage tasks</p>
-        <p id="head4" className="start-page__title">and their timely completion</p>
-        <p id="head5" className="start-page__title">Welcome to Task Manager</p>
+        <p id="head1" className="start-page__title"><FormattedMessage id='title1' /></p>
+        <p id="head2" className="start-page__title"><FormattedMessage id='title2' /></p>
+        <p id="head3" className="start-page__title"><FormattedMessage id='title3' /></p>
+        <p id="head4" className="start-page__title"><FormattedMessage id='title4' /></p>
+        <p id="head5" className="start-page__title"><FormattedMessage id='title5' /></p>
         <HashLink smooth to="/#about-us">
-          <button className="start-page__button">About us</button>
+          <button className="start-page__button"><FormattedMessage id='about_us' /></button>
         </HashLink>
       </section>
       <AboutUs />

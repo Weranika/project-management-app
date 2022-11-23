@@ -89,12 +89,12 @@ nav {
     color: $MAIN-COLOR--PRIMARY-LIGHT;
   }
 }
-.button__change-lang {
+.change-lang select{
   border: 2px solid $LIGHT-COLOR;
   background: transparent;
   font-family: 'Roboto', sans-serif;
   color: $LIGHT-COLOR;
-  width: 35px;
+  width: 100px;
   height: 35px;
   font-size: 1em;
   border-radius: 5px;
