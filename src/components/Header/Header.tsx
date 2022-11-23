@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
-import logo from '../../assets/images/logo.jpg';
+import logo from '../../assets/icons/logo.png';
 import { FormattedMessage } from 'react-intl';
 import { LOCALES } from '../../lang/locales';
 import './Header.scss';
@@ -11,7 +11,7 @@ const scrollToTop = () => {
 const languages = [
   { name: 'English', code: LOCALES.ENGLISH },
   { name: 'Русский', code: LOCALES.RUSSIAN },
-]
+];
 // interface IProps {
 //   currentLocale: string;
 //   handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -32,8 +32,8 @@ function Header() {
         <nav className="navbar__container">
           <ul className="navbar">
             <li className="change-lang">
-            <select>
-              {/* <select onChange={props.handleChange} value={props.currentLocale}> */}
+              <select>
+                {/* <select onChange={props.handleChange} value={props.currentLocale}> */}
                 {languages.map(({ name, code }) => (
                   <option key={code} value={code}>
                     {name}
@@ -47,10 +47,14 @@ function Header() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/signUp" className="nav__link">Sign up</NavLink>
+              <NavLink to="/signUp" className="nav__link">
+                Sign up
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/board"><FormattedMessage id='board' /></NavLink>
+              <NavLink to="/board">
+                <FormattedMessage id="board" />
+              </NavLink>
             </li>
           </ul>
         </nav>

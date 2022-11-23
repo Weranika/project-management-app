@@ -6,3 +6,8 @@
   flex-direction: column;
   flex-grow: 1;
 }
+
+.board__title {
+  margin-left: 2.5rem;
+  color: $MAIN-COLOR--PRIMARY-DARK;
+}

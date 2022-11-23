@@ -30,9 +30,9 @@ export const login = async ({
       login,
       password,
     });
-    if (response.data.accesToken) {
-      localStorage.setItem('user', JSON.stringify(response.data));
-    }
+    /*  if (response.data.accesToken) { */
+    localStorage.setItem('jwt', response.data.token);
+    /*  } */
     result.data = response.data;
   } catch (error: any) {
     if (error.response.status === '401') {
