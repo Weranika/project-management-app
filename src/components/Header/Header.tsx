@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
-import logo from '../../assets/images/logo.jpg';
+import logo from '../../assets/icons/logo.png';
 import { FormattedMessage } from 'react-intl';
 import { LOCALES } from '../../lang/locales';
 import './Header.scss';
@@ -47,10 +47,14 @@ function Header() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/signUp" className="nav__link">Sign up</NavLink>
+              <NavLink to="/signUp" className="nav__link">
+                Sign up
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/board"><FormattedMessage id='board' /></NavLink>
+              <NavLink to="/board" className="nav__link">
+                <FormattedMessage id='board' />
+              </NavLink>
             </li>
           </ul>
         </nav>
