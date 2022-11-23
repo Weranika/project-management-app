@@ -9,6 +9,9 @@ import { LOCALES } from './lang/locales';
 import { messages } from './lang/messages';
 import './App.css';
 import './global/global.scss';
+import { AuthPage } from './components/pages/SignIn/signIn';
+
+import { SignUpPage } from './components/pages/SignUp/SignUp';
 
 function App() {
   const locale = LOCALES.RUSSIAN;
@@ -33,6 +36,8 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="board" element={<Board />} />
             <Route path="*" element={<Page404 />} />
+            <Route path="signIn" element={<AuthPage />} />
+            <Route path="signUp" element={<SignUpPage />} />
           </Route>
         </Routes>
       </HashRouter>

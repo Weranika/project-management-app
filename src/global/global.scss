@@ -17,14 +17,10 @@ html {
   -o-animation: fadeIn 1 1s ease-out;
   animation: fadeIn 1 1s ease-out;
 }
-// body {
-//   background: linear-gradient(#d8e2efe6 50%,rgb(139, 167, 184));
-// }
 .main {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  width: $BODY-CONTAINER-WIDTH;
 }
 a {
   text-decoration: none;
