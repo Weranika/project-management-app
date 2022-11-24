@@ -15,12 +15,14 @@ export interface ColumnState {
 export interface ModalPopupState {
   showModalCreateColumn: boolean;
   showModalDeleteColumn: boolean;
+  showModalCreateBoard: boolean;
+  showModalDeleteBoard: boolean;
 }
 
 export interface BoardType {
   _id: string;
   title: string;
-  // description: string;
+  description: string;
 }
 
 export interface BoardState {

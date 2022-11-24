@@ -48,46 +48,46 @@ type FetchError = {
 //   },
 // );
 
-// export const createColumn = createAsyncThunk<
-//   { data: ColumnType },
-//   { url: string; title: string; order: number },
-//   { rejectValue: FetchError }
-// >(
-//   'columns/post',
-//   async (
-//     columnData: { url: string; title: string; order: number },
-//     thunkApi,
-//   ) => {
-//     const { url, title, order } = columnData;
-//     const jwt = localStorage.getItem('jwt');
-//     try {
-//       const response = await axiosConfig.post(
-//         url,
-//         {
-//           title: title,
-//           order: order,
-//         },
-//         {
-//           headers: {
-//             authorization: `Bearer ${jwt}`,
-//           },
-//         },
-//       );
+export const createBoard = createAsyncThunk<
+  { data: BoardType },
+  { url: string; title: string; description: string },
+  { rejectValue: FetchError }
+>(
+  'columns/post',
+  async (
+    boardData: { url: string; title: string; description: string },
+    thunkApi,
+  ) => {
+    const { url, title, description } = boardData;
+    const jwt = localStorage.getItem('jwt');
+    try {
+      const response = await axiosConfig.post(
+        url,
+        {
+          title: title,
+          description: description,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${jwt}`,
+          },
+        },
+      );
 
-//       if (response.status !== 200) {
-//         // Return the error message:
-//         return thunkApi.rejectWithValue({
-//           message: 'Failed to create the column.',
-//         });
-//       }
-//       return response;
-//     } catch (error) {
-//       return thunkApi.rejectWithValue({
-//         message: 'Failed to create the column.',
-//       });
-//     }
-//   },
-// );
+      if (response.status !== 200) {
+        // Return the error message:
+        return thunkApi.rejectWithValue({
+          message: 'Failed to create the board.',
+        });
+      }
+      return response;
+    } catch (error) {
+      return thunkApi.rejectWithValue({
+        message: 'Failed to create the board.',
+      });
+    }
+  },
+);
 
 export const getBoards = createAsyncThunk<
   { data: BoardType[] },
@@ -106,13 +106,13 @@ export const getBoards = createAsyncThunk<
     if (response.status !== 200) {
       // Return the error message:
       return thunkApi.rejectWithValue({
-        message: 'Failed to get columns.',
+        message: 'Failed to get boards.',
       });
     }
     return response;
   } catch (error) {
     return thunkApi.rejectWithValue({
-      message: 'Failed to get columns.',
+      message: 'Failed to get boards.',
     });
   }
 });
@@ -155,9 +155,9 @@ const boardsSlice = createSlice({
   name: 'boards',
   initialState,
   reducers: {
-    // setColumns(state: ColumnState, { payload }: PayloadAction<ColumnType[]>) {
-    //   state.columnsArr = [...payload];
-    // },
+    setBoards(state: BoardState, { payload }: PayloadAction<BoardType[]>) {
+      state.boardsArr = [...payload];
+    },
     // setCurrentColumn(state: ColumnState, { payload }: PayloadAction<string>) {
     //   state.currentColumnId = payload;
     // },
@@ -182,26 +182,25 @@ const boardsSlice = createSlice({
         state.isLoading = false;
         state.hasError = true;
         state.boardsArr = [];
+      })
+      .addCase(createBoard.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(
+        createBoard.fulfilled,
+        (
+          state: BoardState,
+          { payload }: PayloadAction<{ data: BoardType }>,
+        ) => {
+          state.isLoading = false;
+          state.hasError = false;
+          state.boardsArr = [...state.boardsArr, payload.data];
+        },
+      )
+      .addCase(createBoard.rejected, state => {
+        state.isLoading = false;
+        state.hasError = true;
       });
-    // .addCase(createColumn.pending, state => {
-    //   state.isLoading = true;
-    // })
-    // .addCase(
-    //   createColumn.fulfilled,
-    //   (
-    //     state: ColumnState,
-    //     { payload }: PayloadAction<{ data: ColumnType }>,
-    //   ) => {
-    //     state.isLoading = false;
-    //     state.hasError = false;
-    //     state.columnsArr = [...state.columnsArr, payload.data];
-    //   },
-    // )
-    // .addCase(createColumn.rejected, state => {
-    //   state.isLoading = false;
-    //   state.hasError = true;
-    //   // state.columnsArr = [];
-    // })
     // .addCase(updateColumn.pending, state => {
     //   state.isLoading = true;
     // })
@@ -249,4 +248,4 @@ const boardsSlice = createSlice({
   },
 });
 export default boardsSlice.reducer;
-// export const { setBoards, setCurrentBoard } = boardsSlice.actions;
+export const { setBoards /* , setCurrentBoard */ } = boardsSlice.actions;

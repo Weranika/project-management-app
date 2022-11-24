@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 
 import BoardItem from '../../BoardItem/BoardItem';
-import ModalCreateColumn from '../../ModalCreateColumn/ModalCreateColumn';
+import ModalCreateBoard from '../../ModalCreateBoard/ModalCreateBoard';
 import ModalDeleteColumn from '../../ModalDeleteColumn/ModalDeleteColumn';
-import { setShowModalCreateColumn } from '../../../reducers/modalPopupSlice';
+import { setShowModalCreateBoard } from '../../../reducers/modalPopupSlice';
 import { getBoards } from '../../../reducers/boardsSlice';
 import { useAppDispatch } from '../../../hook';
 import { BoardType, BoardState, ModalPopupState } from '../../../types';
@@ -14,9 +14,9 @@ import './BoardList.scss';
 
 function BoardList() {
   const dispatch = useAppDispatch();
-  // const { showModalCreateColumn, showModalDeleteColumn } = useSelector(
-  //   (state: { modalPopup: ModalPopupState }) => state.modalPopup,
-  // );
+  const { showModalCreateBoard, showModalDeleteBoard } = useSelector(
+    (state: { modalPopup: ModalPopupState }) => state.modalPopup,
+  );
   const { boardsArr, currentBoardId } = useSelector(
     (state: { boards: BoardState }) => state.boards,
   );
@@ -33,7 +33,16 @@ function BoardList() {
         {boardsArr.map((board: BoardType) => {
           return <BoardItem key={board._id} board={board} />;
         })}
+        <div>
+          <Button
+            variant="contained"
+            onClick={() => dispatch(setShowModalCreateBoard(true))}
+          >
+            + Add board
+          </Button>
+        </div>
       </section>
+      {showModalCreateBoard && <ModalCreateBoard url="/boards" />}
       {/* <section className="board__columns">
           {columnsArr.map((column: ColumnType) => {
             return <Column key={column._id} column={column} />;
