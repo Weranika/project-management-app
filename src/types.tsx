@@ -16,3 +16,16 @@ export interface ModalPopupState {
   showModalCreateColumn: boolean;
   showModalDeleteColumn: boolean;
 }
+
+export interface BoardType {
+  _id: string;
+  title: string;
+  // description: string;
+}
+
+export interface BoardState {
+  boardsArr: BoardType[];
+  isLoading: boolean;
+  hasError: boolean;
+  currentBoardId: string;
+}

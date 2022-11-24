@@ -1,0 +1,21 @@
+@import '../../../global/library';
+
+.boardList__page {
+  background-color: $LIGHT-COLOR;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 5rem 1rem 1rem 1rem;
+}
+
+.boardList__title {
+  margin-left: 2.5rem;
+  color: $MAIN-COLOR--PRIMARY-DARK;
+}
+
+.boardList__boardItems {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
