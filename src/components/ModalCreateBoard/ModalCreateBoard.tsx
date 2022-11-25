@@ -1,5 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { decodeToken } from 'react-jwt';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -26,11 +27,25 @@ export default function ModalCreateBoard({ url }: { url: string }) {
 
   const createBoardRequest = (event: FormEvent) => {
     event.preventDefault();
+    const jwt = localStorage.getItem('jwt');
+    let userId = '';
+    if (jwt) {
+      const myDecodedToken: {
+        id: string;
+        login: string;
+        iat: number;
+        exp: number;
+      } | null = decodeToken(jwt);
+      console.log('decoded', myDecodedToken);
+      userId = myDecodedToken ? myDecodedToken.id : '';
+    }
     dispatch(
       createBoard({
         url: url,
         title: title,
         description: description,
+        owner: userId,
+        users: [userId],
       }),
     );
     dispatch(setShowModalCreateBoard(false));

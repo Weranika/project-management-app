@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://rss-app-project-manager.onrender.com',
+  baseURL:
+    'http://localhost:4000' /* 'https://rss-app-project-manager.onrender.com' */,
   /* withCredentials: true, */
 });
 

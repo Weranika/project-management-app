@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 
 import BoardItem from '../../BoardItem/BoardItem';
 import ModalCreateBoard from '../../ModalCreateBoard/ModalCreateBoard';
-import ModalDeleteColumn from '../../ModalDeleteColumn/ModalDeleteColumn';
+import ModalDeleteBoard from '../../ModalDeleteBoard/ModalDeleteBoard';
 import { setShowModalCreateBoard } from '../../../reducers/modalPopupSlice';
 import { getBoards } from '../../../reducers/boardsSlice';
 import { useAppDispatch } from '../../../hook';
@@ -43,6 +43,9 @@ function BoardList() {
         </div>
       </section>
       {showModalCreateBoard && <ModalCreateBoard url="/boards" />}
+      {showModalDeleteBoard && (
+        <ModalDeleteBoard url={`/boards/${currentBoardId}`} />
+      )}
       {/* <section className="board__columns">
           {columnsArr.map((column: ColumnType) => {
             return <Column key={column._id} column={column} />;
