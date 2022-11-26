@@ -16,6 +16,7 @@ export interface ModalPopupState {
   showModalCreateColumn: boolean;
   showModalDeleteColumn: boolean;
   showModalCreateBoard: boolean;
+  showModalUpdateBoard: boolean;
   showModalDeleteBoard: boolean;
 }
 
@@ -32,4 +33,6 @@ export interface BoardState {
   isLoading: boolean;
   hasError: boolean;
   currentBoardId: string;
+  currentBoardTitle: string;
+  currentBoardDescription: string;
 }

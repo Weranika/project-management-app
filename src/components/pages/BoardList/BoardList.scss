@@ -8,8 +8,21 @@
   padding: 5rem 1rem 1rem 1rem;
 }
 
+.boardList__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 20rem;
+  margin-left: 5%;
+  button {
+    height: 2.5rem;
+    width: 10rem;
+  }
+}
+
 .boardList__title {
   margin-left: 2.5rem;
+  width: 7rem;
   color: $MAIN-COLOR--PRIMARY-DARK;
 }
 
@@ -17,5 +30,6 @@
   width: 90%;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto;
+  margin: 1rem auto;
+  gap: 1rem;
 }

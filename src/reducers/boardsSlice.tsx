@@ -177,6 +177,8 @@ const initialState = {
   isLoading: false,
   hasError: false,
   currentBoardId: '',
+  currentBoardTitle: '',
+  currentBoardDescription: '',
 };
 
 const boardsSlice = createSlice({
@@ -188,6 +190,18 @@ const boardsSlice = createSlice({
     },
     setCurrentBoard(state: BoardState, { payload }: PayloadAction<string>) {
       state.currentBoardId = payload;
+    },
+    setCurrentBoardTitle(
+      state: BoardState,
+      { payload }: PayloadAction<string>,
+    ) {
+      state.currentBoardTitle = payload;
+    },
+    setCurrentBoardDescription(
+      state: BoardState,
+      { payload }: PayloadAction<string>,
+    ) {
+      state.currentBoardDescription = payload;
     },
   },
   extraReducers(builder) {
@@ -276,4 +290,9 @@ const boardsSlice = createSlice({
   },
 });
 export default boardsSlice.reducer;
-export const { setBoards, setCurrentBoard } = boardsSlice.actions;
+export const {
+  setBoards,
+  setCurrentBoard,
+  setCurrentBoardTitle,
+  setCurrentBoardDescription,
+} = boardsSlice.actions;

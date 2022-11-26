@@ -5,6 +5,7 @@ const initialState = {
   showModalCreateColumn: false,
   showModalDeleteColumn: false,
   showModalCreateBoard: false,
+  showModalUpdateBoard: false,
   showModalDeleteBoard: false,
 };
 
@@ -30,6 +31,12 @@ const modalPopupSlice = createSlice({
     ) {
       state.showModalCreateBoard = payload;
     },
+    setShowModalUpdateBoard(
+      state: { showModalUpdateBoard: boolean },
+      { payload }: PayloadAction<boolean>,
+    ) {
+      state.showModalUpdateBoard = payload;
+    },
     setShowModalDeleteBoard(
       state: { showModalDeleteBoard: boolean },
       { payload }: PayloadAction<boolean>,
@@ -43,5 +50,6 @@ export const {
   setShowModalCreateColumn,
   setShowModalDeleteColumn,
   setShowModalCreateBoard,
+  setShowModalUpdateBoard,
   setShowModalDeleteBoard,
 } = modalPopupSlice.actions;

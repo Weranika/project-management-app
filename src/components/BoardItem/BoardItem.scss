@@ -4,3 +4,20 @@
   border-radius: 1rem;
   background-color: orange;
 }
+
+.boardItem__buttonsWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.boardItem__title {
+  height: 1.3rem;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+.boardItem__description {
+  height: 2.1rem;
+  overflow: hidden;
+  word-break: break-all;
+}

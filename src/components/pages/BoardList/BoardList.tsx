@@ -4,8 +4,12 @@ import Button from '@mui/material/Button';
 
 import BoardItem from '../../BoardItem/BoardItem';
 import ModalCreateBoard from '../../ModalCreateBoard/ModalCreateBoard';
+import ModalUpdateBoard from '../../ModalUpdateBoard/ModalUpdateBoard';
 import ModalDeleteBoard from '../../ModalDeleteBoard/ModalDeleteBoard';
-import { setShowModalCreateBoard } from '../../../reducers/modalPopupSlice';
+import {
+  setShowModalCreateBoard,
+  setShowModalUpdateBoard,
+} from '../../../reducers/modalPopupSlice';
 import { getBoards } from '../../../reducers/boardsSlice';
 import { useAppDispatch } from '../../../hook';
 import { BoardType, BoardState, ModalPopupState } from '../../../types';
@@ -14,9 +18,8 @@ import './BoardList.scss';
 
 function BoardList() {
   const dispatch = useAppDispatch();
-  const { showModalCreateBoard, showModalDeleteBoard } = useSelector(
-    (state: { modalPopup: ModalPopupState }) => state.modalPopup,
-  );
+  const { showModalCreateBoard, showModalDeleteBoard, showModalUpdateBoard } =
+    useSelector((state: { modalPopup: ModalPopupState }) => state.modalPopup);
   const { boardsArr, currentBoardId } = useSelector(
     (state: { boards: BoardState }) => state.boards,
   );
@@ -28,21 +31,26 @@ function BoardList() {
 
   return (
     <section className="boardList__page">
-      <h1 className="boardList__title">Boards</h1>
+      <div className="boardList__header">
+        <h1 className="boardList__title">Boards</h1>
+
+        <Button
+          variant="contained"
+          onClick={() => dispatch(setShowModalCreateBoard(true))}
+        >
+          + Add board
+        </Button>
+      </div>
+
       <section className="boardList__boardItems">
         {boardsArr.map((board: BoardType) => {
           return <BoardItem key={board._id} board={board} />;
         })}
-        <div>
-          <Button
-            variant="contained"
-            onClick={() => dispatch(setShowModalCreateBoard(true))}
-          >
-            + Add board
-          </Button>
-        </div>
       </section>
       {showModalCreateBoard && <ModalCreateBoard url="/boards" />}
+      {showModalUpdateBoard && (
+        <ModalUpdateBoard url={`/boards/${currentBoardId}`} />
+      )}
       {showModalDeleteBoard && (
         <ModalDeleteBoard url={`/boards/${currentBoardId}`} />
       )}
