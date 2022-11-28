@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { decodeToken } from 'react-jwt';
+import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -14,19 +15,31 @@ import { createBoard } from '../../reducers/boardsSlice';
 import { useAppDispatch } from '../../hook';
 import { ModalPopupState, BoardState } from '../../types';
 
+type FormValues = {
+  boardTitle: string;
+  boardDescription: string;
+};
+
 export default function ModalCreateBoard({ url }: { url: string }) {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
   const dispatch = useAppDispatch();
-  const { boardsArr } = useSelector(
-    (state: { boards: BoardState }) => state.boards,
-  );
+  // const { boardsArr } = useSelector(
+  //   (state: { boards: BoardState }) => state.boards,
+  // );
   const { showModalCreateBoard } = useSelector(
     (state: { modalPopup: ModalPopupState }) => state.modalPopup,
   );
 
-  const createBoardRequest = (event: FormEvent) => {
-    event.preventDefault();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<FormValues>();
+
+  const onSubmit = handleSubmit(data => {
+    createBoardRequest(data);
+  });
+
+  const createBoardRequest = (data: FormValues) => {
     const jwt = localStorage.getItem('jwt');
     let userId = '';
     if (jwt) {
@@ -36,14 +49,13 @@ export default function ModalCreateBoard({ url }: { url: string }) {
         iat: number;
         exp: number;
       } | null = decodeToken(jwt);
-      console.log('decoded', myDecodedToken);
       userId = myDecodedToken ? myDecodedToken.id : '';
     }
     dispatch(
       createBoard({
         url: url,
-        title: title,
-        description: description,
+        title: data.boardTitle,
+        description: data.boardDescription,
         owner: userId,
         users: [userId],
       }),
@@ -58,39 +70,39 @@ export default function ModalCreateBoard({ url }: { url: string }) {
         onClose={() => dispatch(setShowModalCreateBoard(false))}
       >
         <DialogTitle>Create board</DialogTitle>
-        <DialogContent>
-          <Box
-            component="form"
-            sx={{
-              '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }}
-            noValidate
-            autoComplete="off"
-          >
+        <form className="createBoard__form" onSubmit={onSubmit}>
+          <DialogContent sx={{ width: '25rem' }}>
             <TextField
+              fullWidth
+              sx={{ display: 'block', mb: '1rem' }}
               id="outlined-basic"
               label="Board title"
               variant="outlined"
-              value={title}
-              onChange={event => setTitle(event.target.value)}
+              {...register('boardTitle', {
+                required: 'This field is required.',
+                minLength: {
+                  value: 5,
+                  message: 'This field should be more than 5 symbols',
+                },
+              })}
+              helperText={errors.boardTitle && errors.boardTitle.message}
+              error={errors.boardTitle ? true : false}
             />
             <TextField
+              fullWidth
               id="outlined-basic"
               label="Board description"
               variant="outlined"
-              value={description}
-              onChange={event => setDescription(event.target.value)}
+              {...register('boardDescription')}
             />
-          </Box>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={(event: FormEvent) => createBoardRequest(event)}>
-            Submit
-          </Button>
-          <Button onClick={() => dispatch(setShowModalCreateBoard(false))}>
-            Cancel
-          </Button>
-        </DialogActions>
+          </DialogContent>
+          <DialogActions>
+            <Button type="submit">Submit</Button>
+            <Button onClick={() => dispatch(setShowModalCreateBoard(false))}>
+              Cancel
+            </Button>
+          </DialogActions>
+        </form>
       </Dialog>
     </div>
   );

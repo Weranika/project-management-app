@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { decodeToken } from 'react-jwt';
+import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -14,23 +15,33 @@ import { updateBoard } from '../../reducers/boardsSlice';
 import { useAppDispatch } from '../../hook';
 import { ModalPopupState, BoardState } from '../../types';
 
+type FormValues = {
+  boardTitle: string;
+  boardDescription: string;
+};
+
 export default function ModalUpdateBoard({ url }: { url: string }) {
   const { currentBoardTitle, currentBoardDescription } = useSelector(
     (state: { boards: BoardState }) => state.boards,
   );
-  const [title, setTitle] = useState(currentBoardTitle);
-  const [description, setDescription] = useState(currentBoardDescription);
 
   const dispatch = useAppDispatch();
-  const { boardsArr } = useSelector(
-    (state: { boards: BoardState }) => state.boards,
-  );
+
   const { showModalUpdateBoard } = useSelector(
     (state: { modalPopup: ModalPopupState }) => state.modalPopup,
   );
 
-  const updateBoardRequest = (event: FormEvent) => {
-    event.preventDefault();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<FormValues>();
+
+  const onSubmit = handleSubmit(data => {
+    updateBoardRequest(data);
+  });
+
+  const updateBoardRequest = (data: FormValues) => {
     const jwt = localStorage.getItem('jwt');
     let userId = '';
     if (jwt) {
@@ -40,14 +51,13 @@ export default function ModalUpdateBoard({ url }: { url: string }) {
         iat: number;
         exp: number;
       } | null = decodeToken(jwt);
-      console.log('decoded', myDecodedToken);
       userId = myDecodedToken ? myDecodedToken.id : '';
     }
     dispatch(
       updateBoard({
         url: url,
-        title: title,
-        description: description,
+        title: data.boardTitle,
+        description: data.boardDescription,
         owner: userId,
         users: [userId],
       }),
@@ -62,39 +72,41 @@ export default function ModalUpdateBoard({ url }: { url: string }) {
         onClose={() => dispatch(setShowModalUpdateBoard(false))}
       >
         <DialogTitle>Update board</DialogTitle>
-        <DialogContent>
-          <Box
-            component="form"
-            sx={{
-              '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }}
-            noValidate
-            autoComplete="off"
-          >
+        <form className="updateBoard__form" onSubmit={onSubmit}>
+          <DialogContent sx={{ width: '25rem' }}>
             <TextField
+              fullWidth
+              sx={{ display: 'block', mb: '1rem' }}
               id="outlined-basic"
               label="Board title"
               variant="outlined"
-              value={title}
-              onChange={event => setTitle(event.target.value)}
+              defaultValue={currentBoardTitle}
+              {...register('boardTitle', {
+                required: 'This field is required.',
+                minLength: {
+                  value: 5,
+                  message: 'This field should be more than 5 symbols',
+                },
+              })}
+              helperText={errors.boardTitle && errors.boardTitle.message}
+              error={errors.boardTitle ? true : false}
             />
             <TextField
+              fullWidth
+              defaultValue={currentBoardDescription}
               id="outlined-basic"
               label="Board description"
               variant="outlined"
-              value={description}
-              onChange={event => setDescription(event.target.value)}
+              {...register('boardDescription')}
             />
-          </Box>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={(event: FormEvent) => updateBoardRequest(event)}>
-            Submit
-          </Button>
-          <Button onClick={() => dispatch(setShowModalUpdateBoard(false))}>
-            Cancel
-          </Button>
-        </DialogActions>
+          </DialogContent>
+          <DialogActions>
+            <Button type="submit">Submit</Button>
+            <Button onClick={() => dispatch(setShowModalUpdateBoard(false))}>
+              Cancel
+            </Button>
+          </DialogActions>
+        </form>
       </Dialog>
     </div>
   );
