@@ -55,8 +55,9 @@ export default function ModalCreateColumn({ url }: { url: string }) {
       >
         <DialogTitle>Create column</DialogTitle>
         <form className="createColumn__form" onSubmit={onSubmit}>
-          <DialogContent>
+          <DialogContent sx={{ width: '20rem' }}>
             <TextField
+              fullWidth
               id="outlined-basic"
               label="Column title"
               variant="outlined"

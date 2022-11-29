@@ -36,10 +36,21 @@ export default function BoardItem({ board }: { board: BoardType }) {
       <h3 className="boardItem__title">{board.title}</h3>
       <p className="boardItem__description">{board.description}</p>
       <div className="boardItem__buttonsWrapper">
-        <IconButton onClick={() => deleteBoard(board._id)}>
+        <IconButton
+          sx={{ zIndex: '10' }}
+          onClick={event => {
+            event.stopPropagation();
+            deleteBoard(board._id);
+          }}
+        >
           <DeleteForeverIcon />
         </IconButton>
-        <IconButton onClick={() => updateBoard(board._id)}>
+        <IconButton
+          onClick={event => {
+            event.stopPropagation();
+            updateBoard(board._id);
+          }}
+        >
           <EditIcon />
         </IconButton>
       </div>

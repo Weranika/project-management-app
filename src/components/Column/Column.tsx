@@ -1,10 +1,10 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import { TextField } from '@mui/material';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
@@ -14,7 +14,6 @@ import { useAppDispatch } from '../../hook';
 import { ColumnType } from '../../types';
 
 import './Column.scss';
-import { TextField } from '@mui/material';
 
 type FormValues = {
   title: string;
@@ -33,25 +32,25 @@ export default function Column({ column }: { column: ColumnType }) {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm<FormValues>();
 
-  // const onSubmit = handleSubmit(data => {
-  //   updateColumnRequest(data);
-  // });
+  const onSubmit = handleSubmit(data => {
+    updateColumnRequest(data);
+  });
 
   const deleteColumn = (colId: string) => {
     dispatch(setShowModalDeleteColumn(true));
     dispatch(setCurrentColumn(colId));
   };
 
-  const updateColumnRequest = (event: FormEvent, id: string, order: number) => {
-    const url = `/boards/${boardId}/columns/${id}`;
-    event.preventDefault();
+  const updateColumnRequest = (data: FormValues) => {
+    const url = `/boards/${boardId}/columns/${column._id}`;
     dispatch(
       updateColumn({
         url: url,
-        title: newTitle,
-        order: order,
+        title: data.title,
+        order: column.order,
       }),
     );
     setEditMode(false);
@@ -62,11 +61,10 @@ export default function Column({ column }: { column: ColumnType }) {
       <div className="column__header">
         {editMode ? (
           <div>
-            <form className="column__header--edit-mode">
+            <form className="column__header--edit-mode" onSubmit={onSubmit}>
               <TextField
                 className="column__header__input"
-                // value={newTitle}
-                // onChange={event => setNewTitle(event.target.value)}
+                defaultValue={column.title}
                 {...register('title', {
                   required: 'This field is required.',
                   minLength: {
@@ -74,23 +72,20 @@ export default function Column({ column }: { column: ColumnType }) {
                     message: 'This field should be more than 4 symbols',
                   },
                 })}
-                helperText={errors.title && errors.title.message}
                 error={errors.title ? true : false}
                 size="small"
               />
-              <Button
-                style={{ minWidth: '1rem' }}
-                onClick={(event: FormEvent) =>
-                  updateColumnRequest(event, column._id, column.order)
-                }
-                autoFocus
-              >
+              {errors.title && (
+                <p className="column__error-message">{errors.title.message}</p>
+              )}
+              <Button type="submit" style={{ minWidth: '1rem' }} autoFocus>
                 <CheckOutlinedIcon />
               </Button>
               <Button
                 style={{ minWidth: '1rem' }}
                 onClick={() => {
                   setEditMode(false);
+                  reset();
                 }}
               >
                 <ClearOutlinedIcon />
@@ -103,7 +98,6 @@ export default function Column({ column }: { column: ColumnType }) {
               className="column__title"
               onClick={() => {
                 setEditMode(true);
-                setNewTitle(column.title);
               }}
             >
               {column.title}

@@ -11,7 +11,7 @@ import { useAppDispatch } from '../../../hook';
 import { ColumnType, ColumnState, ModalPopupState } from '../../../types';
 
 import './Board.scss';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
 function Board() {
   const dispatch = useAppDispatch();
@@ -23,7 +23,8 @@ function Board() {
   );
   const params = useParams();
   const boardId = params.id;
-  console.log('boardId', boardId);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const url = `/boards/${boardId}/columns`;
@@ -33,19 +34,27 @@ function Board() {
   return (
     <main className="board">
       <section className="board__page">
-        <h1 className="board__title">Board page</h1>
+        <div className="board__header">
+          <h1 className="board__title">Board page</h1>
+          <Button
+            variant="contained"
+            onClick={() => dispatch(setShowModalCreateColumn(true))}
+          >
+            + Add column
+          </Button>
+          <Button
+            variant="outlined"
+            sx={{ marginLeft: '1rem' }}
+            onClick={() => navigate(`/board/`)}
+          >
+            Back
+          </Button>
+        </div>
+
         <section className="board__columns">
           {columnsArr.map((column: ColumnType) => {
             return <Column key={column._id} column={column} />;
           })}
-          <div>
-            <Button
-              variant="contained"
-              onClick={() => dispatch(setShowModalCreateColumn(true))}
-            >
-              + Add column
-            </Button>
-          </div>
         </section>
         {showModalCreateColumn && (
           <ModalCreateColumn url={`/boards/${boardId}/columns`} />
