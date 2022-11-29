@@ -11,6 +11,7 @@ import { useAppDispatch } from '../../../hook';
 import { ColumnType, ColumnState, ModalPopupState } from '../../../types';
 
 import './Board.scss';
+import { useParams } from 'react-router-dom';
 
 function Board() {
   const dispatch = useAppDispatch();
@@ -20,9 +21,12 @@ function Board() {
   const { columnsArr, currentColumnId } = useSelector(
     (state: { columns: ColumnState }) => state.columns,
   );
+  const params = useParams();
+  const boardId = params.id;
+  console.log('boardId', boardId);
 
   useEffect(() => {
-    const url = `/boards/636fcdd30cb48a0c4248c4b4/columns`;
+    const url = `/boards/${boardId}/columns`;
     dispatch(getColumns(url));
   }, []);
 
@@ -44,16 +48,16 @@ function Board() {
           </div>
         </section>
         {showModalCreateColumn && (
-          <ModalCreateColumn url="/boards/636fcdd30cb48a0c4248c4b4/columns" />
+          <ModalCreateColumn url={`/boards/${boardId}/columns`} />
         )}
         {showModalDeleteColumn && (
           <ModalDeleteColumn
-            url={`/boards/636fcdd30cb48a0c4248c4b4/columns/${currentColumnId}`}
+            url={`/boards/${boardId}/columns/${currentColumnId}`}
           />
         )}
       </section>
     </main>
   );
-};
+}
 
 export default Board;

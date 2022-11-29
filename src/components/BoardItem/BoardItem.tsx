@@ -15,9 +15,11 @@ import { useAppDispatch } from '../../hook';
 import { BoardType } from '../../types';
 
 import './BoardItem.scss';
+import { useNavigate } from 'react-router-dom';
 
 export default function BoardItem({ board }: { board: BoardType }) {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const deleteBoard = (boardId: string) => {
     dispatch(setShowModalDeleteBoard(true));
@@ -30,7 +32,7 @@ export default function BoardItem({ board }: { board: BoardType }) {
     dispatch(setCurrentBoardDescription(board.description));
   };
   return (
-    <div className="boardItem">
+    <div className="boardItem" onClick={() => navigate(`/board/${board._id}`)}>
       <h3 className="boardItem__title">{board.title}</h3>
       <p className="boardItem__description">{board.description}</p>
       <div className="boardItem__buttonsWrapper">

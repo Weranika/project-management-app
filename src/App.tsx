@@ -12,6 +12,7 @@ import './global/global.scss';
 import { AuthPage } from './components/pages/SignIn/signIn';
 
 import { SignUpPage } from './components/pages/SignUp/SignUp';
+import Board from './components/pages/Board/Board';
 
 function App() {
   const locale = LOCALES.RUSSIAN;
@@ -32,6 +33,7 @@ function App() {
           <Route path="/" element={<MainLayout />}>
             <Route path="/" element={<Main />} />
             <Route path="board" element={<BoardList />} />
+            <Route path="board/:id" element={<Board />} />
             <Route path="*" element={<Page404 />} />
             <Route path="signIn" element={<AuthPage />} />
             <Route path="signUp" element={<SignUpPage />} />
