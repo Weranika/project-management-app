@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import IconButton from '@mui/material/IconButton';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -15,7 +16,6 @@ import { useAppDispatch } from '../../hook';
 import { BoardType } from '../../types';
 
 import './BoardItem.scss';
-import { useNavigate } from 'react-router-dom';
 
 export default function BoardItem({ board }: { board: BoardType }) {
   const dispatch = useAppDispatch();

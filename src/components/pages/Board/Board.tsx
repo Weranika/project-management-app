@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
 import Button from '@mui/material/Button';
 
 import Column from '../../Column/Column';
@@ -11,7 +13,6 @@ import { useAppDispatch } from '../../../hook';
 import { ColumnType, ColumnState, ModalPopupState } from '../../../types';
 
 import './Board.scss';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
 function Board() {
   const dispatch = useAppDispatch();
@@ -24,10 +25,11 @@ function Board() {
   const params = useParams();
   const boardId = params.id;
 
+  const url = `/boards/${boardId}/columns`;
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    const url = `/boards/${boardId}/columns`;
     dispatch(getColumns(url));
   }, []);
 
@@ -56,13 +58,9 @@ function Board() {
             return <Column key={column._id} column={column} />;
           })}
         </section>
-        {showModalCreateColumn && (
-          <ModalCreateColumn url={`/boards/${boardId}/columns`} />
-        )}
+        {showModalCreateColumn && <ModalCreateColumn url={url} />}
         {showModalDeleteColumn && (
-          <ModalDeleteColumn
-            url={`/boards/${boardId}/columns/${currentColumnId}`}
-          />
+          <ModalDeleteColumn url={`${url}/${currentColumnId}`} />
         )}
       </section>
     </main>

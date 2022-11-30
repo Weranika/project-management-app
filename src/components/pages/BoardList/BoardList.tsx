@@ -23,9 +23,9 @@ function BoardList() {
   const { boardsArr, currentBoardId } = useSelector(
     (state: { boards: BoardState }) => state.boards,
   );
+  const url = `/boards`;
 
   useEffect(() => {
-    const url = `/boards`;
     dispatch(getBoards(url));
   }, []);
 
@@ -47,34 +47,13 @@ function BoardList() {
           return <BoardItem key={board._id} board={board} />;
         })}
       </section>
-      {showModalCreateBoard && <ModalCreateBoard url="/boards" />}
+      {showModalCreateBoard && <ModalCreateBoard url={url} />}
       {showModalUpdateBoard && (
-        <ModalUpdateBoard url={`/boards/${currentBoardId}`} />
+        <ModalUpdateBoard url={`${url}/${currentBoardId}`} />
       )}
       {showModalDeleteBoard && (
-        <ModalDeleteBoard url={`/boards/${currentBoardId}`} />
+        <ModalDeleteBoard url={`${url}/${currentBoardId}`} />
       )}
-      {/* <section className="board__columns">
-          {columnsArr.map((column: ColumnType) => {
-            return <Column key={column._id} column={column} />;
-          })}
-          <div>
-            <Button
-              variant="contained"
-              onClick={() => dispatch(setShowModalCreateColumn(true))}
-            >
-              + Add column
-            </Button>
-          </div>
-        </section>
-        {showModalCreateColumn && (
-          <ModalCreateColumn url="/boards/636fcdd30cb48a0c4248c4b4/columns" />
-        )}
-        {showModalDeleteColumn && (
-          <ModalDeleteColumn
-            url={`/boards/636fcdd30cb48a0c4248c4b4/columns/${currentColumnId}`}
-          />
-        )} */}
     </section>
   );
 }
