@@ -1,6 +1,6 @@
 @import '../../../global/library';
 
-.board {
+.boardList__page {
   background-color: $LIGHT-COLOR;
   display: flex;
   flex-direction: column;
@@ -8,11 +8,11 @@
   padding: 5rem 1rem 1rem 1rem;
 }
 
-.board__header {
+.boardList__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: max-content;
+  width: 20rem;
   margin-left: 5%;
   button {
     height: 2.5rem;
@@ -20,9 +20,16 @@
   }
 }
 
-.board__title {
+.boardList__title {
   margin-left: 2.5rem;
-  margin-right: 1rem;
-  max-width: max-content;
+  width: 7rem;
   color: $MAIN-COLOR--PRIMARY-DARK;
+}
+
+.boardList__boardItems {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem auto;
+  gap: 1rem;
 }

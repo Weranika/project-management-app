@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
 import Button from '@mui/material/Button';
 
 import Column from '../../Column/Column';
@@ -20,40 +22,49 @@ function Board() {
   const { columnsArr, currentColumnId } = useSelector(
     (state: { columns: ColumnState }) => state.columns,
   );
+  const params = useParams();
+  const boardId = params.id;
+
+  const url = `/boards/${boardId}/columns`;
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const url = `/boards/636fcdd30cb48a0c4248c4b4/columns`;
     dispatch(getColumns(url));
   }, []);
 
   return (
     <main className="board">
       <section className="board__page">
-        <h1 className="board__title">Board page</h1>
+        <div className="board__header">
+          <h1 className="board__title">Board page</h1>
+          <Button
+            variant="contained"
+            onClick={() => dispatch(setShowModalCreateColumn(true))}
+          >
+            + Add column
+          </Button>
+          <Button
+            variant="outlined"
+            sx={{ marginLeft: '1rem' }}
+            onClick={() => navigate(`/board/`)}
+          >
+            Back
+          </Button>
+        </div>
+
         <section className="board__columns">
           {columnsArr.map((column: ColumnType) => {
             return <Column key={column._id} column={column} />;
           })}
-          <div>
-            <Button
-              variant="contained"
-              onClick={() => dispatch(setShowModalCreateColumn(true))}
-            >
-              + Add column
-            </Button>
-          </div>
         </section>
-        {showModalCreateColumn && (
-          <ModalCreateColumn url="/boards/636fcdd30cb48a0c4248c4b4/columns" />
-        )}
+        {showModalCreateColumn && <ModalCreateColumn url={url} />}
         {showModalDeleteColumn && (
-          <ModalDeleteColumn
-            url={`/boards/636fcdd30cb48a0c4248c4b4/columns/${currentColumnId}`}
-          />
+          <ModalDeleteColumn url={`${url}/${currentColumnId}`} />
         )}
       </section>
     </main>
   );
-};
+}
 
 export default Board;
