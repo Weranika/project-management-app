@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { decodeToken } from 'react-jwt';
 import { useForm } from 'react-hook-form';
+
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -9,6 +10,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import { setShowModalCreateBoard } from '../../reducers/modalPopupSlice';
 import { createBoard } from '../../reducers/boardsSlice';
@@ -20,13 +23,25 @@ type FormValues = {
   boardDescription: string;
 };
 
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref,
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 export default function ModalCreateBoard({ url }: { url: string }) {
+  const [showMessage, setShowMessage] = useState(false);
+  const [message, setMessage] = useState('');
+
   const dispatch = useAppDispatch();
-  // const { boardsArr } = useSelector(
-  //   (state: { boards: BoardState }) => state.boards,
-  // );
+
   const { showModalCreateBoard } = useSelector(
     (state: { modalPopup: ModalPopupState }) => state.modalPopup,
+  );
+
+  const { hasError } = useSelector(
+    (state: { boards: BoardState }) => state.boards,
   );
 
   const {
@@ -51,6 +66,7 @@ export default function ModalCreateBoard({ url }: { url: string }) {
       } | null = decodeToken(jwt);
       userId = myDecodedToken ? myDecodedToken.id : '';
     }
+
     dispatch(
       createBoard({
         url: url,
@@ -60,6 +76,7 @@ export default function ModalCreateBoard({ url }: { url: string }) {
         users: [userId],
       }),
     );
+
     dispatch(setShowModalCreateBoard(false));
   };
 
@@ -104,6 +121,21 @@ export default function ModalCreateBoard({ url }: { url: string }) {
           </DialogActions>
         </form>
       </Dialog>
+      <Snackbar
+        open={showMessage}
+        autoHideDuration={5000}
+        onClose={() => setShowMessage(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        key={'bottomright'}
+      >
+        <Alert
+          onClose={() => setShowMessage(false)}
+          severity={hasError ? 'error' : 'success'}
+          sx={{ width: '100%', fontSize: '1rem' }}
+        >
+          {message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

@@ -4,11 +4,14 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
+  align-items: start;
   width: 95%;
   min-width: 320px;
   margin: 0 auto;
   overflow-x: auto;
   gap: 0.5rem;
+  height: 78%;
+  overflow-y: hidden;
 }
 
 .column {

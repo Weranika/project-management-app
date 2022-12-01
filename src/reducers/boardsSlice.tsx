@@ -179,6 +179,7 @@ const initialState = {
   currentBoardId: '',
   currentBoardTitle: '',
   currentBoardDescription: '',
+  errorMessage: '',
 };
 
 const boardsSlice = createSlice({
@@ -239,9 +240,10 @@ const boardsSlice = createSlice({
           state.boardsArr = [...state.boardsArr, payload.data];
         },
       )
-      .addCase(createBoard.rejected, state => {
+      .addCase(createBoard.rejected, (state, { error }) => {
         state.isLoading = false;
         state.hasError = true;
+        console.log('wow error', error.message);
       })
       .addCase(updateBoard.pending, state => {
         state.isLoading = true;
