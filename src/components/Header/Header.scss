@@ -81,10 +81,11 @@ $SCROLL-BUTTON--HEIGHT: 50px;
     text-shadow: 0px 0px 13px rgb(255 255 255 / 80%);
   }
 }
-.navbar__container {
-  width: $NAV--WIDTH;
-}
+// .navbar__container {
+//   width: $NAV--WIDTH;
+// }
 .navbar {
+  width: $NAV--WIDTH;
   @include flex(space-between);
   @include font(16px, OpenSans);
   margin: 3px 0;

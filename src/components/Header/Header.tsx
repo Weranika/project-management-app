@@ -62,12 +62,12 @@ function Header() {
             </li>
             <li>
               <NavLink to="/signIn" end className="nav__link">
-                Sign in
+                <FormattedMessage id='sign_in' />
               </NavLink>
             </li>
             <li>
               <NavLink to="/signUp" className="nav__link">
-                Sign up
+                <FormattedMessage id='sign_up' />
               </NavLink>
             </li>
             <li>

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import Button from '@mui/material/Button';
-
+import { FormattedMessage } from 'react-intl';
 import Column from '../../Column/Column';
 import ModalCreateColumn from '../../ModalCreateColumn/ModalCreateColumn';
 import ModalDeleteColumn from '../../ModalDeleteColumn/ModalDeleteColumn';
@@ -10,6 +9,7 @@ import { getColumns } from '../../../reducers/columnsSlice';
 import { useAppDispatch } from '../../../hook';
 import { ColumnType, ColumnState, ModalPopupState } from '../../../types';
 
+import Button from '@mui/material/Button';
 import './Board.scss';
 
 function Board() {
@@ -29,7 +29,9 @@ function Board() {
   return (
     <main className="board">
       <section className="board__page">
-        <h1 className="board__title">Board page</h1>
+        <h1 className="board__title">
+          <FormattedMessage id='board_page' />
+        </h1>
         <section className="board__columns">
           {columnsArr.map((column: ColumnType) => {
             return <Column key={column._id} column={column} />;
@@ -39,7 +41,7 @@ function Board() {
               variant="contained"
               onClick={() => dispatch(setShowModalCreateColumn(true))}
             >
-              + Add column
+              <FormattedMessage id='add_column' />
             </Button>
           </div>
         </section>
