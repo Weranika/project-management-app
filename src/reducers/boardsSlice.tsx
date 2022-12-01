@@ -179,7 +179,7 @@ const initialState = {
   currentBoardId: '',
   currentBoardTitle: '',
   currentBoardDescription: '',
-  errorMessage: '',
+  message: '',
 };
 
 const boardsSlice = createSlice({
@@ -188,6 +188,9 @@ const boardsSlice = createSlice({
   reducers: {
     setBoards(state: BoardState, { payload }: PayloadAction<BoardType[]>) {
       state.boardsArr = [...payload];
+    },
+    setMessage(state: BoardState, { payload }: PayloadAction<string>) {
+      state.message = payload;
     },
     setCurrentBoard(state: BoardState, { payload }: PayloadAction<string>) {
       state.currentBoardId = payload;
@@ -225,6 +228,7 @@ const boardsSlice = createSlice({
         state.isLoading = false;
         state.hasError = true;
         state.boardsArr = [];
+        state.message = 'Failed to get the boards.';
       })
       .addCase(createBoard.pending, state => {
         state.isLoading = true;
@@ -238,12 +242,13 @@ const boardsSlice = createSlice({
           state.isLoading = false;
           state.hasError = false;
           state.boardsArr = [...state.boardsArr, payload.data];
+          state.message = 'The board was successfully created.';
         },
       )
-      .addCase(createBoard.rejected, (state, { error }) => {
+      .addCase(createBoard.rejected, state => {
         state.isLoading = false;
         state.hasError = true;
-        console.log('wow error', error.message);
+        state.message = 'Failed to create the board.';
       })
       .addCase(updateBoard.pending, state => {
         state.isLoading = true;
@@ -263,11 +268,13 @@ const boardsSlice = createSlice({
             return board;
           });
           state.boardsArr = newArr;
+          state.message = 'The board was successfully updated.';
         },
       )
       .addCase(updateBoard.rejected, state => {
         state.isLoading = false;
         state.hasError = true;
+        state.message = 'Failed to update the board.';
       })
       .addCase(deleteBoard.pending, state => {
         state.isLoading = true;
@@ -283,11 +290,13 @@ const boardsSlice = createSlice({
           state.boardsArr = [...state.boardsArr].filter(board => {
             return board._id !== payload.data._id;
           });
+          state.message = 'The board was successfully deleted.';
         },
       )
       .addCase(deleteBoard.rejected, state => {
         state.isLoading = false;
         state.hasError = true;
+        state.message = 'Failed to delete the board.';
       });
   },
 });
@@ -297,4 +306,5 @@ export const {
   setCurrentBoard,
   setCurrentBoardTitle,
   setCurrentBoardDescription,
+  setMessage,
 } = boardsSlice.actions;

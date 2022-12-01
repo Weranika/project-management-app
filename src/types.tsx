@@ -32,7 +32,7 @@ export interface BoardState {
   boardsArr: BoardType[];
   isLoading: boolean;
   hasError: boolean;
-  errorMessage: string;
+  message: string;
   currentBoardId: string;
   currentBoardTitle: string;
   currentBoardDescription: string;

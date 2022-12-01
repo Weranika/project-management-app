@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import BoardItem from '../../BoardItem/BoardItem';
 import ModalCreateBoard from '../../ModalCreateBoard/ModalCreateBoard';
@@ -15,20 +15,29 @@ import {
   setShowModalCreateBoard,
   setShowModalUpdateBoard,
 } from '../../../reducers/modalPopupSlice';
-import { getBoards } from '../../../reducers/boardsSlice';
+import { getBoards, setMessage } from '../../../reducers/boardsSlice';
 import { useAppDispatch } from '../../../hook';
 import { BoardType, BoardState, ModalPopupState } from '../../../types';
+import Spinner from '../../Spinner/Spinner';
 
 import './BoardList.scss';
-import Spinner from '../../Spinner/Spinner';
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref,
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function BoardList() {
   const dispatch = useAppDispatch();
+
   const { showModalCreateBoard, showModalDeleteBoard, showModalUpdateBoard } =
     useSelector((state: { modalPopup: ModalPopupState }) => state.modalPopup);
-  const { boardsArr, currentBoardId, isLoading, hasError } = useSelector(
-    (state: { boards: BoardState }) => state.boards,
-  );
+
+  const { boardsArr, currentBoardId, isLoading, hasError, message } =
+    useSelector((state: { boards: BoardState }) => state.boards);
+
   const url = `/boards`;
 
   useEffect(() => {
@@ -64,6 +73,21 @@ function BoardList() {
       {showModalDeleteBoard && (
         <ModalDeleteBoard url={`${url}/${currentBoardId}`} />
       )}
+      <Snackbar
+        open={message ? true : false}
+        autoHideDuration={5000}
+        onClose={() => dispatch(setMessage(''))}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        key={'bottomright'}
+      >
+        <Alert
+          onClose={() => dispatch(setMessage(''))}
+          severity={hasError ? 'error' : 'success'}
+          sx={{ width: '100%', fontSize: '1rem' }}
+        >
+          {message}
+        </Alert>
+      </Snackbar>
     </section>
   );
 }
