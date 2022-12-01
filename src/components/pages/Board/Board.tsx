@@ -13,7 +13,12 @@ import ModalDeleteColumn from '../../ModalDeleteColumn/ModalDeleteColumn';
 import { setShowModalCreateColumn } from '../../../reducers/modalPopupSlice';
 import { getColumns, setMessage } from '../../../reducers/columnsSlice';
 import { useAppDispatch } from '../../../hook';
-import { ColumnType, ColumnState, ModalPopupState } from '../../../types';
+import {
+  ColumnType,
+  ColumnState,
+  ModalPopupState,
+  BoardState,
+} from '../../../types';
 
 import './Board.scss';
 
@@ -31,10 +36,18 @@ function Board() {
   );
   const { columnsArr, currentColumnId, isLoading, hasError, message } =
     useSelector((state: { columns: ColumnState }) => state.columns);
+
+  const { boardsArr } = useSelector(
+    (state: { boards: BoardState }) => state.boards,
+  );
+
   const params = useParams();
   const boardId = params.id;
 
   const url = `/boards/${boardId}/columns`;
+  const boardTitle = boardsArr
+    .filter(board => board._id === boardId)
+    .map(board => board.title);
 
   const navigate = useNavigate();
 
@@ -45,7 +58,7 @@ function Board() {
   return (
     <section className="board">
       <div className="board__header">
-        <h1 className="board__title">Board page</h1>
+        <h1 className="board__title">Board page: {boardTitle}</h1>
         <Button
           variant="contained"
           onClick={() => dispatch(setShowModalCreateColumn(true))}
