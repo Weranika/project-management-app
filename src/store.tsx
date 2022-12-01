@@ -1,9 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import columnsReducer from './reducers/columnsSlice';
 import modalPopupReducer from './reducers/modalPopupSlice';
+import langReducer from './reducers/langSlice';
 
 const store = configureStore({
-  reducer: { columns: columnsReducer, modalPopup: modalPopupReducer },
+  reducer: {
+    columns: columnsReducer,
+    modalPopup: modalPopupReducer,
+    lang: langReducer,
+  },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {

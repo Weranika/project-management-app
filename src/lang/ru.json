@@ -1,8 +1,0 @@
-{
-	"app.header": "Project менеджер",
-	"app.content": "Изучите React",
-	"app.channel.plug": "Учебник предоставлен вам {blogName}",
-	"app.plural": "{amount, plural, =0 {no languages} one {# one language} few {# several languages} many {# lots of languages} other {# wrong fromat}}",
-	"app.try.title": "Пробуем React",
-	"app.try.description": "React изначально был спроектирован так, чтобы его можно было внедрять постепенно. Другими словами, вы можете начать с малого и использовать только ту функциональность React, которая необходима вам в данный момент. Информация в этом разделе будет полезна в любой ситуации: при первом знакомстве с React, при создании простой динамической HTML-страницы и даже при проектировании сложного React-приложения."
-}

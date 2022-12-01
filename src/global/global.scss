@@ -35,6 +35,13 @@ li {
     color: inherit;
   }
 }
+button .css-1o2c7w4-MuiButtonBase-root-MuiButton-root,
+div .css-sghohy-MuiButtonBase-root-MuiButton-root {
+  background-color: #6e227e;
+  &:hover {
+    background-color: $MAIN-COLOR--PRIMARY-LIGHT-XL;
+  }
+}
 
 @font-face {
   font-family: "OpenSans"; 

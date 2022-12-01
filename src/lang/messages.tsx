@@ -23,6 +23,7 @@ export const messages = {
     katerina: 'Katerina',
     katerina__subtitle: 'Frontend developer',
     katerina__info: 'She was responsible for Authorisation in App',
+    // board
   },
   [LOCALES.RUSSIAN]: {
     // header
