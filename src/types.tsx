@@ -10,6 +10,7 @@ export interface ColumnState {
   isLoading: boolean;
   hasError: boolean;
   currentColumnId: string;
+  message: string;
 }
 
 export interface ModalPopupState {

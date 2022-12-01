@@ -95,7 +95,6 @@ export const getColumns = createAsyncThunk<
   { rejectValue: FetchError }
 >('columns/get', async (url: string, thunkApi) => {
   const jwt = localStorage.getItem('jwt');
-  console.log('jwt', jwt);
   try {
     const response = await axiosConfig.get(url, {
       headers: {
@@ -149,6 +148,7 @@ const initialState = {
   isLoading: false,
   hasError: false,
   currentColumnId: '',
+  message: '',
 };
 
 const columnsSlice = createSlice({
@@ -157,6 +157,9 @@ const columnsSlice = createSlice({
   reducers: {
     setColumns(state: ColumnState, { payload }: PayloadAction<ColumnType[]>) {
       state.columnsArr = [...payload];
+    },
+    setMessage(state: ColumnState, { payload }: PayloadAction<string>) {
+      state.message = payload;
     },
     setCurrentColumn(state: ColumnState, { payload }: PayloadAction<string>) {
       state.currentColumnId = payload;
@@ -182,6 +185,7 @@ const columnsSlice = createSlice({
         state.isLoading = false;
         state.hasError = true;
         state.columnsArr = [];
+        state.message = 'Failed to get the columns.';
       })
       .addCase(createColumn.pending, state => {
         state.isLoading = true;
@@ -195,12 +199,13 @@ const columnsSlice = createSlice({
           state.isLoading = false;
           state.hasError = false;
           state.columnsArr = [...state.columnsArr, payload.data];
+          state.message = 'The column was successfully created.';
         },
       )
       .addCase(createColumn.rejected, state => {
         state.isLoading = false;
         state.hasError = true;
-        // state.columnsArr = [];
+        state.message = 'Failed to create the column.';
       })
       .addCase(updateColumn.pending, state => {
         state.isLoading = true;
@@ -220,11 +225,13 @@ const columnsSlice = createSlice({
             return column;
           });
           state.columnsArr = newArr;
+          state.message = 'The column was successfully updated.';
         },
       )
       .addCase(updateColumn.rejected, state => {
         state.isLoading = false;
         state.hasError = true;
+        state.message = 'Failed to update the column.';
       })
       .addCase(deleteColumn.pending, state => {
         state.isLoading = true;
@@ -240,13 +247,16 @@ const columnsSlice = createSlice({
           state.columnsArr = [...state.columnsArr].filter(column => {
             return column._id !== payload.data._id;
           });
+          state.message = 'The column was successfully deleted.';
         },
       )
       .addCase(deleteColumn.rejected, state => {
         state.isLoading = false;
         state.hasError = true;
+        state.message = 'Failed to delete the column.';
       });
   },
 });
 export default columnsSlice.reducer;
-export const { setColumns, setCurrentColumn } = columnsSlice.actions;
+export const { setColumns, setCurrentColumn, setMessage } =
+  columnsSlice.actions;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
@@ -21,7 +22,6 @@ type FormValues = {
 
 export default function Column({ column }: { column: ColumnType }) {
   const [editMode, setEditMode] = useState(false);
-  const [newTitle, setNewTitle] = useState('');
 
   const dispatch = useAppDispatch();
 
