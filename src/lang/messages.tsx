@@ -32,11 +32,13 @@ export const messages = {
     // board
     board_page: 'Board page',
     add_column: '+ Add column',
+    back: 'Back',
     // create column
     create_column: 'Create column',
     submit: 'Submit',
     cancel: 'Cancel',
     column_title: 'Column title',
+    add_task: '+ Add column',
   },
   [LOCALES.RUSSIAN]: {
     // header
@@ -68,10 +70,12 @@ export const messages = {
     // board
     board_page: 'Доска',
     add_column: '+ Добавить колонку',
+    back: 'Назад',
     // create column
     create_column: 'Создать колонку',
     submit: 'Создать',
     cancel: 'Отменить',
     column_title: 'Заголовок',
+    add_task: '+ Создать задачу',
   },
 }

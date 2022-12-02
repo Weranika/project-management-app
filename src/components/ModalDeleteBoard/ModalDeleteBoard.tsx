@@ -9,29 +9,29 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
-import { setShowModalDeleteColumn } from '../../reducers/modalPopupSlice';
-import { deleteColumn } from '../../reducers/columnsSlice';
+import { setShowModalDeleteBoard } from '../../reducers/modalPopupSlice';
+import { deleteBoard } from '../../reducers/boardsSlice';
 import { useAppDispatch } from '../../hook';
 import { ModalPopupState } from '../../types';
 
-export default function ModalDeleteColumn({ url }: { url: string }) {
+export default function ModalDeleteBoard({ url }: { url: string }) {
   const dispatch = useAppDispatch();
-  const { showModalDeleteColumn } = useSelector(
+  const { showModalDeleteBoard } = useSelector(
     (state: { modalPopup: ModalPopupState }) => state.modalPopup,
   );
 
-  const deleteColumnRequest = (event: FormEvent) => {
+  const deleteBoardRequest = (event: FormEvent) => {
     event.preventDefault();
-    dispatch(deleteColumn(url));
-    dispatch(setShowModalDeleteColumn(false));
+    dispatch(deleteBoard(url));
+    dispatch(setShowModalDeleteBoard(false));
   };
   return (
     <div>
       <Dialog
-        open={showModalDeleteColumn}
-        onClose={() => dispatch(setShowModalDeleteColumn(false))}
+        open={showModalDeleteBoard}
+        onClose={() => dispatch(setShowModalDeleteBoard(false))}
       >
-        <DialogTitle>Do you really want to delete the column?</DialogTitle>
+        <DialogTitle>Do you really want to delete the board?</DialogTitle>
         <DialogContent>
           <Box
             component="form"
@@ -43,10 +43,10 @@ export default function ModalDeleteColumn({ url }: { url: string }) {
           ></Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={(event: FormEvent) => deleteColumnRequest(event)}>
+          <Button onClick={(event: FormEvent) => deleteBoardRequest(event)}>
             Submit
           </Button>
-          <Button onClick={() => dispatch(setShowModalDeleteColumn(false))}>
+          <Button onClick={() => dispatch(setShowModalDeleteBoard(false))}>
             <FormattedMessage id='cancel' />
           </Button>
         </DialogActions>

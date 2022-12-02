@@ -1,37 +1,35 @@
 @import '../../../global/library';
 
-$BOARD--WIDTH: 100vw;
-$BOARD--PADDING: 83px 0;
-
-.board {
+.boardList__page {
   background-color: $LIGHT-COLOR;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  margin: 0 auto;
-  width: $BOARD--WIDTH;
   padding: 5rem 1rem 1rem 1rem;
 }
-.board__header {
+
+.boardList__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: max-content;
+  width: 20rem;
   margin-left: 5%;
   button {
     height: 2.5rem;
     width: 10rem;
   }
 }
-.board__title {
+
+.boardList__title {
   margin-left: 2.5rem;
-  margin-right: 1rem;
-  max-width: max-content;
+  width: 7rem;
   color: $MAIN-COLOR--PRIMARY-DARK;
 }
-.board__page {
-  width: $BODY-CONTAINER--WIDTH;
-  max-width: $BODY-CONTAINER--MAX-WIDTH;
-  padding: $BOARD--PADDING;
-  margin: 0 auto;
+
+.boardList__boardItems {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem auto;
+  gap: 1rem;
 }

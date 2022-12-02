@@ -4,6 +4,9 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 const initialState = {
   showModalCreateColumn: false,
   showModalDeleteColumn: false,
+  showModalCreateBoard: false,
+  showModalUpdateBoard: false,
+  showModalDeleteBoard: false,
 };
 
 const modalPopupSlice = createSlice({
@@ -22,8 +25,31 @@ const modalPopupSlice = createSlice({
     ) {
       state.showModalDeleteColumn = payload;
     },
+    setShowModalCreateBoard(
+      state: { showModalCreateBoard: boolean },
+      { payload }: PayloadAction<boolean>,
+    ) {
+      state.showModalCreateBoard = payload;
+    },
+    setShowModalUpdateBoard(
+      state: { showModalUpdateBoard: boolean },
+      { payload }: PayloadAction<boolean>,
+    ) {
+      state.showModalUpdateBoard = payload;
+    },
+    setShowModalDeleteBoard(
+      state: { showModalDeleteBoard: boolean },
+      { payload }: PayloadAction<boolean>,
+    ) {
+      state.showModalDeleteBoard = payload;
+    },
   },
 });
 export default modalPopupSlice.reducer;
-export const { setShowModalCreateColumn, setShowModalDeleteColumn } =
-  modalPopupSlice.actions;
+export const {
+  setShowModalCreateColumn,
+  setShowModalDeleteColumn,
+  setShowModalCreateBoard,
+  setShowModalUpdateBoard,
+  setShowModalDeleteBoard,
+} = modalPopupSlice.actions;

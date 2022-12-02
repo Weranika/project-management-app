@@ -1,21 +1,25 @@
-import React, { FormEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import { setShowModalCreateColumn } from '../../reducers/modalPopupSlice';
-import { createColumn } from '../../reducers/columnsSlice';
-import { useAppDispatch } from '../../hook';
-import { ModalPopupState, ColumnState } from '../../types';
 
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
+import { setShowModalCreateColumn } from '../../reducers/modalPopupSlice';
+import { createColumn } from '../../reducers/columnsSlice';
+import { useAppDispatch } from '../../hook';
+import { ModalPopupState, ColumnState } from '../../types';
+import { useForm } from 'react-hook-form';
+
+type FormValues = {
+  title: string;
+};
+
 export default function ModalCreateColumn({ url }: { url: string }) {
-  const [title, setTitle] = useState('');
   const dispatch = useAppDispatch();
   const { columnsArr } = useSelector(
     (state: { columns: ColumnState }) => state.columns,
@@ -24,12 +28,21 @@ export default function ModalCreateColumn({ url }: { url: string }) {
     (state: { modalPopup: ModalPopupState }) => state.modalPopup,
   );
 
-  const createColumnRequest = (event: FormEvent) => {
-    event.preventDefault();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<FormValues>();
+
+  const onSubmit = handleSubmit(data => {
+    createColumnRequest(data);
+  });
+
+  const createColumnRequest = (data: FormValues) => {
     dispatch(
       createColumn({
         url: url,
-        title: title,
+        title: data.title,
         order: columnsArr.length,
       }),
     );
@@ -45,32 +58,31 @@ export default function ModalCreateColumn({ url }: { url: string }) {
         <DialogTitle>
           <FormattedMessage id='create_column' />
         </DialogTitle>
-        <DialogContent>
-          <Box
-            component="form"
-            sx={{
-              '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }}
-            noValidate
-            autoComplete="off"
-          >
+        <form className="createColumn__form" onSubmit={onSubmit}>
+          <DialogContent sx={{ width: '20rem' }}>
             <TextField
+              fullWidth
               id="outlined-basic"
               label="Column title"
               variant="outlined"
-              value={title}
-              onChange={event => setTitle(event.target.value)}
+              {...register('title', {
+                required: 'This field is required.',
+                minLength: {
+                  value: 4,
+                  message: 'This field should be more than 4 symbols',
+                },
+              })}
+              helperText={errors.title && errors.title.message}
+              error={errors.title ? true : false}
             />
-          </Box>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={(event: FormEvent) => createColumnRequest(event)}>
-            <FormattedMessage id='submit' />
-          </Button>
-          <Button onClick={() => dispatch(setShowModalCreateColumn(false))}>
-            <FormattedMessage id='cancel' />
-          </Button>
-        </DialogActions>
+          </DialogContent>
+          <DialogActions>
+            <Button type="submit"><FormattedMessage id='submit' /></Button>
+            <Button onClick={() => dispatch(setShowModalCreateColumn(false))}>
+              <FormattedMessage id='cancel' />
+            </Button>
+          </DialogActions>
+        </form>
       </Dialog>
     </div>
   );
