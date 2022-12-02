@@ -59,20 +59,20 @@ function Board() {
     <section className="board">
       <div className="board__header">
         <h1 className="board__title">
-          <FormattedMessage id='board_page' /> {boardTitle}
+          <FormattedMessage id="board_page" /> {boardTitle}
         </h1>
         <Button
           variant="contained"
           onClick={() => dispatch(setShowModalCreateColumn(true))}
         >
-          <FormattedMessage id='add_column' />
+          <FormattedMessage id="add_column" />
         </Button>
         <Button
           variant="outlined"
           sx={{ marginLeft: '1rem' }}
           onClick={() => navigate(`/board/`)}
         >
-          <FormattedMessage id='back' />
+          <FormattedMessage id="back" />
         </Button>
       </div>
 

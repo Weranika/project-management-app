@@ -10,8 +10,21 @@
   margin: 0 auto;
   overflow-x: auto;
   gap: 0.5rem;
-  height: 78%;
+  height: 50%;
   overflow-y: hidden;
+  color: $LIGHT-COLOR;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: #f9f9fd;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(90deg, #cdb1d8, $MAIN-COLOR--PRIMARY);
+  }
 }
 
 .column {
@@ -67,11 +80,13 @@
   // height: 2.8rem;
   margin-left: 0.3rem;
 }
-
 .column__error-message {
   position: absolute;
   bottom: -2.1rem;
   left: 5px;
   color: red;
   font-size: 0.8rem;
+}
+svg.css-i4bv87-MuiSvgIcon-root {
+  color: $LIGHT-COLOR;
 }

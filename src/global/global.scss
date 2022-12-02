@@ -24,7 +24,7 @@ html {
 }
 a {
   text-decoration: none;
-  cursor: inherit;
+  cursor: pointer;
   &:active {
     color: $MAIN-COLOR--PRIMARY;
   }
@@ -35,7 +35,7 @@ li {
     color: inherit;
   }
 }
-button .css-1o2c7w4-MuiButtonBase-root-MuiButton-root,
+button.css-1o2c7w4-MuiButtonBase-root-MuiButton-root,
 div .css-sghohy-MuiButtonBase-root-MuiButton-root {
   background-color: #6e227e;
   &:hover {
