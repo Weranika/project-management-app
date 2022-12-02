@@ -1,5 +1,8 @@
 import * as React from 'react';
+import { useAppSelector, useAppDispatch } from '../../hook';
 import { NavLink } from 'react-router-dom';
+import { setLang } from '../../reducers/langSlice';
+
 import logo from '../../assets/icons/logo.png';
 import { FormattedMessage } from 'react-intl';
 import { LOCALES } from '../../lang/locales';
@@ -9,15 +12,19 @@ const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 const languages = [
-  { name: 'English', code: LOCALES.ENGLISH },
-  { name: 'Русский', code: LOCALES.RUSSIAN },
+  { name: 'ENGLISH', code: LOCALES.ENGLISH },
+  { name: 'RUSSIAN', code: LOCALES.RUSSIAN },
 ];
-// interface IProps {
-//   currentLocale: string;
-//   handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+// const [currentLocale, setCurrentLocale] = useState(getInitialLocale());
+// const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+//   setCurrentLocale(event.currentTarget.value);
+//   localStorage.setItem('locale', event.currentTarget.value);
 // }
 
 function Header() {
+  const lang = useAppSelector((state) => state.lang);
+  const dispatch = useAppDispatch();
+
   return (
     <header className="header">
       <div className="header-container">
@@ -32,28 +39,40 @@ function Header() {
         <nav className="navbar__container">
           <ul className="navbar">
             <li className="change-lang">
-              <select>
-                {/* <select onChange={props.handleChange} value={props.currentLocale}> */}
+              <select onChange={(event) => {
+                  const value = event.currentTarget.value;
+                  dispatch(setLang(value));
+                  console.log(lang.lang);
+                  localStorage.setItem('lang', value);
+                }}
+              >
                 {languages.map(({ name, code }) => (
+                  code === localStorage.getItem('lang')
+                  ? (
+                  <option key={code} value={code} selected>
+                    {name}
+                  </option>
+                  ) : (
                   <option key={code} value={code}>
                     {name}
                   </option>
+                  )
                 ))}
               </select>
             </li>
             <li>
               <NavLink to="/signIn" end className="nav__link">
-                Sign in
+                <FormattedMessage id='sign_in' />
               </NavLink>
             </li>
             <li>
               <NavLink to="/signUp" className="nav__link">
-                Sign up
+                <FormattedMessage id='sign_up' />
               </NavLink>
             </li>
             <li>
-              <NavLink to="/board">
-                <FormattedMessage id="board" />
+              <NavLink to="/board" className="nav__link">
+                <FormattedMessage id='board' />
               </NavLink>
             </li>
           </ul>

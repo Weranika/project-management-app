@@ -1,13 +1,17 @@
 @import '../../../global/library';
 
+$BOARD--WIDTH: 100vw;
+$BOARD--PADDING: 83px 0;
+
 .board {
   background-color: $LIGHT-COLOR;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  margin: 0 auto;
+  width: $BOARD--WIDTH;
   padding: 5rem 1rem 1rem 1rem;
 }
-
 .board__header {
   display: flex;
   justify-content: space-between;
@@ -19,10 +23,15 @@
     width: 10rem;
   }
 }
-
 .board__title {
   margin-left: 2.5rem;
   margin-right: 1rem;
   max-width: max-content;
   color: $MAIN-COLOR--PRIMARY-DARK;
+}
+.board__page {
+  width: $BODY-CONTAINER--WIDTH;
+  max-width: $BODY-CONTAINER--MAX-WIDTH;
+  padding: $BOARD--PADDING;
+  margin: 0 auto;
 }

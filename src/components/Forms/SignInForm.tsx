@@ -1,7 +1,7 @@
 import React from 'react';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import { FormattedMessage } from 'react-intl';
+import { login } from '../../services/auth.service';
+import { useNavigate } from 'react-router-dom';
 import {
   useForm,
   SubmitHandler,
@@ -9,9 +9,12 @@ import {
   useFormState,
 } from 'react-hook-form';
 import { loginValidation, passwordValidation } from './validation';
+
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
 import './auth-form.scss';
-import { login } from '../../services/auth.service';
-import { useNavigate } from 'react-router-dom';
 
 interface ISignInForm {
   login: string;
@@ -43,7 +46,7 @@ export const AuthForm: React.FC = () => {
   return (
     <div className="auth-form">
       <Typography variant="h4" component="div">
-        Sign In
+        <FormattedMessage id='sign_in' />
       </Typography>
       <Typography
         variant="subtitle1"
@@ -51,7 +54,7 @@ export const AuthForm: React.FC = () => {
         component="div"
         className="auth-form__subtitle"
       >
-        To get access
+        <FormattedMessage id='get_access' />
       </Typography>
       <form className="auth-form__form" onSubmit={handleSubmit(onSubmit)}>
         <Controller
@@ -100,7 +103,7 @@ export const AuthForm: React.FC = () => {
             marginTop: 2,
           }}
         >
-          Sign In
+          <FormattedMessage id='sign_in' />
         </Button>
       </form>
     </div>

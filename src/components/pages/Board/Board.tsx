@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
@@ -19,7 +20,6 @@ import {
   ModalPopupState,
   BoardState,
 } from '../../../types';
-
 import './Board.scss';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
@@ -58,19 +58,21 @@ function Board() {
   return (
     <section className="board">
       <div className="board__header">
-        <h1 className="board__title">Board page: {boardTitle}</h1>
+        <h1 className="board__title">
+          <FormattedMessage id='board_page' /> {boardTitle}
+        </h1>
         <Button
           variant="contained"
           onClick={() => dispatch(setShowModalCreateColumn(true))}
         >
-          + Add column
+          <FormattedMessage id='add_column' />
         </Button>
         <Button
           variant="outlined"
           sx={{ marginLeft: '1rem' }}
           onClick={() => navigate(`/board/`)}
         >
-          Back
+          <FormattedMessage id='back' />
         </Button>
       </div>
 

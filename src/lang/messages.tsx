@@ -3,6 +3,7 @@ import { LOCALES } from './locales'
 export const messages = {
   [LOCALES.ENGLISH]: {
     // header
+
     board: 'Board',
     // main start page
     title1: 'Welcome to Pro Manager',
@@ -23,6 +24,21 @@ export const messages = {
     katerina: 'Katerina',
     katerina__subtitle: 'Frontend developer',
     katerina__info: 'She was responsible for Authorisation in App',
+    // Sign In
+    sign_in: 'Sign In',
+    get_access: 'To get access',
+    // Sign Up
+    sign_up: 'Sign Up',
+    // board
+    board_page: 'Board page',
+    add_column: '+ Add column',
+    back: 'Back',
+    // create column
+    create_column: 'Create column',
+    submit: 'Submit',
+    cancel: 'Cancel',
+    column_title: 'Column title',
+    add_task: '+ Add column',
   },
   [LOCALES.RUSSIAN]: {
     // header
@@ -34,7 +50,7 @@ export const messages = {
     title4: 'и их своевременным завершением',
     title5: 'Добро пожаловать в Task Manager',
     // main about-us button
-    about_us: 'About us',
+    about_us: 'О нас',
     // about-us
     our_team__title: 'Наша команда',
     weranika: 'Вероника',
@@ -46,5 +62,20 @@ export const messages = {
     katerina: 'Катерина',
     katerina__subtitle: 'Фронтенд девелопер',
     katerina__info: 'Оветственная за авторизацию в приложении',
+    // Sign In
+    sign_in: 'Вход',
+    get_access: 'Получить доступ',
+    // Sign Up
+    sign_up: 'Регистрация',
+    // board
+    board_page: 'Доска',
+    add_column: '+ Добавить колонку',
+    back: 'Назад',
+    // create column
+    create_column: 'Создать колонку',
+    submit: 'Создать',
+    cancel: 'Отменить',
+    column_title: 'Заголовок',
+    add_task: '+ Создать задачу',
   },
 }

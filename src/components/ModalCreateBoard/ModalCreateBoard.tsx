@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { decodeToken } from 'react-jwt';
 import { useForm } from 'react-hook-form';
+import { FormattedMessage } from 'react-intl';
 
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -100,7 +101,7 @@ export default function ModalCreateBoard({ url }: { url: string }) {
           <DialogActions>
             <Button type="submit">Submit</Button>
             <Button onClick={() => dispatch(setShowModalCreateBoard(false))}>
-              Cancel
+              <FormattedMessage id='cancel' />
             </Button>
           </DialogActions>
         </form>

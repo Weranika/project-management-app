@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
+import { FormattedMessage } from 'react-intl';
+
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -12,6 +13,7 @@ import { setShowModalCreateColumn } from '../../reducers/modalPopupSlice';
 import { createColumn } from '../../reducers/columnsSlice';
 import { useAppDispatch } from '../../hook';
 import { ModalPopupState, ColumnState } from '../../types';
+import { useForm } from 'react-hook-form';
 
 type FormValues = {
   title: string;
@@ -53,7 +55,9 @@ export default function ModalCreateColumn({ url }: { url: string }) {
         open={showModalCreateColumn}
         onClose={() => dispatch(setShowModalCreateColumn(false))}
       >
-        <DialogTitle>Create column</DialogTitle>
+        <DialogTitle>
+          <FormattedMessage id='create_column' />
+        </DialogTitle>
         <form className="createColumn__form" onSubmit={onSubmit}>
           <DialogContent sx={{ width: '20rem' }}>
             <TextField
@@ -73,9 +77,9 @@ export default function ModalCreateColumn({ url }: { url: string }) {
             />
           </DialogContent>
           <DialogActions>
-            <Button type="submit">Submit</Button>
+            <Button type="submit"><FormattedMessage id='submit' /></Button>
             <Button onClick={() => dispatch(setShowModalCreateColumn(false))}>
-              Cancel
+              <FormattedMessage id='cancel' />
             </Button>
           </DialogActions>
         </form>

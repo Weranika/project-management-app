@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import columnsReducer from './reducers/columnsSlice';
 import modalPopupReducer from './reducers/modalPopupSlice';
+import langReducer from './reducers/langSlice';
 import boardsReducer from './reducers/boardsSlice';
 
 const store = configureStore({
   reducer: {
     columns: columnsReducer,
     modalPopup: modalPopupReducer,
+    lang: langReducer,
     boards: boardsReducer,
   },
   middleware: getDefaultMiddleware =>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { FormattedMessage } from 'react-intl';
 
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import IconButton from '@mui/material/IconButton';
@@ -108,7 +109,9 @@ export default function Column({ column }: { column: ColumnType }) {
           </div>
         )}
       </div>
-      <Button variant="contained">+ Add task</Button>
+      <Button variant="contained">
+        <FormattedMessage id='add_task' />
+      </Button>
     </div>
   );
 }

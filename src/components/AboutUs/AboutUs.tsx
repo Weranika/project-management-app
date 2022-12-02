@@ -1,11 +1,13 @@
 import React from 'react';
 import { AnimationOnScroll } from 'react-animation-on-scroll';
+import { FormattedMessage } from 'react-intl';
+
 import weranika from '../../assets/images/team/weranika.jpg';
 import oxana from '../../assets/images/team/oxana.jpg';
 import katerina from '../../assets/images/team/katerina.jpg';
 import githubIcon from '../../assets/icons/Github_logo.png';
 import './aboutUs.scss';
-import { FormattedMessage } from 'react-intl';
+
 
 function AboutUs() {
   return (

@@ -1,5 +1,7 @@
 import React, { FormEvent } from 'react';
 import { useSelector } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
+
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -45,7 +47,7 @@ export default function ModalDeleteBoard({ url }: { url: string }) {
             Submit
           </Button>
           <Button onClick={() => dispatch(setShowModalDeleteBoard(false))}>
-            Cancel
+            <FormattedMessage id='cancel' />
           </Button>
         </DialogActions>
       </Dialog>

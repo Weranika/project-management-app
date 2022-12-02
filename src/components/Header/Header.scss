@@ -81,12 +81,14 @@ $SCROLL-BUTTON--HEIGHT: 50px;
     text-shadow: 0px 0px 13px rgb(255 255 255 / 80%);
   }
 }
-.navbar__container {
-  width: $NAV--WIDTH;
-}
+// .navbar__container {
+//   width: $NAV--WIDTH;
+// }
 .navbar {
+  width: $NAV--WIDTH;
   @include flex(space-between);
   @include font(16px, OpenSans);
+  margin: 3px 0;
   li > a {
     &:hover {
       color:$MAIN-COLOR--SECONDARY-LIGHT;
@@ -109,7 +111,7 @@ $SCROLL-BUTTON--HEIGHT: 50px;
     color: $MAIN-COLOR--SECONDARY-LIGHT;
     background-color: $MAIN-COLOR--PRIMARY-DARK;
     box-shadow: 0px 0px 5px 2px rgba(255, 228, 193, 0.8);
-    padding: 21px 20px;
+    padding: 15px 20px;
   }
 }
 .change-lang select{
@@ -121,6 +123,7 @@ $SCROLL-BUTTON--HEIGHT: 50px;
   border-radius: 5px;
   opacity: .5;
   transition: .3s;
+  height: 55px;
   &:hover {
     border: 2px solid $MAIN-COLOR--PRIMARY-DARK;
     background-color: rgba(365,365,365,0.5);
