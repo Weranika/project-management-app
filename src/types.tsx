@@ -10,6 +10,7 @@ export interface ColumnState {
   isLoading: boolean;
   hasError: boolean;
   currentColumnId: string;
+  message: string;
 }
 
 export interface ModalPopupState {
@@ -32,6 +33,7 @@ export interface BoardState {
   boardsArr: BoardType[];
   isLoading: boolean;
   hasError: boolean;
+  message: string;
   currentBoardId: string;
   currentBoardTitle: string;
   currentBoardDescription: string;

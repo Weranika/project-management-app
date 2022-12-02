@@ -24,9 +24,7 @@ type FormValues = {
 
 export default function ModalCreateBoard({ url }: { url: string }) {
   const dispatch = useAppDispatch();
-  // const { boardsArr } = useSelector(
-  //   (state: { boards: BoardState }) => state.boards,
-  // );
+
   const { showModalCreateBoard } = useSelector(
     (state: { modalPopup: ModalPopupState }) => state.modalPopup,
   );
@@ -53,6 +51,7 @@ export default function ModalCreateBoard({ url }: { url: string }) {
       } | null = decodeToken(jwt);
       userId = myDecodedToken ? myDecodedToken.id : '';
     }
+
     dispatch(
       createBoard({
         url: url,
@@ -62,6 +61,7 @@ export default function ModalCreateBoard({ url }: { url: string }) {
         users: [userId],
       }),
     );
+
     dispatch(setShowModalCreateBoard(false));
   };
 

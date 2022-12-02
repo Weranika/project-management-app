@@ -23,7 +23,6 @@ type FormValues = {
 
 export default function Column({ column }: { column: ColumnType }) {
   const [editMode, setEditMode] = useState(false);
-  const [newTitle, setNewTitle] = useState('');
 
   const dispatch = useAppDispatch();
 
