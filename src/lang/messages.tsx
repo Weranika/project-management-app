@@ -42,7 +42,8 @@ export const messages = {
     submit: 'Submit',
     cancel: 'Cancel',
     column_title: 'Column title',
-    add_task: '+ Add column',
+    add_task: '+ Add task',
+    create_task: 'Task',
   },
   [LOCALES.RUSSIAN]: {
     // header
@@ -85,5 +86,6 @@ export const messages = {
     cancel: 'Отменить',
     column_title: 'Заголовок',
     add_task: '+ Создать задачу',
+    create_task: 'Задача',
   },
 };

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ITaskType, ITaskState } from '../types';
+import { ITaskType, ITaskState, ITaskModel } from '../types';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import axiosConfig from '../util/axiosConfig';
 
@@ -56,6 +56,7 @@ const tasksSlice = createSlice({
           state: ITaskState,
           { payload }: PayloadAction<{ data: ITaskType }>,
         ) => {
+          console.log(payload, 'payload');
           state.isLoading = false;
           state.hasError = false;
           state.tasksArr = [...state.tasksArr, payload.data];
@@ -141,16 +142,14 @@ export const getTasks = createAsyncThunk(
         message: 'Failed to get tasks.',
       });
     }
-  }
+  },
 );
 
 export const createTask = createAsyncThunk(
   'task/post',
-  async (
-    taskData: { url: string; title: string; order: number },
-    thunkApi,
-  ) => {
-    const { url, title, order } = taskData;
+  async (taskData: ITaskModel & { url: string }, thunkApi) => {
+    const { url, title, order, description } = taskData;
+    console.log('thunk', url);
     const jwt = localStorage.getItem('jwt');
     try {
       const response = await axiosConfig.post(
@@ -158,6 +157,9 @@ export const createTask = createAsyncThunk(
         {
           title: title,
           order: order,
+          description: description,
+          userId: 1,
+          users: [],
         },
         {
           headers: {

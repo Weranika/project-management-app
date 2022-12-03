@@ -7,6 +7,8 @@ const initialState = {
   showModalCreateBoard: false,
   showModalUpdateBoard: false,
   showModalDeleteBoard: false,
+  showModalCreateTask: false,
+  showModalDeleteTask: false,
 };
 
 const modalPopupSlice = createSlice({
@@ -43,6 +45,18 @@ const modalPopupSlice = createSlice({
     ) {
       state.showModalDeleteBoard = payload;
     },
+    setShowModalCreateTask(
+      state: { showModalCreateTask: boolean },
+      { payload }: PayloadAction<boolean>,
+    ) {
+      state.showModalCreateTask = payload;
+    },
+    setShowModalDeleteTask(
+      state: { showModalDeleteTask: boolean },
+      { payload }: PayloadAction<boolean>,
+    ) {
+      state.showModalDeleteTask = payload;
+    },
   },
 });
 export default modalPopupSlice.reducer;
@@ -52,4 +66,6 @@ export const {
   setShowModalCreateBoard,
   setShowModalUpdateBoard,
   setShowModalDeleteBoard,
+  setShowModalCreateTask,
+  setShowModalDeleteTask,
 } = modalPopupSlice.actions;

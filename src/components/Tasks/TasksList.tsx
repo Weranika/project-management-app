@@ -7,8 +7,12 @@ import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
+import ModalCreateTask from '../ModalCreateTask/ModalCreateTask';
+import ModalDeleteTask from '../ModalDeleteTask/ModalDeleteTask';
+import { setShowModalCreateTask } from '../../reducers/modalPopupSlice';
+
 import TaskItem from './TaskItem';
-import { updateTask, setCurrentTask, getTasks } from '../../reducers/tasksSlice';
+import { updateTask, setCurrentTask, getTasks, setMessage } from '../../reducers/tasksSlice';
 import { useAppDispatch } from '../../hook';
 import {
   ColumnType,
@@ -32,25 +36,48 @@ function TasksList({ column }: { column: ColumnType }) {
   const boardId = param.id;
 
   const columns = useSelector((state: { columns: ColumnState }) => state.columns);
-  const { tasksArr, isLoading, hasError, message } = useSelector((state: { tasks: ITaskState }) => state.tasks);
+  const { tasksArr, currentTaskId, isLoading, hasError, message } = useSelector((state: { tasks: ITaskState }) => state.tasks);
 
   const url = `/boards/${boardId}/columns/${column._id}/tasks`;
+
+  const { showModalCreateTask, showModalDeleteTask } =
+    useSelector((state: { modalPopup: ModalPopupState }) => state.modalPopup);
 
   useEffect(() => {
     dispatch(getTasks(url));
   }, []);
-
+  console.log(tasksArr);
   return (
-    <section className="task-list__page">
+    <section className="task-list">
       <section className="task-list__items">
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          tasksArr.map((task: ITaskType) => {
-            return <TaskItem key={task._id} task={task} column={column} />;
-          })
-        )}
+        {tasksArr
+        .filter(task => task.columnId === column._id)
+        .map((task: ITaskType) => (
+          <TaskItem key={task._id} task={task} column={column} />
+        ))}
       </section>
+      {showModalCreateTask && <ModalCreateTask url={url} />}
+      {/* {showModalUpdateTask && (
+        <ModalUpdateTask url={`${url}/${currentTaskId}`} />
+      )} */}
+      {showModalDeleteTask && (
+        <ModalDeleteTask url={`${url}/${currentTaskId}`} />
+      )}
+      <Snackbar
+        open={message ? true : false}
+        autoHideDuration={5000}
+        onClose={() => dispatch(setMessage(''))}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        key={'bottomright'}
+      >
+        <Alert
+          onClose={() => dispatch(setMessage(''))}
+          severity={hasError ? 'error' : 'success'}
+          sx={{ width: '100%', fontSize: '1rem' }}
+        >
+          {message}
+        </Alert>
+      </Snackbar>
     </section>
   );
 }

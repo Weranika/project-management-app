@@ -1,0 +1,19 @@
+@import '../../global/library';
+
+.task-list {
+  width: 100%;
+  overflow: auto;
+  margin-bottom: 10px;
+}
+.task {
+  background-color: $MAIN-COLOR--PRIMARY-LIGHT-XL;
+  margin: 5px;
+  border-radius: 10px;
+}
+.task__content {
+  @include flex(space-between);
+  padding: 2px 5px;
+}
+.task__title {
+  margin: 0;
+}

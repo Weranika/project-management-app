@@ -19,6 +19,8 @@ export interface ModalPopupState {
   showModalCreateBoard: boolean;
   showModalUpdateBoard: boolean;
   showModalDeleteBoard: boolean;
+  showModalCreateTask: boolean;
+  showModalDeleteTask: boolean;
 }
 
 export interface BoardType {
@@ -43,6 +45,14 @@ export interface ITaskType {
   title: string;
   order: number;
   taskId: string;
+  columnId: string;
+}
+export interface ITaskModel {
+  title: string;
+  order: number;
+  description: string;
+  userId: number;
+  users: Array<string>;
 }
 export interface ITaskState {
   tasksArr: ITaskType[];

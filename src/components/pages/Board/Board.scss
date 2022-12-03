@@ -25,6 +25,7 @@ $BOARD--PADDING: 83px 0;
   max-width: max-content;
   color: $MAIN-COLOR--PRIMARY-DARK;
   @include font(2.5rem, OpenSans, 600);
+  margin: 0 0 10px 0;
 }
 .board__page {
   width: $BODY-CONTAINER--WIDTH;

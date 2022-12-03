@@ -11,7 +11,9 @@ import { TextField } from '@mui/material';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
-import { setShowModalDeleteColumn } from '../../reducers/modalPopupSlice';
+import {
+  setShowModalDeleteColumn,
+  setShowModalCreateTask } from '../../reducers/modalPopupSlice';
 import { updateColumn, setCurrentColumn } from '../../reducers/columnsSlice';
 import { useAppDispatch } from '../../hook';
 import { ColumnType, ColumnState } from '../../types';
@@ -31,7 +33,6 @@ export default function Column({ column }: { column: ColumnType }) {
 
   const param = useParams();
   const boardId = param.id;
-  console.log(param, 'param');
 
   const {
     register,
@@ -114,7 +115,10 @@ export default function Column({ column }: { column: ColumnType }) {
         )}
       </div>
       <TasksList column={column}/>
-      <Button variant="contained">
+      <Button
+        variant="contained"
+        onClick={() => dispatch(setShowModalCreateTask(true))}
+      >
         <FormattedMessage id='add_task' />
       </Button>
     </div>
