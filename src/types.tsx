@@ -38,3 +38,16 @@ export interface BoardState {
   currentBoardTitle: string;
   currentBoardDescription: string;
 }
+export interface ITaskType {
+  _id: string;
+  title: string;
+  order: number;
+  taskId: string;
+}
+export interface ITaskState {
+  tasksArr: ITaskType[];
+  isLoading: boolean;
+  hasError: boolean;
+  currentTaskId: string;
+  message: string;
+}

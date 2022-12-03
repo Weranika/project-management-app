@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
@@ -11,27 +10,23 @@ import { TextField } from '@mui/material';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
-import { setShowModalDeleteColumn } from '../../reducers/modalPopupSlice';
-import { updateColumn, setCurrentColumn } from '../../reducers/columnsSlice';
 import { useAppDispatch } from '../../hook';
-import { ColumnType, ColumnState } from '../../types';
-import TasksList from '../Tasks/TasksList';
-import Spinner from '../Spinner/Spinner';
+import { ITaskType, ColumnType } from '../../types';
+import { updateTask, deleteTask } from '../../reducers/tasksSlice';
 
-import './Column.scss';
+import './task.scss';
 
 type FormValues = {
   title: string;
 };
 
-export default function Column({ column }: { column: ColumnType }) {
+export default function Task({ task, column }: { task: ITaskType, column: ColumnType }) {
   const [editMode, setEditMode] = useState(false);
 
   const dispatch = useAppDispatch();
 
   const param = useParams();
   const boardId = param.id;
-  console.log(param, 'param');
 
   const {
     register,
@@ -41,18 +36,18 @@ export default function Column({ column }: { column: ColumnType }) {
   } = useForm<FormValues>();
 
   const onSubmit = handleSubmit(data => {
-    updateColumnRequest(data);
+    updateTaskRequest(data);
   });
 
-  const deleteColumn = (colId: string) => {
-    dispatch(setShowModalDeleteColumn(true));
-    dispatch(setCurrentColumn(colId));
-  };
+  // const deleteTask = (colId: string) => {
+  //   dispatch(setShowModalDeleteTask(true));
+  //   dispatch(setCurrentTask(colId));
+  // };
 
-  const updateColumnRequest = (data: FormValues) => {
-    const url = `/boards/${boardId}/columns/${column._id}`;
+  const updateTaskRequest = (data: FormValues) => {
+    const url = `/boards/${boardId}/columns/${column._id}/tasks`;
     dispatch(
-      updateColumn({
+      updateTask({
         url: url,
         title: data.title,
         order: column.order,
@@ -62,14 +57,14 @@ export default function Column({ column }: { column: ColumnType }) {
   };
 
   return (
-    <div className="column">
-      <div className="column__header">
+    <div className="task">
+      <div className="task">
         {editMode ? (
           <div>
-            <form className="column__header--edit-mode" onSubmit={onSubmit}>
+            <form className="task__header--edit-mode" onSubmit={onSubmit}>
               <TextField
-                className="column__header__input"
-                defaultValue={column.title}
+                className="task-header__input"
+                defaultValue={task.title}
                 {...register('title', {
                   required: 'This field is required.',
                   minLength: {
@@ -98,22 +93,21 @@ export default function Column({ column }: { column: ColumnType }) {
             </form>
           </div>
         ) : (
-          <div className="column__header--read-mode">
+          <div className="task__header--read-mode">
             <h3
-              className="column__title"
+              className="task__title"
               onClick={() => {
                 setEditMode(true);
               }}
             >
-              {column.title}
+              {task.title}
             </h3>
-            <IconButton onClick={() => deleteColumn(column._id)}>
+            <IconButton onClick={() => deleteTask(task._id)}>
               <DeleteForeverIcon />
             </IconButton>
           </div>
         )}
       </div>
-      <TasksList column={column}/>
       <Button variant="contained">
         <FormattedMessage id='add_task' />
       </Button>

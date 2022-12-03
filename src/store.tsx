@@ -3,6 +3,7 @@ import columnsReducer from './reducers/columnsSlice';
 import modalPopupReducer from './reducers/modalPopupSlice';
 import langReducer from './reducers/langSlice';
 import boardsReducer from './reducers/boardsSlice';
+import tasksReducer from './reducers/tasksSlice';
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     modalPopup: modalPopupReducer,
     lang: langReducer,
     boards: boardsReducer,
+    tasks: tasksReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
