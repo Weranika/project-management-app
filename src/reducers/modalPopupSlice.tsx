@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { ICreatedTaskType, InitialUpdateTask } from '../types';
 
 const initialState = {
   showModalCreateColumn: false,
@@ -7,8 +8,9 @@ const initialState = {
   showModalCreateBoard: false,
   showModalUpdateBoard: false,
   showModalDeleteBoard: false,
-  showModalCreateTask: false,
-  showModalDeleteTask: false,
+  showModalCreateTask: '',
+  showModalDeleteTask: null,
+  taskCreation: InitialUpdateTask,
 };
 
 const modalPopupSlice = createSlice({
@@ -46,16 +48,22 @@ const modalPopupSlice = createSlice({
       state.showModalDeleteBoard = payload;
     },
     setShowModalCreateTask(
-      state: { showModalCreateTask: boolean },
-      { payload }: PayloadAction<boolean>,
+      state: { showModalCreateTask: string },
+      { payload }: PayloadAction<string>,
     ) {
       state.showModalCreateTask = payload;
     },
     setShowModalDeleteTask(
-      state: { showModalDeleteTask: boolean },
-      { payload }: PayloadAction<boolean>,
+      state: { showModalDeleteTask: ICreatedTaskType | null },
+      { payload }: PayloadAction<ICreatedTaskType | null>,
     ) {
       state.showModalDeleteTask = payload;
+    },
+    setShowModalUpdateTask(
+      state: { taskCreation: ICreatedTaskType },
+      { payload }: PayloadAction<ICreatedTaskType>,
+    ) {
+      state.taskCreation = payload;
     },
   },
 });
@@ -68,4 +76,5 @@ export const {
   setShowModalDeleteBoard,
   setShowModalCreateTask,
   setShowModalDeleteTask,
+  setShowModalUpdateTask,
 } = modalPopupSlice.actions;

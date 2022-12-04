@@ -32,7 +32,6 @@ export const SignUpForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<ISignUpForm> = data => {
     register(data);
-    console.log(data);
   };
 
   console.log(errors, 'error');

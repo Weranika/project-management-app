@@ -10,24 +10,20 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 
-import { setShowModalCreateTask } from '../../reducers/modalPopupSlice';
-import { createTask } from '../../reducers/tasksSlice';
-import { ITaskState, ModalPopupState } from '../../types';
+import { setShowModalUpdateTask } from '../../reducers/modalPopupSlice';
+import { updateTask } from '../../reducers/tasksSlice';
+import { ModalPopupState, InitialUpdateTask } from '../../types';
 import { useAppDispatch } from '../../hook';
-
 
 type FormValues = {
   title: string;
   description: string;
 };
 
-export default function ModalCreateTask({ boardId, colId }: { boardId: string, colId: string }) {
-  const url = `/boards/${boardId}/columns/${colId}/tasks`;
-  const dispatch = useAppDispatch();
-  const { tasksArr } = useSelector(
-    (state: { tasks: ITaskState }) => state.tasks,
-  );
-  const { showModalCreateTask } = useSelector(
+export default function ModalUpdateTask({ url }: { url: string }) {
+  const dispatch = useAppDispatch();  
+
+  const { taskCreation } = useSelector(
     (state: { modalPopup: ModalPopupState }) => state.modalPopup,
   );
 
@@ -38,45 +34,50 @@ export default function ModalCreateTask({ boardId, colId }: { boardId: string, c
   } = useForm<FormValues>();
 
   const onSubmit = handleSubmit(data => {
-    createTaskRequest(data);
+    updateTaskRequest(data);
   });
 
-  const createTaskRequest = (data: FormValues) => {
+  const updateTaskRequest = (data: FormValues) => {
     dispatch(
-      createTask({
+      updateTask({
         url: url,
         title: data.title,
-        order: tasksArr.length,
+        order: taskCreation.order,
         description: data.description,
+        columnId: taskCreation.columnId,
         userId: 1,
-        users: []
+        users: [],
+        _id: taskCreation._id,
+        taskId: '',
+        boardId: '',
       }),
     );
 
-    dispatch(setShowModalCreateTask(''));
+    dispatch(setShowModalUpdateTask(InitialUpdateTask));
   };
-
   return (
     <div>
       <Dialog
-        open={showModalCreateTask === '' ? false : true}
-        onClose={() => dispatch(setShowModalCreateTask(''))}
+        open={ taskCreation === InitialUpdateTask ? false : true }
+        onClose={() => dispatch(setShowModalUpdateTask(InitialUpdateTask))}
       >
         <DialogTitle>
-          <FormattedMessage id='create_task' />
+          <FormattedMessage id='update_task' />
         </DialogTitle>
         <form className="create-task__form" onSubmit={onSubmit}>
           <DialogContent sx={{ width: '20rem' }}>
             <TextField
               fullWidth
-              id="task-title"
-              label="Task title"
+              sx={{ display: 'block', mb: '1rem' }}
+              id="outlined-basic"
+              label="Board title"
               variant="outlined"
+              defaultValue={taskCreation.title}
               {...register('title', {
                 required: 'This field is required.',
                 minLength: {
-                  value: 4,
-                  message: 'This field should be more than 4 symbols',
+                  value: 5,
+                  message: 'This field should be more than 5 symbols',
                 },
               })}
               helperText={errors.title && errors.title.message}
@@ -84,25 +85,18 @@ export default function ModalCreateTask({ boardId, colId }: { boardId: string, c
             />
             <TextField
               fullWidth
-              id="task-description"
-              label="Description"
+              defaultValue={taskCreation.description}
+              id="outlined-basic"
+              label="Board description"
               variant="outlined"
-              {...register('description', {
-                required: 'This field is required.',
-                minLength: {
-                  value: 4,
-                  message: 'This field should be more than 4 symbols',
-                },
-              })}
-              helperText={errors.title && errors.title.message}
-              error={errors.title ? true : false}
+              {...register('description')}
             />
           </DialogContent>
           <DialogActions>
             <Button type="submit">
-              <FormattedMessage id='submit' />
+              <FormattedMessage id='confirm' />
             </Button>
-            <Button onClick={() => dispatch(setShowModalCreateTask(''))}>
+            <Button onClick={() => dispatch(setShowModalUpdateTask(InitialUpdateTask))}>
               <FormattedMessage id='cancel' />
             </Button>
           </DialogActions>

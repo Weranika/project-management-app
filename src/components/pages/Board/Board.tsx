@@ -11,9 +11,15 @@ import Column from '../../Column/Column';
 import Spinner from '../../Spinner/Spinner';
 import ModalCreateColumn from '../../ModalCreateColumn/ModalCreateColumn';
 import ModalDeleteColumn from '../../ModalDeleteColumn/ModalDeleteColumn';
-import { setShowModalCreateColumn } from '../../../reducers/modalPopupSlice';
+import {
+  setShowModalCreateColumn,
+} from '../../../reducers/modalPopupSlice';
 import { getColumns, setMessage } from '../../../reducers/columnsSlice';
+import { getTasks } from '../../../reducers/tasksSlice';
 import { useAppDispatch } from '../../../hook';
+import ModalCreateTask from '../../ModalCreateTask/ModalCreateTask';
+import ModalUpdateTask from '../../ModalUpdateTask/ModalUpdateTask';
+import ModalDeleteTask from '../../ModalDeleteTask/ModalDeleteTask';
 import {
   ColumnType,
   ColumnState,
@@ -34,6 +40,9 @@ function Board() {
   const { showModalCreateColumn, showModalDeleteColumn } = useSelector(
     (state: { modalPopup: ModalPopupState }) => state.modalPopup,
   );
+  const { showModalCreateTask } =
+    useSelector((state: { modalPopup: ModalPopupState }) => state.modalPopup);
+
   const { columnsArr, currentColumnId, isLoading, hasError, message } =
     useSelector((state: { columns: ColumnState }) => state.columns);
 
@@ -41,8 +50,14 @@ function Board() {
     (state: { boards: BoardState }) => state.boards,
   );
 
+  const { showModalDeleteTask } =
+  useSelector((state: { modalPopup: ModalPopupState }) => state.modalPopup);
+
+const { taskCreation } =
+  useSelector((state: { modalPopup: ModalPopupState }) => state.modalPopup);
+
   const params = useParams();
-  const boardId = params.id;
+  const boardId = params.id as string;
 
   const url = `/boards/${boardId}/columns`;
   const boardTitle = boardsArr
@@ -53,6 +68,7 @@ function Board() {
 
   useEffect(() => {
     dispatch(getColumns(url));
+    dispatch(getTasks(`/tasksSet/${boardId}`));
   }, []);
 
   return (
@@ -89,6 +105,14 @@ function Board() {
       {showModalDeleteColumn && (
         <ModalDeleteColumn url={`${url}/${currentColumnId}`} />
       )}
+
+      {showModalCreateTask && <ModalCreateTask boardId={boardId} colId={showModalCreateTask} />}
+      { taskCreation && <ModalUpdateTask url={`${url}/${taskCreation.columnId}/tasks/${taskCreation._id}`} /> }
+      {
+        showModalDeleteTask && (
+          <ModalDeleteTask url={`${url}/${showModalDeleteTask.columnId}/tasks/${showModalDeleteTask._id}`} />
+        )
+      }
       <Snackbar
         open={message ? true : false}
         autoHideDuration={5000}

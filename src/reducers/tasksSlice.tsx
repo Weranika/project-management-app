@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ITaskType, ITaskState, ITaskModel } from '../types';
+import { ITaskType, ITaskState, ITaskModel, ICreatedTaskType } from '../types';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import axiosConfig from '../util/axiosConfig';
 
@@ -15,7 +15,7 @@ const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-    setTasks(state: ITaskState, { payload }: PayloadAction<ITaskType[]>) {
+    setTasks(state: ITaskState, { payload }: PayloadAction<ICreatedTaskType[]>) {
       state.tasksArr = [...payload];
     },
     setMessage(state: ITaskState, { payload }: PayloadAction<string>) {
@@ -34,7 +34,7 @@ const tasksSlice = createSlice({
         getTasks.fulfilled,
         (
           state: ITaskState,
-          { payload }: PayloadAction<{ data: ITaskType[] }>,
+          { payload }: PayloadAction<{ data: ICreatedTaskType[] }>,
         ) => {
           state.isLoading = false;
           state.hasError = false;
@@ -54,9 +54,8 @@ const tasksSlice = createSlice({
         createTask.fulfilled,
         (
           state: ITaskState,
-          { payload }: PayloadAction<{ data: ITaskType }>,
+          { payload }: PayloadAction<{ data: ICreatedTaskType }>,
         ) => {
-          console.log(payload, 'payload');
           state.isLoading = false;
           state.hasError = false;
           state.tasksArr = [...state.tasksArr, payload.data];
@@ -76,7 +75,7 @@ const tasksSlice = createSlice({
         updateTask.fulfilled,
         (
           state: ITaskState,
-          { payload }: PayloadAction<{ data: ITaskType }>,
+          { payload }: PayloadAction<{ data: ICreatedTaskType }>,
         ) => {
           state.isLoading = false;
           state.hasError = false;
@@ -102,7 +101,7 @@ const tasksSlice = createSlice({
         deleteTask.fulfilled,
         (
           state: ITaskState,
-          { payload }: PayloadAction<{ data: ITaskType }>,
+          { payload }: PayloadAction<{ data: ICreatedTaskType }>,
         ) => {
           state.isLoading = false;
           state.hasError = false;
@@ -149,14 +148,13 @@ export const createTask = createAsyncThunk(
   'task/post',
   async (taskData: ITaskModel & { url: string }, thunkApi) => {
     const { url, title, order, description } = taskData;
-    console.log('thunk', url);
     const jwt = localStorage.getItem('jwt');
     try {
       const response = await axiosConfig.post(
         url,
         {
           title: title,
-          order: order,
+          order: order as number,
           description: description,
           userId: 1,
           users: [],
@@ -184,18 +182,19 @@ export const createTask = createAsyncThunk(
 
 export const updateTask = createAsyncThunk(
   'task/put',
-  async (
-    taskData: { url: string; title: string; order: number },
-    thunkApi,
-  ) => {
-    const { url, title, order } = taskData;
+  async (taskData: ICreatedTaskType  & { url: string }, thunkApi) => {
+    const { url, title, order, description, columnId, userId } = taskData;
     const jwt = localStorage.getItem('jwt');
     try {
       const response = await axiosConfig.put(
         url,
         {
           title: title,
-          order: order,
+          order: order as number,
+          description: description,
+          userId: userId,
+          users: [],
+          columnId: columnId,
         },
         {
           headers: {

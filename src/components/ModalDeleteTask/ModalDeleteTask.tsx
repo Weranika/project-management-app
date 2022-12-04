@@ -23,15 +23,17 @@ export default function ModalDeleteTask({ url }: { url: string }) {
   const deleteTaskRequest = (event: FormEvent) => {
     event.preventDefault();
     dispatch(deleteTask(url));
-    dispatch(setShowModalDeleteTask(false));
+    dispatch(setShowModalDeleteTask(null));
   };
   return (
     <div>
       <Dialog
-        open={showModalDeleteTask}
-        onClose={() => dispatch(setShowModalDeleteTask(false))}
+        open={showModalDeleteTask === null ? false : true }
+        onClose={() => dispatch(setShowModalDeleteTask(null))}
       >
-        <DialogTitle>Do you really want to delete the task?</DialogTitle>
+        <DialogTitle>
+          <FormattedMessage id="want_to_delete_task" />
+        </DialogTitle>
         <DialogContent>
           <Box
             component="form"
@@ -44,9 +46,9 @@ export default function ModalDeleteTask({ url }: { url: string }) {
         </DialogContent>
         <DialogActions>
           <Button onClick={(event: FormEvent) => deleteTaskRequest(event)}>
-            <FormattedMessage id='submit' />
+            <FormattedMessage id='confirm' />
           </Button>
-          <Button onClick={() => dispatch(setShowModalDeleteTask(false))}>
+          <Button onClick={() => dispatch(setShowModalDeleteTask(null))}>
             <FormattedMessage id='cancel' />
           </Button>
         </DialogActions>

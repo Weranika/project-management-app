@@ -4,7 +4,6 @@ import { LOCALES } from '../lang/locales';
 
 function getInitialLocale() {
   const savedLocale = localStorage.getItem('lang');
-  console.log(savedLocale, 'getInitialLocale');
   return savedLocale || LOCALES.ENGLISH;
 }
 

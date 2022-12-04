@@ -77,7 +77,9 @@ export default function ModalCreateColumn({ url }: { url: string }) {
             />
           </DialogContent>
           <DialogActions>
-            <Button type="submit"><FormattedMessage id='submit' /></Button>
+            <Button type="submit">
+              <FormattedMessage id='submit' />
+              </Button>
             <Button onClick={() => dispatch(setShowModalCreateColumn(false))}>
               <FormattedMessage id='cancel' />
             </Button>

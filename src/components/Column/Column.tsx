@@ -117,7 +117,7 @@ export default function Column({ column }: { column: ColumnType }) {
       <TasksList column={column}/>
       <Button
         variant="contained"
-        onClick={() => dispatch(setShowModalCreateTask(true))}
+        onClick={() => dispatch(setShowModalCreateTask(column._id))}
       >
         <FormattedMessage id='add_task' />
       </Button>

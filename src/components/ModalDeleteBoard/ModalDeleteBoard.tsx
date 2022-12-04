@@ -31,7 +31,9 @@ export default function ModalDeleteBoard({ url }: { url: string }) {
         open={showModalDeleteBoard}
         onClose={() => dispatch(setShowModalDeleteBoard(false))}
       >
-        <DialogTitle>Do you really want to delete the board?</DialogTitle>
+        <DialogTitle>
+          <FormattedMessage id="want_to_delete_board" />
+        </DialogTitle>
         <DialogContent>
           <Box
             component="form"
@@ -44,7 +46,7 @@ export default function ModalDeleteBoard({ url }: { url: string }) {
         </DialogContent>
         <DialogActions>
           <Button onClick={(event: FormEvent) => deleteBoardRequest(event)}>
-            Submit
+            <FormattedMessage id='confirm' />
           </Button>
           <Button onClick={() => dispatch(setShowModalDeleteBoard(false))}>
             <FormattedMessage id='cancel' />

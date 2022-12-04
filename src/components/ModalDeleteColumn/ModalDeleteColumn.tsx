@@ -31,7 +31,9 @@ export default function ModalDeleteColumn({ url }: { url: string }) {
         open={showModalDeleteColumn}
         onClose={() => dispatch(setShowModalDeleteColumn(false))}
       >
-        <DialogTitle>Do you really want to delete the column?</DialogTitle>
+        <DialogTitle>
+        <FormattedMessage id="want_to_delete_col" />
+          </DialogTitle>
         <DialogContent>
           <Box
             component="form"
@@ -44,7 +46,7 @@ export default function ModalDeleteColumn({ url }: { url: string }) {
         </DialogContent>
         <DialogActions>
           <Button onClick={(event: FormEvent) => deleteColumnRequest(event)}>
-            Submit
+            <FormattedMessage id='confirm' />
           </Button>
           <Button onClick={() => dispatch(setShowModalDeleteColumn(false))}>
             <FormattedMessage id='cancel' />
