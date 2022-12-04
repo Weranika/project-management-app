@@ -38,3 +38,10 @@ export interface BoardState {
   currentBoardTitle: string;
   currentBoardDescription: string;
 }
+
+export interface AuthState {
+  isAuth: boolean;
+  isLoading: boolean;
+  hasError: boolean;
+  message: string;
+}
