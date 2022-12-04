@@ -44,12 +44,12 @@ function BoardList() {
       <div className="boardList__header">
         <h1 className="boardList__title">Boards</h1>
 
-        <Button
+        {/* <Button
           variant="contained"
           onClick={() => dispatch(setShowModalCreateBoard(true))}
         >
           + Add board
-        </Button>
+        </Button> */}
       </div>
 
       <section className="boardList__boardItems">
