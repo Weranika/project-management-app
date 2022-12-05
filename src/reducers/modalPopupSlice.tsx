@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { ICreatedTaskType, InitialUpdateTask } from '../types';
+import { ICreatedTaskType } from '../types';
 
 const initialState = {
   showModalCreateColumn: false,
@@ -10,7 +10,7 @@ const initialState = {
   showModalDeleteBoard: false,
   showModalCreateTask: '',
   showModalDeleteTask: null,
-  taskCreation: InitialUpdateTask,
+  taskCreation: null,
 };
 
 const modalPopupSlice = createSlice({

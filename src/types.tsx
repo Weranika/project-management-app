@@ -73,17 +73,6 @@ export interface ITaskState {
   currentTaskId: string;
   message: string;
 }
-export const InitialUpdateTask = {
-  _id: '',
-  title: '',
-  order: 0,
-  taskId: '',
-  columnId: '',
-  boardId: '',
-  description: '',
-  userId: 0,
-  users: [],
-};
 export interface AuthState {
   isAuth: boolean;
   isLoading: boolean;
