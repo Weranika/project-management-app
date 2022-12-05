@@ -46,13 +46,6 @@ function BoardList() {
         <h1 className="boardList__title">
           <FormattedMessage id="boards" />
         </h1>
-
-        <Button
-          variant="contained"
-          onClick={() => dispatch(setShowModalCreateBoard(true))}
-        >
-          <FormattedMessage id="add_board" />
-        </Button>
       </div>
 
       <section className="boardList__boardItems">

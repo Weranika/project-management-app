@@ -84,3 +84,9 @@ export const InitialUpdateTask = {
   userId: 0,
   users: [],
 };
+export interface AuthState {
+  isAuth: boolean;
+  isLoading: boolean;
+  hasError: boolean;
+  message: string;
+}
