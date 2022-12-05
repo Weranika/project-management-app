@@ -53,7 +53,9 @@ function Header() {
           <ul className="navbar">
             <li className="change-lang">
               <select
-                value={localStorage.getItem('lang') as string}
+                value={
+                  (localStorage.getItem('lang') as string) || LOCALES.ENGLISH
+                }
                 onChange={event => {
                   const value = event.currentTarget.value;
                   dispatch(setLang(value));

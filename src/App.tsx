@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { IntlProvider } from 'react-intl';
-import { Routes, Route, HashRouter } from 'react-router-dom';
+import { Routes, Route, HashRouter, useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from './hook';
 
 import Main from './components/pages/Main/Main';
@@ -27,10 +27,12 @@ function App() {
   const dispatch = useAppDispatch();
   const { isAuth } = useSelector((state: { auth: AuthState }) => state.auth);
 
+  const navigate = useNavigate();
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
       dispatch(setIsAuth(true));
+      navigate('/board');
     } else {
       dispatch(setIsAuth(false));
     }
@@ -38,41 +40,39 @@ function App() {
 
   return (
     <IntlProvider messages={messages[lang.lang]} locale={lang.lang}>
-      <HashRouter>
-        <Routes>
-          <Route path="/" element={<MainLayout />}>
-            <Route path="/" element={<Main />} />
-            <Route
-              path="board"
-              element={
-                isAuth ? (
-                  <React.Suspense fallback={<Spinner />}>
-                    <LazyBoardList />
-                  </React.Suspense>
-                ) : (
-                  <Main />
-                )
-              }
-            />
-            <Route
-              path="board/:id"
-              element={
-                isAuth ? (
-                  <React.Suspense fallback={<Spinner />}>
-                    <LazyBoard />
-                  </React.Suspense>
-                ) : (
-                  <Main />
-                )
-              }
-            />
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route path="/" element={<Main />} />
+          <Route
+            path="board"
+            element={
+              isAuth ? (
+                <React.Suspense fallback={<Spinner />}>
+                  <LazyBoardList />
+                </React.Suspense>
+              ) : (
+                <Main />
+              )
+            }
+          />
+          <Route
+            path="board/:id"
+            element={
+              isAuth ? (
+                <React.Suspense fallback={<Spinner />}>
+                  <LazyBoard />
+                </React.Suspense>
+              ) : (
+                <Main />
+              )
+            }
+          />
 
-            <Route path="*" element={<Page404 />} />
-            <Route path="signIn" element={isAuth ? <Main /> : <AuthPage />} />
-            <Route path="signUp" element={isAuth ? <Main /> : <SignUpPage />} />
-          </Route>
-        </Routes>
-      </HashRouter>
+          <Route path="*" element={<Page404 />} />
+          <Route path="signIn" element={isAuth ? <Main /> : <AuthPage />} />
+          <Route path="signUp" element={isAuth ? <Main /> : <SignUpPage />} />
+        </Route>
+      </Routes>
     </IntlProvider>
   );
 }
