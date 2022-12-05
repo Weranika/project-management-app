@@ -79,6 +79,7 @@ function Header() {
                 <Button
                   variant="contained"
                   onClick={() => dispatch(setShowModalCreateBoard(true))}
+                  className="add_board__button"
                 >
                   <FormattedMessage id="add_board" />
                 </Button>
@@ -108,14 +109,14 @@ function Header() {
             {isAuth && path.includes('board') && (
               <li>
                 <NavLink to="/" className="nav__link">
-                  <FormattedMessage id="Go to Main" />
+                  <FormattedMessage id="go_to_main" />
                 </NavLink>
               </li>
             )}
             {isAuth && (
               <li onClick={signOut}>
                 <NavLink to="/" className="nav__link">
-                  <FormattedMessage id="Sign out" />
+                  <FormattedMessage id="sign_out" />
                 </NavLink>
               </li>
             )}

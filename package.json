@@ -42,6 +42,7 @@
     "deploy": "gh-pages -d ./build -e project-management-app",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx"
   },
+  "homepage": ".",
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -3,7 +3,7 @@ import { LOCALES } from './locales';
 export const messages = {
   [LOCALES.ENGLISH]: {
     // header
-
+    go_to_main: 'Go to Main',
     board: 'Board',
     // main start page
     title1: 'Welcome to Pro Manager',
@@ -18,11 +18,11 @@ export const messages = {
     weranika: 'Weranika',
     weranika__subtitle: 'Team leader, Frontend developer',
     weranika__info:
-      'Team leader. General application design. Creating navigation and configuring routing. Layout, adaptive and UI of the APP. Language switching',
+      'Team leader. General application design. Creating navigation and configuring routing. Layout, adaptive and UI of the APP. Language switching. Creation, delete, display and edit tasks, deploy App',
     oxana: 'Oxana',
     oxana__subtitle: 'Frontend developer',
     oxana__info:
-      'She was responsible for the server-client API, creating deleting, updating and displaying columns',
+      'Was responsible for connection to Mongo DB, deployment of the BE, creating, updating and deleting of the columns and boards, partialy for authorisation',
     katerina: 'Katerina',
     katerina__subtitle: 'Frontend developer',
     katerina__info: 'She was responsible for Authorisation in App',
@@ -31,12 +31,13 @@ export const messages = {
     get_access: 'To get access',
     // Sign Up
     sign_up: 'Sign Up',
+    sign_out: 'Sign out',
     // board
     boards: 'Boards',
     board_page: 'Board page',
     add_column: '+ Add column',
     back: 'Back',
-    add_board: '+ Add board',
+    add_board: 'Add board',
     want_to_delete_board: 'Do you really want to delete the board?',
     update_board: 'Update board',
     crate_board: 'Create board',
@@ -56,6 +57,7 @@ export const messages = {
   [LOCALES.RUSSIAN]: {
     // header
     board: 'Доска',
+    go_to_main: 'Главная',
     // main start page
     title1: 'Приветствуем в Pro Manager',
     title2: 'Это программное обеспечение для управления проектами',
@@ -69,11 +71,11 @@ export const messages = {
     weranika: 'Вероника',
     weranika__subtitle: 'Тимлид, фронтенд девелопер',
     weranika__info:
-      'Тимлид команды. Определение единого дизайна приложения. Создание навигации и настройка роутинга. Вёрстка, адаптив и UI главной страницы. Интернализация языка',
+      'Тимлид команды. Определение единого дизайна приложения. Создание навигации и настройка роутинга. Вёрстка, адаптив и UI главной страницы. Интернализация языка. Создание, удаление, отображение и редактирование задач. Деплой приложения',
     oxana: 'Оксана',
     oxana__subtitle: 'Фронтенд девелопер',
     oxana__info:
-      'Oтвечала за server-client API, создание, удаление, обновление и отображение столбцов',
+      'Оветственная за подключение к Mongo DB, деплой BE, создание, удаление и редактирование досок и колонок, частично авторизация',
     katerina: 'Катерина',
     katerina__subtitle: 'Фронтенд девелопер',
     katerina__info: 'Оветственная за авторизацию в приложении',
@@ -82,12 +84,13 @@ export const messages = {
     get_access: 'Получить доступ',
     // Sign Up
     sign_up: 'Регистрация',
+    sign_out: 'Выйти',
     // board
     boards: 'Доски',
     board_page: 'Доска',
     add_column: '+ Добавить колонку',
     back: 'Назад',
-    add_board: '+ Добавить доску',
+    add_board: 'Добавить доску',
     want_to_delete_board: 'Вы уверены, что хотите удалить доску?',
     update_board: 'Обновить доску',
     crate_board: 'Создать доску',
