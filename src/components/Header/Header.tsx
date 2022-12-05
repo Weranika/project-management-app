@@ -114,7 +114,7 @@ function Header() {
             )}
             {isAuth && (
               <li onClick={signOut}>
-                <NavLink to="/">
+                <NavLink to="/" className="nav__link">
                   <FormattedMessage id="Sign out" />
                 </NavLink>
               </li>
