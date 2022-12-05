@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.236a41a1.css",
+    "main.css": "/static/css/main.667e3372.css",
     "main.js": "/static/js/main.162d01a6.js",
     "static/css/725.a8b94a6c.chunk.css": "/static/css/725.a8b94a6c.chunk.css",
     "static/js/725.669029c6.chunk.js": "/static/js/725.669029c6.chunk.js",
@@ -15,13 +15,13 @@
     "static/media/404-page.jpg": "/static/media/404-page.9c6f8cffd1b198fd0fed.jpg",
     "static/media/Roboto-Regular.ttf": "/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
     "static/media/katerina.jpg": "/static/media/katerina.fa89aedd6ea4630b20eb.jpg",
-    "static/media/people-near-huge-paper-tablet-with-report-of-water-flow-and-checkboxes-analyzing-data-water-management-ecology-iot-and-smart-city-concept-vector-illustrati.webp": "/static/media/people-near-huge-paper-tablet-with-report-of-water-flow-and-checkboxes-analyzing-data-water-management-ecology-iot-and-smart-city-concept-vector-illustrati.bae15963ea029dcf4f5a.webp",
+    "static/media/sign_up.webp": "/static/media/sign_up.bae15963ea029dcf4f5a.webp",
     "static/media/open-sans.woff": "/static/media/open-sans.469db7e601bc2bc9cce3.woff",
     "static/media/oxana.jpg": "/static/media/oxana.d0f9566aec214d03ec75.jpg",
     "static/media/Github_logo.png": "/static/media/Github_logo.dbd0adc6d4684720f75a.png",
     "static/media/rs_school_img.svg": "/static/media/rs_school_img.ad178c0df28bc133be34.svg",
     "index.html": "/index.html",
-    "main.236a41a1.css.map": "/static/css/main.236a41a1.css.map",
+    "main.667e3372.css.map": "/static/css/main.667e3372.css.map",
     "main.162d01a6.js.map": "/static/js/main.162d01a6.js.map",
     "725.a8b94a6c.chunk.css.map": "/static/css/725.a8b94a6c.chunk.css.map",
     "725.669029c6.chunk.js.map": "/static/js/725.669029c6.chunk.js.map",
@@ -31,7 +31,7 @@
     "310.d7d80eb0.chunk.js.map": "/static/js/310.d7d80eb0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.236a41a1.css",
+    "static/css/main.667e3372.css",
     "static/js/main.162d01a6.js"
   ]
 }
