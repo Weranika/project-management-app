@@ -60,7 +60,7 @@ const modalPopupSlice = createSlice({
       state.showModalDeleteTask = payload;
     },
     setShowModalUpdateTask(
-      state: { taskCreation: ICreatedTaskType | null},
+      state: { taskCreation: ICreatedTaskType | null },
       { payload }: PayloadAction<ICreatedTaskType | null>,
     ) {
       state.taskCreation = payload;

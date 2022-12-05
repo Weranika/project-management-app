@@ -11,9 +11,7 @@ import Column from '../../Column/Column';
 import Spinner from '../../Spinner/Spinner';
 import ModalCreateColumn from '../../ModalCreateColumn/ModalCreateColumn';
 import ModalDeleteColumn from '../../ModalDeleteColumn/ModalDeleteColumn';
-import {
-  setShowModalCreateColumn,
-} from '../../../reducers/modalPopupSlice';
+import { setShowModalCreateColumn } from '../../../reducers/modalPopupSlice';
 import { getColumns, setMessage } from '../../../reducers/columnsSlice';
 import { getTasks } from '../../../reducers/tasksSlice';
 import { useAppDispatch } from '../../../hook';
@@ -40,10 +38,8 @@ function Board() {
     showModalCreateColumn,
     showModalDeleteColumn,
     showModalDeleteTask,
-    taskCreation
-  } = useSelector(
-    (state: { modalPopup: ModalPopupState }) => state.modalPopup,
-  );
+    taskCreation,
+  } = useSelector((state: { modalPopup: ModalPopupState }) => state.modalPopup);
 
   const { columnsArr, currentColumnId, isLoading, hasError, message } =
     useSelector((state: { columns: ColumnState }) => state.columns);
@@ -102,12 +98,17 @@ function Board() {
         <ModalDeleteColumn url={`${url}/${currentColumnId}`} />
       )}
 
-      { taskCreation && <ModalUpdateTask task={taskCreation} url={`${url}/${taskCreation.columnId}/tasks/${taskCreation._id}`} /> }
-      {
-        showModalDeleteTask && (
-          <ModalDeleteTask url={`${url}/${showModalDeleteTask.columnId}/tasks/${showModalDeleteTask._id}`} />
-        )
-      }
+      { taskCreation && (
+        <ModalUpdateTask
+          task={taskCreation}
+          url={`${url}/${taskCreation.columnId}/tasks/${taskCreation._id}`}
+        />
+      )}
+      {showModalDeleteTask && (
+        <ModalDeleteTask
+          url={`${url}/${showModalDeleteTask.columnId}/tasks/${showModalDeleteTask._id}`}
+        />
+      )}
       <Snackbar
         open={message ? true : false}
         autoHideDuration={5000}

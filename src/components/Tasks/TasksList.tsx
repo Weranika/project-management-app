@@ -1,18 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
-import { useParams } from 'react-router-dom';
 
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import TaskItem from './TaskItem';
-import {  setMessage } from '../../reducers/tasksSlice';
+import { setMessage } from '../../reducers/tasksSlice';
 import { useAppDispatch } from '../../hook';
-import {
-  ColumnType,
-  ICreatedTaskType,
-  ITaskState} from '../../types';
+import { ColumnType, ICreatedTaskType, ITaskState } from '../../types';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -24,16 +19,18 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 function TasksList({ column }: { column: ColumnType }) {
   const dispatch = useAppDispatch();
 
-  const { tasksArr, hasError, message } = useSelector((state: { tasks: ITaskState }) => state.tasks);
+  const { tasksArr, hasError, message } = useSelector(
+    (state: { tasks: ITaskState }) => state.tasks,
+  );
 
   return (
     <section className="task-list">
       <section className="task-list__items">
         {tasksArr
-        .filter(task => task.columnId === column._id)
-        .map((task: ICreatedTaskType) => (
-          <TaskItem key={task._id} task={task} column={column} />
-        ))}
+          .filter(task => task.columnId === column._id)
+          .map((task: ICreatedTaskType) => (
+            <TaskItem key={task._id} task={task} column={column} />
+          ))}
       </section>
 
       <Snackbar

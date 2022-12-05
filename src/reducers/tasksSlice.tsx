@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ITaskType, ITaskState, ITaskModel, ICreatedTaskType } from '../types';
+import { ITaskState, ITaskModel, ICreatedTaskType } from '../types';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import axiosConfig from '../util/axiosConfig';
 
@@ -15,7 +15,10 @@ const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-    setTasks(state: ITaskState, { payload }: PayloadAction<ICreatedTaskType[]>) {
+    setTasks(
+      state: ITaskState,
+      { payload }: PayloadAction<ICreatedTaskType[]>,
+    ) {
       state.tasksArr = [...payload];
     },
     setMessage(state: ITaskState, { payload }: PayloadAction<string>) {
@@ -182,7 +185,7 @@ export const createTask = createAsyncThunk(
 
 export const updateTask = createAsyncThunk(
   'task/put',
-  async (taskData: ICreatedTaskType  & { url: string }, thunkApi) => {
+  async (taskData: ICreatedTaskType & { url: string }, thunkApi) => {
     const { url, title, order, description, columnId, userId } = taskData;
     const jwt = localStorage.getItem('jwt');
     try {
@@ -239,7 +242,7 @@ export const deleteTask = createAsyncThunk(
         message: 'Failed to delete the task.',
       });
     }
-  }
+  },
 );
 
 export default tasksSlice.reducer;

@@ -6,4 +6,4 @@ export interface ILocales {
 export const LOCALES: ILocales = {
   ENGLISH: 'en-US',
   RUSSIAN: 'ru-RU',
-}
+};

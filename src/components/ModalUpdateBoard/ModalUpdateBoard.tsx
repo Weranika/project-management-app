@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { decodeToken } from 'react-jwt';
 import { useForm } from 'react-hook-form';
@@ -73,7 +73,7 @@ export default function ModalUpdateBoard({ url }: { url: string }) {
         onClose={() => dispatch(setShowModalUpdateBoard(false))}
       >
         <DialogTitle>
-          <FormattedMessage id='update_board' />
+          <FormattedMessage id="update_board" />
         </DialogTitle>
         <form className="updateBoard__form" onSubmit={onSubmit}>
           <DialogContent sx={{ width: '25rem' }}>
@@ -105,10 +105,10 @@ export default function ModalUpdateBoard({ url }: { url: string }) {
           </DialogContent>
           <DialogActions>
             <Button type="submit">
-              <FormattedMessage id='confirm' />
+              <FormattedMessage id="confirm" />
             </Button>
             <Button onClick={() => dispatch(setShowModalUpdateBoard(false))}>
-              <FormattedMessage id='cancel' />
+              <FormattedMessage id="cancel" />
             </Button>
           </DialogActions>
         </form>

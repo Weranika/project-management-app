@@ -16,17 +16,32 @@ const Main: React.FC = () => {
   return (
     <>
       <section className="start-page">
-        <p id="head1" className="start-page__title"><FormattedMessage id='title1' /></p>
-        <p id="head2" className="start-page__title"><FormattedMessage id='title2' /></p>
-        <p id="head3" className="start-page__title"><FormattedMessage id='title3' /></p>
-        <p id="head4" className="start-page__title"><FormattedMessage id='title4' /></p>
-        <p id="head5" className="start-page__title"><FormattedMessage id='title5' /></p>
+        <p id="head1" className="start-page__title">
+          <FormattedMessage id="title1" />
+        </p>
+        <p id="head2" className="start-page__title">
+          <FormattedMessage id="title2" />
+        </p>
+        <p id="head3" className="start-page__title">
+          <FormattedMessage id="title3" />
+        </p>
+        <p id="head4" className="start-page__title">
+          <FormattedMessage id="title4" />
+        </p>
+        <p id="head5" className="start-page__title">
+          <FormattedMessage id="title5" />
+        </p>
         <HashLink smooth to="/#about-us">
-          <button className="start-page__button"><FormattedMessage id='about_us' /></button>
+          <button className="start-page__button">
+            <FormattedMessage id="about_us" />
+          </button>
         </HashLink>
       </section>
       <AboutUs />
-      <IconButton className="scroll-button__container scroll-up" onClick={scrollToTop}>
+      <IconButton
+        className="scroll-button__container scroll-up"
+        onClick={scrollToTop}
+      >
         <ExpandLessIcon />
       </IconButton>
       <div className="light x1"></div>

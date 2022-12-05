@@ -28,7 +28,7 @@ export default function ModalDeleteTask({ url }: { url: string }) {
   return (
     <div>
       <Dialog
-        open={showModalDeleteTask === null ? false : true }
+        open={showModalDeleteTask === null ? false : true}
         onClose={() => dispatch(setShowModalDeleteTask(null))}
       >
         <DialogTitle>
@@ -46,10 +46,10 @@ export default function ModalDeleteTask({ url }: { url: string }) {
         </DialogContent>
         <DialogActions>
           <Button onClick={(event: FormEvent) => deleteTaskRequest(event)}>
-            <FormattedMessage id='confirm' />
+            <FormattedMessage id="confirm" />
           </Button>
           <Button onClick={() => dispatch(setShowModalDeleteTask(null))}>
-            <FormattedMessage id='cancel' />
+            <FormattedMessage id="cancel" />
           </Button>
         </DialogActions>
       </Dialog>

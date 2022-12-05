@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useForm } from 'react-hook-form';
 
@@ -56,7 +56,7 @@ export default function ModalUpdateTask({ url, task }: { url: string, task: ICre
   return (
     <div>
       <Dialog
-        open={ taskCreation === null ? false : true }
+        open={taskCreation === null ? false : true}
         onClose={() => dispatch(setShowModalUpdateTask(null))}
         className="modal-task"
       >
@@ -92,10 +92,10 @@ export default function ModalUpdateTask({ url, task }: { url: string, task: ICre
           </DialogContent>
           <DialogActions>
             <Button type="submit">
-              <FormattedMessage id='confirm' />
+              <FormattedMessage id="confirm" />
             </Button>
             <Button onClick={() => dispatch(setShowModalUpdateTask(null))}>
-              <FormattedMessage id='cancel' />
+              <FormattedMessage id="cancel" />
             </Button>
           </DialogActions>
         </form>

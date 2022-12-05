@@ -19,7 +19,7 @@ const langSlice = createSlice({
       state: {
         lang: string;
       },
-      { payload }: PayloadAction<string>
+      { payload }: PayloadAction<string>,
     ) {
       state.lang = payload;
     },

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
-import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
@@ -10,7 +9,6 @@ import BoardItem from '../../BoardItem/BoardItem';
 import ModalCreateBoard from '../../ModalCreateBoard/ModalCreateBoard';
 import ModalUpdateBoard from '../../ModalUpdateBoard/ModalUpdateBoard';
 import ModalDeleteBoard from '../../ModalDeleteBoard/ModalDeleteBoard';
-import { setShowModalCreateBoard } from '../../../reducers/modalPopupSlice';
 import { getBoards, setMessage } from '../../../reducers/boardsSlice';
 import { useAppDispatch } from '../../../hook';
 import { BoardType, BoardState, ModalPopupState } from '../../../types';

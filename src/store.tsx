@@ -14,7 +14,6 @@ const store = configureStore({
     boards: boardsReducer,
     tasks: tasksReducer,
     auth: authReducer,
-
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

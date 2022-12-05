@@ -13,8 +13,8 @@ export interface ScrollAnimationProps {
   scrollableParentSelector?: string | undefined;
   className?: string | undefined;
   animatePreScroll?: boolean | undefined;
-  afterAnimatedOut?: (visibile: VisibleType) => {} | undefined;
-  afterAnimatedIn?: (visibile: VisibleType) => {} | undefined;
+  afterAnimatedOut?: (visibile: VisibleType) => void | undefined;
+  afterAnimatedIn?: (visibile: VisibleType) => void | undefined;
 }
 
 export interface VisibleType {
