@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 
-import { setShowModalDeleteTask, setShowModalUpdateTask } from '../../reducers/modalPopupSlice';
+import {
+  setShowModalDeleteTask,
+  setShowModalUpdateTask,
+  setShowModalTaskInfo,
+} from '../../reducers/modalPopupSlice';
 import { useAppDispatch } from '../../hook';
-import { ColumnType, ICreatedTaskType } from '../../types';
+
+import {
+  ColumnType,
+  ICreatedTaskType,
+  ModalPopupState,
+  BoardState,
+} from '../../types';
 import './task.scss';
 
 type FormValues = {
@@ -35,28 +46,26 @@ export default function Task({ task, column }: { task: ICreatedTaskType, column:
   };
 
   return (
-    <div className="task">
-        <div className="task__content">
-          <h3
-            className="task__title"
-            onClick={() => {
-              setEditMode(true);
-            }}
-          >
-            {task.title}
-          </h3>
-          <IconButton
-            onClick={event => {
-              event.stopPropagation();
-              updateTaskRequest(task);
-            }}
-          >
-            <EditIcon />
-          </IconButton>
-          <IconButton onClick={() => deleteTask(task)}>
-            <DeleteForeverIcon />
-          </IconButton>
-        </div>
-  </div>
+    <div className="task"
+      onClick={event => {
+        //event.stopPropagation();
+        updateTaskRequest(task);
+      }}
+    >
+      <div className="task__content">
+        <h3
+          className="task__title"
+          // onClick={() => {
+          //   setEditMode(true);
+          // }}
+        >
+          {task.title}
+        </h3>
+        <IconButton onClick={() => deleteTask(task)}>
+          <DeleteForeverIcon />
+        </IconButton>
+      </div>
+      
+    </div>
   );
 }

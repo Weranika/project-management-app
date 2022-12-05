@@ -21,7 +21,8 @@ export interface ModalPopupState {
   showModalDeleteBoard: boolean;
   showModalCreateTask: string;
   showModalDeleteTask: ICreatedTaskType | null;
-  taskCreation: ICreatedTaskType;
+  taskCreation: ICreatedTaskType | null;
+  showModalTaskInfo: ICreatedTaskType | null;
 }
 
 export interface BoardType {

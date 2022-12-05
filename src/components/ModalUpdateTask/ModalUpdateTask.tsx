@@ -12,20 +12,23 @@ import Button from '@mui/material/Button';
 
 import { setShowModalUpdateTask } from '../../reducers/modalPopupSlice';
 import { updateTask } from '../../reducers/tasksSlice';
-import { ModalPopupState, InitialUpdateTask } from '../../types';
+import { ModalPopupState, InitialUpdateTask, ICreatedTaskType } from '../../types';
 import { useAppDispatch } from '../../hook';
+import './modalTaskInfo.scss';
+import { NullLiteral } from 'typescript';
 
 type FormValues = {
   title: string;
   description: string;
 };
 
-export default function ModalUpdateTask({ url }: { url: string }) {
+export default function ModalUpdateTask({ url, task }: { url: string, task: ICreatedTaskType | null}) {
   const dispatch = useAppDispatch();  
 
-  const { taskCreation } = useSelector(
-    (state: { modalPopup: ModalPopupState }) => state.modalPopup,
-  );
+  // const { taskCreation } = useSelector(
+  //   (state: { modalPopup: ModalPopupState }) => state.modalPopup,
+  // );
+  const taskCreation = task as ICreatedTaskType;
 
   const {
     register,
@@ -53,26 +56,26 @@ export default function ModalUpdateTask({ url }: { url: string }) {
       }),
     );
 
-    dispatch(setShowModalUpdateTask(InitialUpdateTask));
+    dispatch(setShowModalUpdateTask(null));
   };
+
   return (
     <div>
       <Dialog
-        open={ taskCreation === InitialUpdateTask ? false : true }
-        onClose={() => dispatch(setShowModalUpdateTask(InitialUpdateTask))}
+        open={ taskCreation === null ? false : true }
+        onClose={() => dispatch(setShowModalUpdateTask(null))}
+        className="modal-task"
       >
-        <DialogTitle>
-          <FormattedMessage id='update_task' />
-        </DialogTitle>
         <form className="create-task__form" onSubmit={onSubmit}>
           <DialogContent sx={{ width: '20rem' }}>
             <TextField
               fullWidth
               sx={{ display: 'block', mb: '1rem' }}
-              id="outlined-basic"
-              label="Board title"
+              id="standard-basic"
+              label="Task title"
               variant="outlined"
               defaultValue={taskCreation.title}
+              className="modal-task__title"
               {...register('title', {
                 required: 'This field is required.',
                 minLength: {
@@ -86,9 +89,10 @@ export default function ModalUpdateTask({ url }: { url: string }) {
             <TextField
               fullWidth
               defaultValue={taskCreation.description}
-              id="outlined-basic"
-              label="Board description"
-              variant="outlined"
+              id="outlined-multiline-static"
+              label="Description"
+              multiline
+              className="modal-task__description"
               {...register('description')}
             />
           </DialogContent>
@@ -96,7 +100,7 @@ export default function ModalUpdateTask({ url }: { url: string }) {
             <Button type="submit">
               <FormattedMessage id='confirm' />
             </Button>
-            <Button onClick={() => dispatch(setShowModalUpdateTask(InitialUpdateTask))}>
+            <Button onClick={() => dispatch(setShowModalUpdateTask(null))}>
               <FormattedMessage id='cancel' />
             </Button>
           </DialogActions>

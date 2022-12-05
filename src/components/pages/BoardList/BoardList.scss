@@ -16,7 +16,7 @@
   align-items: center;
   max-width: 1250px;
   width: 100%;
-  margin: 3%;
+  margin: 2%;
   padding-left: 5%;
   button {
     height: 3rem;
@@ -37,9 +37,9 @@
   align-items: center;
   justify-content: space-evenly;
   gap: 1rem 2rem;
-  max-height: calc($BOARD-ITEM--HEIGHT * 2 + 5rem);
+  max-height: calc($BOARD-ITEM--HEIGHT * 3 + 8rem);
   overflow-y: scroll;
-  height: 60%;
+  height: 74%;
   &::-webkit-scrollbar {
     width: 10px;
   }

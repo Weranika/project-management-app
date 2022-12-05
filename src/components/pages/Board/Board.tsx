@@ -20,6 +20,7 @@ import { useAppDispatch } from '../../../hook';
 import ModalCreateTask from '../../ModalCreateTask/ModalCreateTask';
 import ModalUpdateTask from '../../ModalUpdateTask/ModalUpdateTask';
 import ModalDeleteTask from '../../ModalDeleteTask/ModalDeleteTask';
+import ModalTaskInfo from '../../ModalTaskInfo/ModalTaskInfo';
 import {
   ColumnType,
   ColumnState,
@@ -37,11 +38,15 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 
 function Board() {
   const dispatch = useAppDispatch();
-  const { showModalCreateColumn, showModalDeleteColumn } = useSelector(
+  const {
+    showModalCreateColumn,
+    showModalDeleteColumn,
+    showModalTaskInfo,
+    showModalDeleteTask,
+    taskCreation,
+    showModalCreateTask } = useSelector(
     (state: { modalPopup: ModalPopupState }) => state.modalPopup,
   );
-  const { showModalCreateTask } =
-    useSelector((state: { modalPopup: ModalPopupState }) => state.modalPopup);
 
   const { columnsArr, currentColumnId, isLoading, hasError, message } =
     useSelector((state: { columns: ColumnState }) => state.columns);
@@ -49,12 +54,6 @@ function Board() {
   const { boardsArr } = useSelector(
     (state: { boards: BoardState }) => state.boards,
   );
-
-  const { showModalDeleteTask } =
-  useSelector((state: { modalPopup: ModalPopupState }) => state.modalPopup);
-
-const { taskCreation } =
-  useSelector((state: { modalPopup: ModalPopupState }) => state.modalPopup);
 
   const params = useParams();
   const boardId = params.id as string;
@@ -107,7 +106,7 @@ const { taskCreation } =
       )}
 
       {showModalCreateTask && <ModalCreateTask boardId={boardId} colId={showModalCreateTask} />}
-      { taskCreation && <ModalUpdateTask url={`${url}/${taskCreation.columnId}/tasks/${taskCreation._id}`} /> }
+      { taskCreation && <ModalUpdateTask task={taskCreation} url={`${url}/${taskCreation.columnId}/tasks/${taskCreation._id}`} /> }
       {
         showModalDeleteTask && (
           <ModalDeleteTask url={`${url}/${showModalDeleteTask.columnId}/tasks/${showModalDeleteTask._id}`} />
