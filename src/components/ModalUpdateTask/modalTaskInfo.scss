@@ -43,8 +43,11 @@
     }
   }
 }
+.create-task__form {
+  overflow-x: hidden;
+}
 .create-task__form .css-1y6ac4r-MuiDialogContent-root {
-  width: 40vw;
+  width: 85%;
 }
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   cursor: pointer;

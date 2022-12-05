@@ -11,7 +11,6 @@ const initialState = {
   showModalCreateTask: '',
   showModalDeleteTask: null,
   taskCreation: InitialUpdateTask,
-  showModalTaskInfo: null,
 };
 
 const modalPopupSlice = createSlice({
@@ -66,12 +65,6 @@ const modalPopupSlice = createSlice({
     ) {
       state.taskCreation = payload;
     },
-    setShowModalTaskInfo(
-      state: { showModalTaskInfo: ICreatedTaskType | null; },
-      { payload }: PayloadAction<ICreatedTaskType | null>,
-    ) {
-      state.showModalTaskInfo = payload;
-    },
   },
 });
 export default modalPopupSlice.reducer;
@@ -84,5 +77,4 @@ export const {
   setShowModalCreateTask,
   setShowModalDeleteTask,
   setShowModalUpdateTask,
-  setShowModalTaskInfo,
 } = modalPopupSlice.actions;

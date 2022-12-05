@@ -39,6 +39,7 @@ export const messages = {
     add_board: '+ Add board',
     want_to_delete_board: 'Do you really want to delete the board?',
     update_board: 'Update board',
+    crate_board: 'Create board',
     // create column
     create_column: 'Create column',
     submit: 'Submit',
@@ -72,7 +73,7 @@ export const messages = {
     oxana: 'Оксана',
     oxana__subtitle: 'Фронтенд девелопер',
     oxana__info:
-      'Oтвечала за server-client API, созданиеб удаление, обновление и отображение столбцов',
+      'Oтвечала за server-client API, создание, удаление, обновление и отображение столбцов',
     katerina: 'Катерина',
     katerina__subtitle: 'Фронтенд девелопер',
     katerina__info: 'Оветственная за авторизацию в приложении',
@@ -89,6 +90,7 @@ export const messages = {
     add_board: '+ Добавить доску',
     want_to_delete_board: 'Вы уверены, что хотите удалить доску?',
     update_board: 'Обновить доску',
+    crate_board: 'Создать доску',
     // create column
     create_column: 'Создать колонку',
     submit: 'Создать',

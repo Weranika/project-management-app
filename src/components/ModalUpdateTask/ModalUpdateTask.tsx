@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { useForm } from 'react-hook-form';
 
@@ -7,15 +6,13 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 
 import { setShowModalUpdateTask } from '../../reducers/modalPopupSlice';
 import { updateTask } from '../../reducers/tasksSlice';
-import { ModalPopupState, InitialUpdateTask, ICreatedTaskType } from '../../types';
+import { ICreatedTaskType } from '../../types';
 import { useAppDispatch } from '../../hook';
 import './modalTaskInfo.scss';
-import { NullLiteral } from 'typescript';
 
 type FormValues = {
   title: string;
@@ -23,11 +20,8 @@ type FormValues = {
 };
 
 export default function ModalUpdateTask({ url, task }: { url: string, task: ICreatedTaskType | null}) {
-  const dispatch = useAppDispatch();  
+  const dispatch = useAppDispatch();
 
-  // const { taskCreation } = useSelector(
-  //   (state: { modalPopup: ModalPopupState }) => state.modalPopup,
-  // );
   const taskCreation = task as ICreatedTaskType;
 
   const {

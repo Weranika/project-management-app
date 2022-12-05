@@ -71,7 +71,9 @@ export default function ModalCreateBoard({ url }: { url: string }) {
         open={showModalCreateBoard}
         onClose={() => dispatch(setShowModalCreateBoard(false))}
       >
-        <DialogTitle>Create board</DialogTitle>
+        <DialogTitle>
+          <FormattedMessage id='crate_board' />
+        </DialogTitle>
         <form className="createBoard__form" onSubmit={onSubmit}>
           <DialogContent sx={{ width: '25rem' }}>
             <TextField
@@ -99,7 +101,9 @@ export default function ModalCreateBoard({ url }: { url: string }) {
             />
           </DialogContent>
           <DialogActions>
-            <Button type="submit">Submit</Button>
+            <Button type="submit">
+              <FormattedMessage id='submit' />
+            </Button>
             <Button onClick={() => dispatch(setShowModalCreateBoard(false))}>
               <FormattedMessage id='cancel' />
             </Button>

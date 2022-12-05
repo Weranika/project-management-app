@@ -13,7 +13,7 @@ $CONTENT-CONTAINER--WIDTH: 1100px;
 $HEADER-LOGO-CONTAINER--HEIGHT: 140px;
 $HEADER--HEIGHT: 67px;
 
-$BOARD-ITEM--HEIGHT: 160px;
+$BOARD-ITEM--HEIGHT: 157px;
 @mixin flex ($justify-content, $align-items: center) {
   display: flex;
   justify-content: $justify-content;

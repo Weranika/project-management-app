@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
@@ -16,7 +15,7 @@ import {
   setShowModalCreateTask } from '../../reducers/modalPopupSlice';
 import { updateColumn, setCurrentColumn } from '../../reducers/columnsSlice';
 import { useAppDispatch } from '../../hook';
-import { ColumnType, ColumnState } from '../../types';
+import { ColumnType } from '../../types';
 import TasksList from '../Tasks/TasksList';
 import Spinner from '../Spinner/Spinner';
 

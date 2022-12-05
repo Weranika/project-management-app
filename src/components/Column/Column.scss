@@ -6,11 +6,11 @@
   justify-content: flex-start;
   align-items: flex-start;
   width: 95%;
-  min-width: 320px;
+  min-width: 300px;
   margin: 0 auto;
   overflow-x: auto;
   gap: 0.5rem;
-  height: 60%;
+  height: 50%;
   overflow-y: hidden;
   color: $LIGHT-COLOR;
   &::-webkit-scrollbar {
@@ -30,7 +30,7 @@
 .column {
   height: 90%;
   max-width: 320px;
-  min-width: 320px;
+  min-width: 290px;
   background-color: #dce5e9;
   border-radius: 0.5rem;
   display: flex;

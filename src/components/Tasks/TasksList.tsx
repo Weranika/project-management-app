@@ -5,9 +5,6 @@ import { useParams } from 'react-router-dom';
 
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
-import ModalDeleteTask from '../ModalDeleteTask/ModalDeleteTask';
-import { setShowModalUpdateTask } from '../../reducers/modalPopupSlice';
-import ModalUpdateTask from '../ModalUpdateTask/ModalUpdateTask';
 
 import TaskItem from './TaskItem';
 import {  setMessage } from '../../reducers/tasksSlice';
@@ -15,9 +12,7 @@ import { useAppDispatch } from '../../hook';
 import {
   ColumnType,
   ICreatedTaskType,
-  ITaskState,
-  ModalPopupState,
-  ColumnState } from '../../types';
+  ITaskState} from '../../types';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
