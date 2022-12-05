@@ -9,30 +9,30 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
-import { setShowModalDeleteBoard } from '../../reducers/modalPopupSlice';
-import { deleteBoard } from '../../reducers/boardsSlice';
+import { setShowModalDeleteTask } from '../../reducers/modalPopupSlice';
+import { deleteTask } from '../../reducers/tasksSlice';
 import { useAppDispatch } from '../../hook';
 import { ModalPopupState } from '../../types';
 
-export default function ModalDeleteBoard({ url }: { url: string }) {
+export default function ModalDeleteTask({ url }: { url: string }) {
   const dispatch = useAppDispatch();
-  const { showModalDeleteBoard } = useSelector(
+  const { showModalDeleteTask } = useSelector(
     (state: { modalPopup: ModalPopupState }) => state.modalPopup,
   );
 
-  const deleteBoardRequest = (event: FormEvent) => {
+  const deleteTaskRequest = (event: FormEvent) => {
     event.preventDefault();
-    dispatch(deleteBoard(url));
-    dispatch(setShowModalDeleteBoard(false));
+    dispatch(deleteTask(url));
+    dispatch(setShowModalDeleteTask(null));
   };
   return (
     <div>
       <Dialog
-        open={showModalDeleteBoard}
-        onClose={() => dispatch(setShowModalDeleteBoard(false))}
+        open={showModalDeleteTask === null ? false : true }
+        onClose={() => dispatch(setShowModalDeleteTask(null))}
       >
         <DialogTitle>
-          <FormattedMessage id="want_to_delete_board" />
+          <FormattedMessage id="want_to_delete_task" />
         </DialogTitle>
         <DialogContent>
           <Box
@@ -45,10 +45,10 @@ export default function ModalDeleteBoard({ url }: { url: string }) {
           ></Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={(event: FormEvent) => deleteBoardRequest(event)}>
+          <Button onClick={(event: FormEvent) => deleteTaskRequest(event)}>
             <FormattedMessage id='confirm' />
           </Button>
-          <Button onClick={() => dispatch(setShowModalDeleteBoard(false))}>
+          <Button onClick={() => dispatch(setShowModalDeleteTask(null))}>
             <FormattedMessage id='cancel' />
           </Button>
         </DialogActions>

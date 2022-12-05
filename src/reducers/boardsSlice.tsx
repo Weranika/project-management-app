@@ -49,7 +49,6 @@ export const updateBoard = createAsyncThunk<
       );
 
       if (response.status !== 200) {
-        // Return the error message:
         return thunkApi.rejectWithValue({
           message: 'Failed to update the board.',
         });
@@ -104,7 +103,6 @@ export const createBoard = createAsyncThunk<
       );
 
       if (response.status !== 200) {
-        // Return the error message:
         return thunkApi.rejectWithValue({
           message: 'Failed to create the board.',
         });

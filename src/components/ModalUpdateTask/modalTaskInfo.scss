@@ -1,0 +1,54 @@
+@import '../../global/library';
+
+.modal-task {
+  .modal-task__title {
+    @include font(1.1em, OpenSans);
+    text-align: center;
+  }
+  .modal-task__title .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    background-color: $MAIN-COLOR--SECONDARY;
+    padding: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    @include font(2em, OpenSans);
+    width: 100%;
+  }
+  .css-8ewcdo-MuiInputBase-root-MuiOutlinedInput-root {
+    background-color: $MAIN-COLOR--PRIMARY-LIGHT-XL;
+    color: $LIGHT-COLOR;
+    border-radius: 4px;
+    padding: 20px;
+    height: 150px;
+    cursor: pointer;
+    width: 100%;
+    margin: 20px 0;
+    overflow-y: auto;
+    fieldset {
+      display: none;
+    }
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+      background-color: #f9f9fd;
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: linear-gradient(180deg, #cdb1d8, $MAIN-COLOR--PRIMARY);
+    }
+    .css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input{
+      height: 80%;
+    }
+  }
+}
+.create-task__form {
+  overflow-x: hidden;
+}
+.create-task__form .css-1y6ac4r-MuiDialogContent-root {
+  width: 85%;
+}
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  cursor: pointer;
+}

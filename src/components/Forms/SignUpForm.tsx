@@ -47,7 +47,7 @@ interface ISignUpForm {
 }
 
 export interface Result {
-  data: unknown; // прописать нормальный тип!!!!
+  data: unknown;
   error: string;
 }
 
@@ -72,7 +72,6 @@ export const SignUpForm: React.FC = () => {
         dispatch(setMessage(result.error));
         dispatch(setHasError(true));
       } else {
-        ///check expire token TODO
         dispatch(setMessage('You have been successfully signed up.'));
         dispatch(setHasError(false));
         navigate('/signIn');

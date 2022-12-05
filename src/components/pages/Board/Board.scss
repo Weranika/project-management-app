@@ -1,13 +1,13 @@
 @import '../../../global/library';
 
-$BOARD--WIDTH: 100vw;
+$BOARD--WIDTH: 98vw;
 $BOARD--PADDING: 83px 0;
 
 .board {
   background-color: $LIGHT-COLOR;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-grow: 1;
   margin: 0 auto;
   width: $BOARD--WIDTH;
@@ -22,13 +22,31 @@ $BOARD--PADDING: 83px 0;
   }
 }
 .board__title {
-  max-width: max-content;
+  max-width: 90vw;
   color: $MAIN-COLOR--PRIMARY-DARK;
   @include font(2.5rem, OpenSans, 600);
+  margin: 0 0 10px 0;
 }
 .board__page {
   width: $BODY-CONTAINER--WIDTH;
   max-width: $BODY-CONTAINER--MAX-WIDTH;
   padding: $BOARD--PADDING;
   margin: 0 auto;
+}
+/***************media********************/
+@media only screen and (max-width: 420px) {
+  .board__header {
+    width: max-content;
+    margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+  }
+  .board__title {
+    font-size: 5.5vw;
+}
+  .board__header {
+    button {
+      margin: 10px 0 0 10px;
+    }
+  }
 }

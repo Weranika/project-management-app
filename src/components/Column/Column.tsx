@@ -10,10 +10,14 @@ import { TextField } from '@mui/material';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
-import { setShowModalDeleteColumn } from '../../reducers/modalPopupSlice';
+import {
+  setShowModalDeleteColumn,
+  setShowModalCreateTask } from '../../reducers/modalPopupSlice';
 import { updateColumn, setCurrentColumn } from '../../reducers/columnsSlice';
 import { useAppDispatch } from '../../hook';
 import { ColumnType } from '../../types';
+import TasksList from '../Tasks/TasksList';
+import Spinner from '../Spinner/Spinner';
 
 import './Column.scss';
 
@@ -109,7 +113,11 @@ export default function Column({ column }: { column: ColumnType }) {
           </div>
         )}
       </div>
-      <Button variant="contained">
+      <TasksList column={column}/>
+      <Button
+        variant="contained"
+        onClick={() => dispatch(setShowModalCreateTask(column._id))}
+      >
         <FormattedMessage id='add_task' />
       </Button>
     </div>

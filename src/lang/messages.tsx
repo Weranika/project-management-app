@@ -37,12 +37,21 @@ export const messages = {
     add_column: '+ Add column',
     back: 'Back',
     add_board: '+ Add board',
+    want_to_delete_board: 'Do you really want to delete the board?',
+    update_board: 'Update board',
+    crate_board: 'Create board',
     // create column
     create_column: 'Create column',
     submit: 'Submit',
     cancel: 'Cancel',
     column_title: 'Column title',
-    add_task: '+ Add column',
+    want_to_delete_col: 'Do you really want to delete the column?',
+    //task
+    add_task: '+ Add task',
+    create_task: 'Task',
+    want_to_delete_task: 'Do you really want to delete the task?',
+    confirm: 'Confirm',
+    update_task: 'Update task',
   },
   [LOCALES.RUSSIAN]: {
     // header
@@ -64,7 +73,7 @@ export const messages = {
     oxana: 'Оксана',
     oxana__subtitle: 'Фронтенд девелопер',
     oxana__info:
-      'Oтвечала за server-client API, созданиеб удаление, обновление и отображение столбцов',
+      'Oтвечала за server-client API, создание, удаление, обновление и отображение столбцов',
     katerina: 'Катерина',
     katerina__subtitle: 'Фронтенд девелопер',
     katerina__info: 'Оветственная за авторизацию в приложении',
@@ -79,11 +88,19 @@ export const messages = {
     add_column: '+ Добавить колонку',
     back: 'Назад',
     add_board: '+ Добавить доску',
+    want_to_delete_board: 'Вы уверены, что хотите удалить доску?',
+    update_board: 'Обновить доску',
+    crate_board: 'Создать доску',
     // create column
     create_column: 'Создать колонку',
     submit: 'Создать',
     cancel: 'Отменить',
+    want_to_delete_col: 'Вы уверены, что хотите удалить колонку?',
     column_title: 'Заголовок',
     add_task: '+ Создать задачу',
+    create_task: 'Задача',
+    want_to_delete_task: 'Вы уверены, что хотите удалить задачу?',
+    confirm: 'Подтвердить',
+    update_task: 'Обновить задачу',
   },
 };

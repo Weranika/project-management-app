@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import { useForm } from 'react-hook-form';
 
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -9,22 +10,24 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 
-import { setShowModalCreateColumn } from '../../reducers/modalPopupSlice';
-import { createColumn } from '../../reducers/columnsSlice';
+import { setShowModalCreateTask } from '../../reducers/modalPopupSlice';
+import { createTask } from '../../reducers/tasksSlice';
+import { ITaskState, ModalPopupState } from '../../types';
 import { useAppDispatch } from '../../hook';
-import { ModalPopupState, ColumnState } from '../../types';
-import { useForm } from 'react-hook-form';
+
 
 type FormValues = {
   title: string;
+  description: string;
 };
 
-export default function ModalCreateColumn({ url }: { url: string }) {
+export default function ModalCreateTask({ boardId, colId }: { boardId: string, colId: string }) {
+  const url = `/boards/${boardId}/columns/${colId}/tasks`;
   const dispatch = useAppDispatch();
-  const { columnsArr } = useSelector(
-    (state: { columns: ColumnState }) => state.columns,
+  const { tasksArr } = useSelector(
+    (state: { tasks: ITaskState }) => state.tasks,
   );
-  const { showModalCreateColumn } = useSelector(
+  const { showModalCreateTask } = useSelector(
     (state: { modalPopup: ModalPopupState }) => state.modalPopup,
   );
 
@@ -35,37 +38,56 @@ export default function ModalCreateColumn({ url }: { url: string }) {
   } = useForm<FormValues>();
 
   const onSubmit = handleSubmit(data => {
-    createColumnRequest(data);
+    createTaskRequest(data);
   });
 
-  const createColumnRequest = (data: FormValues) => {
+  const createTaskRequest = (data: FormValues) => {
     dispatch(
-      createColumn({
+      createTask({
         url: url,
         title: data.title,
-        order: columnsArr.length,
+        order: tasksArr.length,
+        description: data.description,
+        userId: 1,
+        users: []
       }),
     );
-    dispatch(setShowModalCreateColumn(false));
+
+    dispatch(setShowModalCreateTask(''));
   };
 
   return (
     <div>
       <Dialog
-        open={showModalCreateColumn}
-        onClose={() => dispatch(setShowModalCreateColumn(false))}
+        open={showModalCreateTask === '' ? false : true}
+        onClose={() => dispatch(setShowModalCreateTask(''))}
       >
         <DialogTitle>
-          <FormattedMessage id='create_column' />
+          <FormattedMessage id='create_task' />
         </DialogTitle>
-        <form className="createColumn__form" onSubmit={onSubmit}>
+        <form className="create-task__form" onSubmit={onSubmit}>
           <DialogContent sx={{ width: '20rem' }}>
             <TextField
               fullWidth
-              id="outlined-basic"
-              label="Column title"
+              id="task-title"
+              label="Task title"
               variant="outlined"
               {...register('title', {
+                required: 'This field is required.',
+                minLength: {
+                  value: 4,
+                  message: 'This field should be more than 4 symbols',
+                },
+              })}
+              helperText={errors.title && errors.title.message}
+              error={errors.title ? true : false}
+            />
+            <TextField
+              fullWidth
+              id="task-description"
+              label="Description"
+              variant="outlined"
+              {...register('description', {
                 required: 'This field is required.',
                 minLength: {
                   value: 4,
@@ -79,8 +101,8 @@ export default function ModalCreateColumn({ url }: { url: string }) {
           <DialogActions>
             <Button type="submit">
               <FormattedMessage id='submit' />
-              </Button>
-            <Button onClick={() => dispatch(setShowModalCreateColumn(false))}>
+            </Button>
+            <Button onClick={() => dispatch(setShowModalCreateTask(''))}>
               <FormattedMessage id='cancel' />
             </Button>
           </DialogActions>

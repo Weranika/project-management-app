@@ -19,6 +19,9 @@ export interface ModalPopupState {
   showModalCreateBoard: boolean;
   showModalUpdateBoard: boolean;
   showModalDeleteBoard: boolean;
+  showModalCreateTask: string;
+  showModalDeleteTask: ICreatedTaskType | null;
+  taskCreation: ICreatedTaskType | null;
 }
 
 export interface BoardType {
@@ -38,7 +41,38 @@ export interface BoardState {
   currentBoardTitle: string;
   currentBoardDescription: string;
 }
-
+export interface ITaskType {
+  _id: string;
+  title: string;
+  order: number;
+  taskId: string;
+  columnId: string;
+}
+export interface ICreatedTaskType {
+  _id: string;
+  title: string;
+  order: number;
+  taskId: string;
+  columnId: string;
+  boardId: string;
+  description: string;
+  userId: number;
+  users: Array<string>;
+}
+export interface ITaskModel {
+  title: string;
+  order: number | undefined;
+  description: string;
+  userId: number;
+  users: Array<string>;
+}
+export interface ITaskState {
+  tasksArr: ICreatedTaskType[];
+  isLoading: boolean;
+  hasError: boolean;
+  currentTaskId: string;
+  message: string;
+}
 export interface AuthState {
   isAuth: boolean;
   isLoading: boolean;

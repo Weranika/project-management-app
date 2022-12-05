@@ -1,10 +1,12 @@
 import React from 'react';
-import './Main.scss';
-import { HashLink } from 'react-router-hash-link';
+import { FormattedMessage } from 'react-intl';
+
 import { IconButton } from '@mui/material';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+
+import { HashLink } from 'react-router-hash-link';
 import AboutUs from '../../AboutUs/AboutUs';
-import { FormattedMessage } from 'react-intl';
+import './Main.scss';
 
 const Main: React.FC = () => {
   const scrollToTop = () => {
