@@ -8,25 +8,19 @@ import katerina from '../../assets/images/team/katerina.jpg';
 import githubIcon from '../../assets/icons/Github_logo.png';
 import './aboutUs.scss';
 
-
 function AboutUs() {
   return (
-    <section className="about-us" id={"about-us"}>
-      <h2 className="our-team__title"><FormattedMessage id='our_team__title' /></h2>
-      <AnimationOnScroll
-        animateIn='bounceInRight'
-        animateOut='bounceOutLeft'
-      >
+    <section className="about-us" id={'about-us'}>
+      <h2 className="our-team__title">
+        <FormattedMessage id="our_team__title" />
+      </h2>
+      <AnimationOnScroll animateIn="bounceInRight" animateOut="bounceOutLeft">
         <article className="our-team__person">
-          <img
-            src={weranika}
-            alt="weranika"
-            className="person__img"
-          />
+          <img src={weranika} alt="weranika" className="person__img" />
           <div className="person__content">
             <div className="person__title-container">
               <h3 className="person__title">
-                <FormattedMessage id='weranika' />
+                <FormattedMessage id="weranika" />
               </h3>
               <a
                 className="person__github-link"
@@ -41,26 +35,23 @@ function AboutUs() {
                 />
               </a>
             </div>
-            <h5 className="person__subtitle"><FormattedMessage id='weranika__subtitle' /></h5>
-            <p className="person__info"><FormattedMessage id='weranika__info' /></p>
+            <h5 className="person__subtitle">
+              <FormattedMessage id="weranika__subtitle" />
+            </h5>
+            <p className="person__info">
+              <FormattedMessage id="weranika__info" />
+            </p>
           </div>
         </article>
       </AnimationOnScroll>
 
-      <AnimationOnScroll
-        animateIn='bounceInLeft'
-        animateOut='bounceOutRight'
-      >
+      <AnimationOnScroll animateIn="bounceInLeft" animateOut="bounceOutRight">
         <article className="our-team__person">
-          <img
-            src={oxana}
-            alt="oxana"
-            className="person__img"
-          />
+          <img src={oxana} alt="oxana" className="person__img" />
           <div className="person__content">
             <div className="person__title-container">
               <h3 className="person__title">
-                <FormattedMessage id='oxana' />
+                <FormattedMessage id="oxana" />
               </h3>
               <a
                 className="person__github-link"
@@ -75,26 +66,23 @@ function AboutUs() {
                 />
               </a>
             </div>
-            <h5 className="person__subtitle"><FormattedMessage id='oxana__subtitle' /></h5>
-            <p className="person__info"><FormattedMessage id='oxana__info' /></p>
+            <h5 className="person__subtitle">
+              <FormattedMessage id="oxana__subtitle" />
+            </h5>
+            <p className="person__info">
+              <FormattedMessage id="oxana__info" />
+            </p>
           </div>
         </article>
       </AnimationOnScroll>
 
-      <AnimationOnScroll
-        animateIn='bounceInRight'
-        animateOut='bounceOutLeft'
-      >
+      <AnimationOnScroll animateIn="bounceInRight" animateOut="bounceOutLeft">
         <article className="our-team__person">
-          <img
-            src={katerina}
-            alt="katerina"
-            className="person__img"
-          />
+          <img src={katerina} alt="katerina" className="person__img" />
           <div className="person__content">
             <div className="person__title-container">
               <h3 className="person__title">
-                <FormattedMessage id='katerina' />
+                <FormattedMessage id="katerina" />
               </h3>
               <a
                 className="person__github-link"
@@ -109,8 +97,12 @@ function AboutUs() {
                 />
               </a>
             </div>
-            <h5 className="person__subtitle"><FormattedMessage id='katerina__subtitle' /></h5>
-            <p className="person__info"><FormattedMessage id='katerina__info' /></p>
+            <h5 className="person__subtitle">
+              <FormattedMessage id="katerina__subtitle" />
+            </h5>
+            <p className="person__info">
+              <FormattedMessage id="katerina__info" />
+            </p>
           </div>
         </article>
       </AnimationOnScroll>

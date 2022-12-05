@@ -6,29 +6,25 @@ import { setLang } from '../../reducers/langSlice';
 
 import Button from '@mui/material/Button';
 
-import logo from '../../assets/icons/logo.png';
+import { setIsAuth } from '../../reducers/authSlice';
 import { FormattedMessage } from 'react-intl';
 import { setShowModalCreateBoard } from '../../reducers/modalPopupSlice';
 import { LOCALES } from '../../lang/locales';
 import { AuthState } from '../../types';
+import logo from '../../assets/icons/logo.png';
 import './Header.scss';
-import { setIsAuth } from '../../reducers/authSlice';
 
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 const languages = [
-  { name: 'ENGLISH', code: LOCALES.ENGLISH },
-  { name: 'RUSSIAN', code: LOCALES.RUSSIAN },
+  { name: 'English', code: LOCALES.ENGLISH },
+  { name: 'Russian', code: LOCALES.RUSSIAN },
 ];
-// const [currentLocale, setCurrentLocale] = useState(getInitialLocale());
-// const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-//   setCurrentLocale(event.currentTarget.value);
-//   localStorage.setItem('locale', event.currentTarget.value);
-// }
 
 function Header() {
   const lang = useAppSelector(state => state.lang);
+
   const dispatch = useAppDispatch();
 
   const { isAuth, isLoading, hasError, message } = useSelector(
@@ -58,7 +54,6 @@ function Header() {
                 onChange={event => {
                   const value = event.currentTarget.value;
                   dispatch(setLang(value));
-                  console.log(lang.lang);
                   localStorage.setItem('lang', value);
                 }}
               >
@@ -82,7 +77,7 @@ function Header() {
                   variant="contained"
                   onClick={() => dispatch(setShowModalCreateBoard(true))}
                 >
-                  + Add board
+                  <FormattedMessage id="add_board" />
                 </Button>
               </li>
             )}

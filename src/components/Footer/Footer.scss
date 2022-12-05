@@ -41,6 +41,7 @@ $FOOTER-YEAR--WIDTH: 10vw;
     color: $MAIN-COLOR--PRIMARY-LIGHT-XL;
     &:hover {
       color: $MAIN-COLOR--SECONDARY;
+      cursor: pointer;
     }
     .footer__year {
       font-size: 2.5em;

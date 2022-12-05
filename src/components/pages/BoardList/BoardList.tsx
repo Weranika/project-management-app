@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
@@ -42,14 +43,9 @@ function BoardList() {
   return (
     <section className="boardList__page">
       <div className="boardList__header">
-        <h1 className="boardList__title">Boards</h1>
-
-        {/* <Button
-          variant="contained"
-          onClick={() => dispatch(setShowModalCreateBoard(true))}
-        >
-          + Add board
-        </Button> */}
+        <h1 className="boardList__title">
+          <FormattedMessage id="boards" />
+        </h1>
       </div>
 
       <section className="boardList__boardItems">

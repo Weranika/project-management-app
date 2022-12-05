@@ -7,27 +7,24 @@ $BOARD--PADDING: 83px 0;
   background-color: $LIGHT-COLOR;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   flex-grow: 1;
   margin: 0 auto;
   width: $BOARD--WIDTH;
   padding: 5rem 1rem 1rem 1rem;
 }
 .board__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: max-content;
   margin-left: 5%;
   button {
-    height: 2.5rem;
-    width: 10rem;
+    height: 3.5rem;
+    width: 11rem;
   }
 }
 .board__title {
-  margin-left: 2.5rem;
-  margin-right: 1rem;
   max-width: max-content;
   color: $MAIN-COLOR--PRIMARY-DARK;
+  @include font(2.5rem, OpenSans, 600);
 }
 .board__page {
   width: $BODY-CONTAINER--WIDTH;

@@ -76,14 +76,12 @@ $SCROLL-BUTTON--HEIGHT: 50px;
   color: $LIGHT-COLOR;
   margin-left: $LOGO-TITLE--MARGINE-LEFT;
   letter-spacing: 1.2px;
+  width: 17vw;
   &:hover {
     color: $MAIN-COLOR--SECONDARY-LIGHT;
     text-shadow: 0px 0px 13px rgb(255 255 255 / 80%);
   }
 }
-// .navbar__container {
-//   width: $NAV--WIDTH;
-// }
 .navbar {
   width: $NAV--WIDTH;
   @include flex(space-between);
@@ -136,15 +134,15 @@ $SCROLL-BUTTON--HEIGHT: 50px;
 }
 /***************media********************/
 @media only screen and (min-width: 630px) and (max-width: 850px) {
-  .navbar__container {
+  .navbar {
     width: 65vw;
   }
   .logo__title {
-    @include font(2.5vw, Roboto);
+    @include font(1.8vw, Roboto);
   }
 }
-@media only screen and (max-width: 629px) {
-  .navbar__container {
+@media only screen and (max-width: 640px) {
+  .navbar {
     width: 70vw;
   }
   .logo__title {
