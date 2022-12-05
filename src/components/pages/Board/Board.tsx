@@ -15,6 +15,7 @@ import { setShowModalCreateColumn } from '../../../reducers/modalPopupSlice';
 import { getColumns, setMessage } from '../../../reducers/columnsSlice';
 import { getTasks } from '../../../reducers/tasksSlice';
 import { useAppDispatch } from '../../../hook';
+import ModalCreateTask from '../../ModalCreateTask/ModalCreateTask';
 import ModalUpdateTask from '../../ModalUpdateTask/ModalUpdateTask';
 import ModalDeleteTask from '../../ModalDeleteTask/ModalDeleteTask';
 import {
@@ -37,6 +38,7 @@ function Board() {
   const {
     showModalCreateColumn,
     showModalDeleteColumn,
+    showModalCreateTask,
     showModalDeleteTask,
     taskCreation,
   } = useSelector((state: { modalPopup: ModalPopupState }) => state.modalPopup);
@@ -97,6 +99,7 @@ function Board() {
       {showModalDeleteColumn && (
         <ModalDeleteColumn url={`${url}/${currentColumnId}`} />
       )}
+      {showModalCreateTask && <ModalCreateTask boardId={boardId} colId={showModalCreateTask} />}
 
       { taskCreation && (
         <ModalUpdateTask
