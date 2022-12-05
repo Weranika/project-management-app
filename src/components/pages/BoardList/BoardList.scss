@@ -1,0 +1,64 @@
+@import '../../../global/library';
+
+.boardList__page {
+  min-width: 320px;
+  background-color: $LIGHT-COLOR;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 5rem 1rem 1rem 1rem;
+  align-items: center;
+}
+
+.boardList__header {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  max-width: 1250px;
+  width: 100%;
+  margin: 6vh 0 8vh 0;
+  padding-left: 5%;
+  button {
+    height: 3rem;
+    width: 10rem;
+  }
+}
+
+.boardList__title {
+  width: 7rem;
+  color: $MAIN-COLOR--PRIMARY-DARK;
+}
+
+.boardList__boardItems {
+  width: 100%;
+  max-width: $BODY-CONTAINER--MAX-WIDTH;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem 2rem;
+  overflow-y: scroll;
+  max-height: 50vh;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: #f9f9fd;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(180deg, #cdb1d8, $MAIN-COLOR--PRIMARY);
+  }
+}
+div .css-l7zdqc-MuiDialogContent-root {
+  width: 25vw;
+  min-width: 200px;
+}
+/***************media********************/
+@media only screen and (max-width: 460px) {
+  .boardList__boardItems {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,41 @@
+$MAIN-COLOR--PRIMARY: #461c3a;
+$MAIN-COLOR--PRIMARY-DARK: #1f1013;
+$MAIN-COLOR--PRIMARY-LIGHT: rgb(79, 44, 93);
+$MAIN-COLOR--PRIMARY-LIGHT-XL: #8a6698;
+$MAIN-COLOR--SECONDARY-LIGHT: #ffdec6;
+$MAIN-COLOR--SECONDARY: #dca57e;
+$LIGHT-COLOR: #fffcfa;
+
+$BODY-CONTAINER--WIDTH: 90vw;
+$BODY-CONTAINER--MAX-WIDTH: 1250px;
+$CONTENT-CONTAINER--WIDTH: 1100px;
+
+$HEADER-LOGO-CONTAINER--HEIGHT: 140px;
+$HEADER--HEIGHT: 67px;
+
+$BOARD-ITEM--HEIGHT: 157px;
+@mixin flex ($justify-content, $align-items: center) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: center;
+}
+@mixin font ($size, $font, $weight: normal) {
+  font-size: $size;
+  font-family: $font;
+  font-weight: $weight;
+}
+@mixin angle () {
+  --angle: 0deg;
+  border-image: linear-gradient(var(--angle), $LIGHT-COLOR, #461c3a) 1;
+  animation: 7s rotate linear infinite;
+  @property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+  @keyframes rotate {
+    to {
+      --angle: 360deg;
+    }
+  }
+}

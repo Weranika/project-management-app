@@ -1,0 +1,36 @@
+@import '../../global/library';
+
+.task-list {
+  width: 100%;
+  overflow: auto;
+  margin-bottom: 10px;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: #f9f9fd;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(180deg, #cdb1d8, $MAIN-COLOR--PRIMARY);
+  }
+}
+.task {
+  background-color: $MAIN-COLOR--SECONDARY;
+  margin: 5px;
+  border-radius: 10px;
+}
+.task__content {
+  @include flex(space-between);
+  padding: 2px 5px;
+}
+.task__title {
+  margin: 0;
+  width: 70%;
+  overflow: hidden;
+}
+div.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
+  margin: 10px 0;
+}

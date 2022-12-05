@@ -1,0 +1,55 @@
+@import './library';
+
+html {
+  scroll-behavior: smooth;
+}
+
+.body__container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  height: 100vh;
+  font-weight: 100;
+  background: radial-gradient(#a23982,rgb(31, 16, 19));
+  overflow-y: hidden;
+  -webkit-animation: fadeIn 1 1s ease-out;
+  -moz-animation: fadeIn 1 1s ease-out;
+  -o-animation: fadeIn 1 1s ease-out;
+  animation: fadeIn 1 1s ease-out;
+}
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+  &:active {
+    color: $MAIN-COLOR--PRIMARY;
+  }
+}
+li {
+  list-style-type: none;
+  a {
+    color: inherit;
+  }
+}
+button.css-1o2c7w4-MuiButtonBase-root-MuiButton-root,
+div .css-sghohy-MuiButtonBase-root-MuiButton-root {
+  background-color: #6e227e;
+  &:hover {
+    background-color: $MAIN-COLOR--PRIMARY-LIGHT-XL;
+  }
+}
+
+@font-face {
+  font-family: "OpenSans"; 
+  src: url('../assets/fonts/open-sans.woff') format('woff');
+  font-style: normal;
+}
+@font-face {
+  font-family: "Roboto"; 
+  src: url('../assets/fonts/Roboto-Regular.ttf') format('woff');
+  font-style: normal;
+}

@@ -1,0 +1,92 @@
+@import '../../global/library';
+
+.board__columns {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 95%;
+  min-width: 300px;
+  margin: 0 auto;
+  overflow-x: auto;
+  gap: 0.5rem;
+  height: 50%;
+  overflow-y: hidden;
+  color: $LIGHT-COLOR;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: #f9f9fd;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(90deg, #cdb1d8, $MAIN-COLOR--PRIMARY);
+  }
+}
+
+.column {
+  height: 90%;
+  max-width: 320px;
+  min-width: 290px;
+  background-color: #dce5e9;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.column__header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 3.3rem;
+  font-size: 1.1rem;
+  padding-top: 0;
+  background-color: $MAIN-COLOR--PRIMARY-LIGHT;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.column__title {
+  width: 100%;
+  cursor: pointer;
+  padding: 0 1rem;
+}
+
+.column__header--edit-mode {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 70% 15% 15%;
+  box-sizing: border-box;
+  margin-left: 0.2rem;
+  position: relative;
+}
+
+.column__header--read-mode {
+  width: 100%;
+  display: flex;
+}
+
+.column__header__input {
+  background-color: white;
+  // height: 2.8rem;
+  margin-left: 0.3rem;
+}
+.column__error-message {
+  position: absolute;
+  bottom: -2.1rem;
+  left: 5px;
+  color: red;
+  font-size: 0.8rem;
+}
+svg.css-i4bv87-MuiSvgIcon-root {
+  color: $LIGHT-COLOR;
+}
