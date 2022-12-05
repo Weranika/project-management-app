@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { useAppSelector, useAppDispatch } from '../../hook';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { setLang } from '../../reducers/langSlice';
 
 import Button from '@mui/material/Button';
@@ -26,6 +26,8 @@ function Header() {
   const lang = useAppSelector(state => state.lang);
 
   const dispatch = useAppDispatch();
+  const location = useLocation();
+  const path = location.pathname;
 
   const { isAuth, isLoading, hasError, message } = useSelector(
     (state: { auth: AuthState }) => state.auth,
@@ -71,7 +73,7 @@ function Header() {
                 )}
               </select>
             </li>
-            {isAuth && (
+            {isAuth && (path === '/board/' || path === '/board') && (
               <li>
                 {' '}
                 <Button
@@ -80,6 +82,13 @@ function Header() {
                 >
                   <FormattedMessage id="add_board" />
                 </Button>
+              </li>
+            )}
+            {isAuth && path === '/' && (
+              <li>
+                <NavLink to="/board" className="nav__link">
+                  <FormattedMessage id="boards" />
+                </NavLink>
               </li>
             )}
             {!isAuth && (
@@ -96,10 +105,10 @@ function Header() {
                 </NavLink>
               </li>
             )}
-            {isAuth && (
+            {isAuth && path.includes('board') && (
               <li>
-                <NavLink to="/board" className="nav__link">
-                  <FormattedMessage id="Go to Main Page" />
+                <NavLink to="/" className="nav__link">
+                  <FormattedMessage id="Go to Main" />
                 </NavLink>
               </li>
             )}
