@@ -32,7 +32,7 @@ function Footer() {
           </a>
           <a
             className="footer__github-link"
-            href="https://github.com"
+            href="https://github.com/shishel-zaitcevich"
             target="_blank"
             rel="noreferrer"
           >

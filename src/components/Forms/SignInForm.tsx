@@ -68,7 +68,6 @@ export const AuthForm: React.FC = () => {
         dispatch(setMessage(result.error));
         dispatch(setHasError(true));
       } else {
-        ///check expire token TODO
         dispatch(setMessage(''));
         dispatch(setHasError(false));
         dispatch(setIsAuth(true));
