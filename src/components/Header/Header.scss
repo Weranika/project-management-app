@@ -132,7 +132,7 @@ $SCROLL-BUTTON--HEIGHT: 50px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
 }
-.add_board__button.css-sghohy-MuiButtonBase-root-MuiButton-root {
+.add_board__button.css-1hw9j7s {
   border-radius: 5px;
   background-color: rgba(79, 44, 93, 0.2);
   border: 2px solid $LIGHT-COLOR;
@@ -150,11 +150,11 @@ $SCROLL-BUTTON--HEIGHT: 50px;
   .logo__title {
     @include font(1.8vw, Roboto);
   }
-  .add_board__button.css-sghohy-MuiButtonBase-root-MuiButton-root {
+  .add_board__button.css-1hw9j7s {
     font-size: 0.7rem;
   }
 }
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 629px) {
   .navbar {
     width: 70vw;
   }
@@ -164,7 +164,7 @@ $SCROLL-BUTTON--HEIGHT: 50px;
   .navbar {
     font-size: 2.4vw;
   }
-  .add_board__button.css-sghohy-MuiButtonBase-root-MuiButton-root {
+  .add_board__button.css-1hw9j7s {
     font-size: 2vw;
   }
 }
