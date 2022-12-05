@@ -64,6 +64,7 @@ $PERSON--BORDER: 20px solid;
   margin: 0 auto;
   width: $PERSON-CONTANT--WIDTH;
   transform: skew(-7deg);
+  height: 350px;
   .person__info {
     padding-bottom: 20px;
     line-height: 1.3;
@@ -114,6 +115,7 @@ $PERSON--BORDER: 20px solid;
   }
   .person__content {
     font-size: 2.5vw;
+    height: 150px;
   }
   .person__info {
     display: none;
